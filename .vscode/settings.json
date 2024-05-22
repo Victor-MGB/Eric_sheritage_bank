@@ -1,0 +1,6 @@
+{
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "emmet.showSuggestionsAsSnippets": true,
+    "path-intellisense.autoTriggerNextSuggestion": true,
+    "editor.suggest.showColors": true
+}

@@ -94,6 +94,8 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 	);
 };
 
+
+
 /**
  * A dropdown component that displays a list of currency conversion, currency charts, and exchange rate options.
  *

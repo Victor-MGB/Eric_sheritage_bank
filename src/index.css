@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bgImage {
+	background-image: url("/public/assets/images/skyscraper.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.dancing-script {
+	font-family: "Dancing Script", cursive;
+	font-optical-sizing: auto;
+	font-weight: 600;
+	font-style: normal;
+}
+
+.jost {
+	font-family: "Jost", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+}

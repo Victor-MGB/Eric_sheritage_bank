@@ -8,8 +8,9 @@ const Hero = () => {
 			className='flex flex-col gap-[5rem] items-center justify-between p-10 bg-cover bg-center bg-gray-100'
 			style={{ backgroundImage: "url(/assets/images/skyscraper.jpg)" }}
 		>
-			<div className={`flex self-start `}>
+			<div className={`flex self-start justify-between  `}>
 				<HeroWritesUp />
+				<InfoCard />
 			</div>
 
 			<ButtomWriteUp />
@@ -19,6 +20,11 @@ const Hero = () => {
 
 export default Hero;
 
+/**
+ * Renders a hero section with a background image, a centered content box, and call-to-action buttons.
+ * The hero section displays a title, a description, and two buttons for "Get Started" and "Learn More".
+ * The content box is styled with a white background and a semi-transparent overlay.
+ */
 const HeroWritesUp: React.FC = () => {
 	return (
 		<div
@@ -60,6 +66,53 @@ const HeroWritesUp: React.FC = () => {
 	);
 };
 
+/**
+ * Renders an information card component with a background image, title, description, and badges.
+ * The card is centered within a container with a semi-transparent gray background.
+ */
+const InfoCard: React.FC = () => {
+	return (
+		<div className='w-[50rem] h-auto bg-opacity-30 flex items-center justify-center bg-gray-100'>
+			<div
+				className='relative w-full max-w-2xl mx-auto bg-cover bg-center rounded-lg shadow-lg overflow-hidden'
+				style={{ backgroundImage: `url('/assets/images/cashWallet.jpg')` }}
+			>
+				<div className='absolute inset-0 bg-black bg-opacity-50'></div>
+				<div className='relative p-8 text-white'>
+					<h2 className='text-3xl font-bold mb-4'>
+						Automate bills. Organise how you spend. Save in clever new ways.
+					</h2>
+					<p className='text-lg mb-4'>
+						Apply for a full UK current account in 10 minutes, for free.
+					</p>
+					<p className='text-lg mb-4'>Download your new favourite bank</p>
+					<p className='text-sm mb-6'>UK residents only. Ts&Cs apply.</p>
+					<div className='flex items-center justify-between'>
+						<div className='flex items-center space-x-4'>
+							<span className='bg-blue-600 py-1 px-3 rounded'>
+								Best Banking App Winner 2023
+							</span>
+							<span className='bg-blue-600 py-1 px-3 rounded'>
+								Current Account Switch Guarantee marque
+							</span>
+							<span className='bg-blue-600 py-1 px-3 rounded'>FSCS protected marque</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+/**
+ * A React component that displays a bottom section with information about a bank's customer base and reviews.
+ *
+ * The component uses the `useState` and `useEffect` hooks to track the visibility of the component based on the user's scroll position. When the component is in view, it fades in with a smooth animation.
+ *
+ * The component displays the following information:
+ * - A headline stating the number of people who bank with the bank
+ * - A section with customer reviews, including a rating and a link to leave a review
+ */
 const ButtomWriteUp = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const elementRef = useRef<HTMLDivElement>(null);

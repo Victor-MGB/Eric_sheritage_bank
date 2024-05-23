@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Services = () => {
 	return (
-		<div>
+		<div className={`z-10`} >
 			<h1
 				className={`text-5xl text-center  dancing-script border p-3 border-double w-[39rem] rounded-lg animate-pulse m-auto my-4 border-slate-400 `}
 			>

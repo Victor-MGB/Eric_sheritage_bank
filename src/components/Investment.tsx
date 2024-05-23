@@ -20,7 +20,7 @@ export default BankingComponent;
 
 const SavingsCard: React.FC = () => (
 	<div
-		className='relative bg-cover bg-center rounded-lg shadow-lg overflow-hidden'
+		className='relative orbitron bg-cover bg-center rounded-lg shadow-lg overflow-hidden'
 		style={{ backgroundImage: `url('/assets/images/cashWallet.jpg')` }}
 	>
 		<div className='absolute inset-0 bg-black bg-opacity-50'></div>
@@ -31,7 +31,7 @@ const SavingsCard: React.FC = () => (
 				Earn 4.10% AER (variable) on your money with an Instant Access Savings Pot. There’s no minimum
 				deposit, and you can access your money anytime.
 			</p>
-			<a href='/savings' className='bg-blue-600 text-white py-2 px-4 rounded'>
+			<a href='/savings' className='hover:bg-blue-800 bg-blue-600 text-white py-2 px-4 rounded'>
 				Explore Savings Pots
 			</a>
 		</div>
@@ -40,8 +40,8 @@ const SavingsCard: React.FC = () => (
 
 const InvestmentCard: React.FC = () => (
 	<div
-		className='relative bg-cover bg-center rounded-lg shadow-lg overflow-hidden'
-		style={{ backgroundImage: `url('/path/to/your/investment-image.jpg')` }}
+		className='relative bg-cover bg-center rounded-lg orbitron shadow-lg overflow-hidden'
+		style={{ backgroundImage: `url('/assets/images/coins.jpg')` }}
 	>
 		<div className='absolute inset-0 bg-black bg-opacity-50'></div>
 		<div className='relative p-8 text-white'>
@@ -53,7 +53,7 @@ const InvestmentCard: React.FC = () => (
 			<p className='text-sm mb-4'>
 				The value of your investments could go up or down and you could get back less than you put in.
 			</p>
-			<a href='/investment' className='bg-blue-600 text-white py-2 px-4 rounded'>
+			<a href='/investment' className=' hover:bg-blue-800 bg-blue-600 text-white py-2 px-4 rounded'>
 				Explore Investments
 			</a>
 		</div>
@@ -62,8 +62,8 @@ const InvestmentCard: React.FC = () => (
 
 const SavingsFeaturesCard: React.FC = () => (
 	<div
-		className='relative bg-cover bg-center rounded-lg shadow-lg overflow-hidden'
-		style={{ backgroundImage: `url('/path/to/your/savings-features-image.jpg')` }}
+		className='relative bg-cover bg-center rounded-lg shadow-lg orbitron overflow-hidden'
+		style={{ backgroundImage: `url('assets/images/hero-img-2.jpg')` }}
 	>
 		<div className='absolute inset-0 bg-black bg-opacity-50'></div>
 		<div className='relative p-8 text-white'>
@@ -73,7 +73,7 @@ const SavingsFeaturesCard: React.FC = () => (
 				Pot for you. All you need to do is switch on roundups.
 			</p>
 			<p className='text-lg mb-4'>People on Monzo save on average £100 extra each year this way.</p>
-			<a href='/savings-features' className='bg-blue-600 text-white py-2 px-4 rounded'>
+			<a href='/savings-features' className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-800'>
 				Explore Savings Features
 			</a>
 		</div>

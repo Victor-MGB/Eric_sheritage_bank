@@ -13,7 +13,9 @@ const Header = () => {
 	};
 	return (
 		<>
-			<header className={`w-[100vw] h-[4rem]  bg-transparent flex items-center justify-between p-3`}>
+			<header
+				className={`w-[100vw] h-[4rem] fixed z-30  bg-transparent flex items-center justify-between p-3 bg-slate-200 `}
+			>
 				{/* logo space */}
 				<div>logo space </div>
 
@@ -58,17 +60,15 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 			{["home", "about", "contact", "converter", "pages"].map((eachLink, index) => {
 				return (
 					<li
-						className={`text-sm text-gray-100 hover:text-highlitedText hover:p-2   transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
+						className={`text-sm text-neutral-600 hover:text-highlitedText hover:p-2   transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
 							isActive[index]
-								? " border rounded-md transition-all shadow-md shadow-gray-200 text-primary "
+								? " border rounded-md transition-all shadow-md shadow-black text-primary "
 								: ""
 						} `}
 						key={index}
 						onClick={() => {
 							console.log(isActive);
 							handleNavClick(index);
-						}}
-						onMouseEnter={() => {
 							if (eachLink === "converter") prop.handler(true);
 							if (eachLink === "pages") prop.handler2(true);
 						}}
@@ -79,8 +79,8 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 								<IoMdArrowDropup
 									className={` text-[20px] ${
 										isActive[index]
-											? "text-primary transition-all text-[35px] rotate-180 duration-700"
-											: "text-gray-100 transition scale-50 rotate-0 duration-700"
+											? "text-primary transition-all  rotate-180 duration-700"
+											: "text-blue-400 transition rotate-0 duration-700"
 									}`}
 								/>
 							</span>
@@ -94,14 +94,13 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 	);
 };
 
-
-
 /**
  * A dropdown component that displays a list of currency conversion, currency charts, and exchange rate options.
  *
  * @param isVisible - A boolean indicating whether the dropdown should be visible or not.
  * @param shutdwnVisible - A function that takes a boolean argument to control the visibility of the dropdown.
  */
+
 const ConverterDropDown = ({
 	isVisible,
 	shutdwnVisible,
@@ -118,15 +117,15 @@ const ConverterDropDown = ({
 	return (
 		<div
 			onMouseLeave={() => shutdwnVisible(false)}
-			className={`w-[9rem] h-0 ${
+			className={`w-[9rem] z-50  h-0 ${
 				isVisible
 					? " duration-1000 gap-[1rem] transition-all p-3 h-[13rem]"
 					: "h-0 transition-all duration-1000 ease-out"
-			} text-nowrap text-sm flex flex-col  overflow-hidden bg-slate-300 bg-opacity-60 z-30 absolute left-[40rem] `}
+			} text-nowrap text-sm flex flex-col  overflow-hidden bg-slate-300 bg-opacity-60 z-30 fixed top-[4rem] left-[43rem] `}
 		>
 			<div
 				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
-					activeTab === "convertCurrency" ? "bg-gray-400 text-slate-300" : ""
+					activeTab === "convertCurrency" ? "bg-gray-400 text-slate-300" : "bg-gray-200"
 				}`}
 				onClick={() => handleTabClick("convertCurrency")}
 			>
@@ -143,7 +142,7 @@ const ConverterDropDown = ({
 			{/* currency charts */}
 			<div
 				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
-					activeTab === "currencyCharts" ? "bg-gray-400" : ""
+					activeTab === "currencyCharts" ? "bg-gray-400" : "bg-gray-200"
 				}`}
 				onClick={() => handleTabClick("currencyCharts")}
 			>
@@ -160,7 +159,7 @@ const ConverterDropDown = ({
 			{/* exchange rate */}
 			<div
 				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
-					activeTab === "exchangeRate" ? "bg-gray-400" : ""
+					activeTab === "exchangeRate" ? "bg-gray-400" : "bg-gray-200"
 				}`}
 				onClick={() => handleTabClick("exchangeRate")}
 			>
@@ -172,6 +171,7 @@ const ConverterDropDown = ({
 				></div>
 			</div>
 		</div>
+
 	);
 };
 
@@ -202,10 +202,10 @@ const PageDropDown = ({
 				isVisible
 					? " duration-1000 gap-[1rem] transition-all p-3 h-[13rem]"
 					: "h-0 transition-all duration-1000 ease-out"
-			} text-nowrap text-sm flex flex-col odd:bg-slate-200 overflow-hidden bg-opacity-60 z-30 absolute left-[53rem] `}
+			} text-nowrap text-sm flex flex-col bg-slate-300 rounded-sm overflow-hidden bg-opacity-60 z-50 top-[4rem] fixed left-[53rem] `}
 		>
 			<div
-				className={`flex  flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
+				className={`flex  flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
 					activeTab === "FAQ" ? "bg-gray-400 text-slate-300" : ""
 				}`}
 				onClick={() => handleTabClick("FAQ")}
@@ -219,7 +219,7 @@ const PageDropDown = ({
 			</div>
 
 			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
+				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
 					activeTab === "Access" ? "bg-gray-400 text-slate-300" : ""
 				}`}
 				onClick={() => handleTabClick("Access")}
@@ -233,7 +233,7 @@ const PageDropDown = ({
 			</div>
 
 			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
+				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
 					activeTab === "Account" ? "bg-gray-400 text-slate-300" : ""
 				}`}
 				onClick={() => handleTabClick("Account")}
@@ -247,7 +247,7 @@ const PageDropDown = ({
 			</div>
 
 			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
+				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
 					activeTab === "Terms of Service Privacy Policy" ? "bg-gray-400 text-slate-300" : ""
 				}`}
 				onClick={() => handleTabClick("Terms of Service Privacy Policy")}

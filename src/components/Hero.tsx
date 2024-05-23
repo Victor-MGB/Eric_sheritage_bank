@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
 	return (
 		<div
-			className='flex flex-col gap-[5rem] items-center justify-between p-10 bg-cover bg-center bg-gray-100'
+			className='flex flex-col z-10 gap-[5rem] items-center justify-between p-10 bg-cover bg-center bg-gray-100'
 			style={{ backgroundImage: "url(/assets/images/skyscraper.jpg)" }}
 		>
 			<div className={`flex self-start justify-between  `}>

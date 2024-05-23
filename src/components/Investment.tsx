@@ -2,7 +2,7 @@ import React from "react";
 
 const BankingComponent: React.FC = () => {
 	return (
-		<div className='flex flex-wrap justify-center items-center w-full min-h-screen p-6 bg-gray-100'>
+		<div className='flex flex-wrap justify-center z-10 items-center w-full min-h-screen p-6 bg-gray-100'>
 			<div className='w-full md:w-1/2 lg:w-1/3 p-4'>
 				<SavingsCard />
 			</div>

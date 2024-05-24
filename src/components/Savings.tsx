@@ -1,20 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const SavingComponent = () => {
+	const navi = useNavigate();
 	return (
 		<div className='flex relative top-[5rem] flex-col md:flex-row justify-between items-center bg-gray-100 p-6 rounded-lg shadow-lg'>
 			<div className='md:w-1/2 p-4'>
-				<h2 className='text-3xl font-bold mb-4'>Saving with Monzo</h2>
+				<h2 className='text-3xl font-bold mb-4'>Saving with CCB</h2>
 				<p className='text-lg mb-4'>
 					Saving is hard, so we made it simpler. Create a Savings Pot in minutes to earn up to 4.90%
 					(AER/Gross fixed) interest on your money, fixed for 6 months with a £500 minimum deposit
 					to open.
 				</p>
-				<button className='bg-blue-500 text-white py-2 px-4 rounded mr-2 hover:bg-blue-700 transition duration-300'>
+				<button
+					className='bg-blue-500 text-white py-2 px-4 rounded mr-2 hover:bg-blue-700 transition duration-300'
+					onClick={() => {
+						navi("/saving-pot");
+					}}
+				>
 					Create a Savings Pot
 				</button>
 				<button className='bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 transition duration-300'>
-					Open a Monzo account
+					Open a CCB account
 				</button>
 				<p className='text-sm text-gray-600 mt-4'>
 					You need a CCB Current Account. Ts&Cs apply. UK residents only.
@@ -36,7 +43,7 @@ export const QRComponent = () => {
 				<div className='md:w-2/3'>
 					<h2 className='text-2xl font-bold mb-4'>You’ll need your phone for that</h2>
 					<p className='text-lg mb-6'>
-						Open the camera on your phone and scan the QR code to go to the Monzo app.
+						Open the camera on your phone and scan the QR code to go to the CCB app.
 					</p>
 					<div className='flex space-x-4'>
 						<a href='https://apps.apple.com' target='_blank' rel='noopener noreferrer'>
@@ -56,7 +63,11 @@ export const QRComponent = () => {
 					</div>
 				</div>
 				<div className='md:w-1/3 mt-8 md:mt-0 md:ml-8'>
-					<img src='/mnt/data/image.png' alt='QR Code' className='w-48 h-48 object-contain' />
+					<img
+						src='/assets/images/Qrcode.jpeg'
+						alt='QR Code'
+						className='w-48 h-48 object-contain'
+					/>
 				</div>
 			</div>
 		</div>

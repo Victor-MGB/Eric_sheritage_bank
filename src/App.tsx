@@ -12,6 +12,7 @@ import ContactCenter from "./components/Contact";
 import CurrencyRates from "./components/CurrencyRate";
 import CurrencyConverter from "./components/CurrencyConverter";
 import SavingComponent, { QRComponent } from "./components/Savings";
+import FAQ from "./components/Faq";
 
 function App() {
 	return (
@@ -29,6 +30,7 @@ function App() {
 				<Route path='/converter' element={<CurrencyConverter />} />
 				<Route path='/saving' element={<SavingComponent />} />
 				<Route path='/saving-pot' element={<QRComponent />} />
+				<Route path='/FAQs' element={<FAQ />} />
 			</Routes>
 
 			<Footer />

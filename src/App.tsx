@@ -13,11 +13,14 @@ import CurrencyRates from "./components/CurrencyRate";
 import CurrencyConverter from "./components/CurrencyConverter";
 import SavingComponent, { QRComponent } from "./components/Savings";
 import FAQ from "./components/Faq";
+import SupportButton from "./components/SupportButton";
 
 function App() {
 	return (
 		<div className='App'>
 			<Header />
+			<SupportButton />
+
 			<Routes>
 				<Route path='/' element={<INDEX />} />
 				<Route path='/services' element={<Services />} />

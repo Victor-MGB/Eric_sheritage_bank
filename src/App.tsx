@@ -14,6 +14,8 @@ import CurrencyConverter from "./components/CurrencyConverter";
 import SavingComponent, { QRComponent } from "./components/Savings";
 import FAQ from "./components/Faq";
 import SupportButton from "./components/SupportButton";
+import SignUpForm from "./components/Sign-up";
+import LoginForm from "./components/Sign-In";
 
 function App() {
 	return (
@@ -34,6 +36,8 @@ function App() {
 				<Route path='/saving' element={<SavingComponent />} />
 				<Route path='/saving-pot' element={<QRComponent />} />
 				<Route path='/FAQs' element={<FAQ />} />
+				<Route path='/sign-up' element={<SignUpForm />} />
+				<Route path='/sign-in' element={<LoginForm />} />
 			</Routes>
 
 			<Footer />

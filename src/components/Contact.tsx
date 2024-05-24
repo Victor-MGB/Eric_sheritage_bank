@@ -97,10 +97,11 @@ const ContactCenter: React.FC = () => {
 				<div className='bg-black p-6 rounded-lg shadow-md bg-opacity-35 w-[40rem]'>
 					<h3 className='text-xl font-bold mb-4 flex flex-col'>Get in Touch</h3>
 					<p className='flex items-center text-gray-700 mb-2'>
-						<FaPhone className='mr-2 text-blue-500' /> +123 456 7890
+						<FaPhone className='mr-2 text-blue-500' /> +12074021612
 					</p>
 					<p className='flex items-center text-gray-700 mb-2'>
-						<FaEnvelope className='mr-2 text-blue-500' /> support@bank.com
+						<FaEnvelope className='mr-2 text-blue-500' />
+						centralcitybank0@gmail.com
 					</p>
 					<p className='flex items-center text-gray-700 mb-2'>
 						<FaClock className='mr-2 text-blue-500' /> Mon - Fri: 9:00 AM - 6:00 PM

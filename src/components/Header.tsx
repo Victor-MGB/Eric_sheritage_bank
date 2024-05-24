@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
 	const [isConverterDropDownShowing, setisConverterDropDownShowing] = useState<boolean>(false);

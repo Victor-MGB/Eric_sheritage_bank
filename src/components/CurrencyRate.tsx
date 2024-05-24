@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {  FaEuroSign, FaNairaSign, FaMoneyBillWave } from "react-icons/fa6";
+import { FaEuroSign, FaNairaSign, FaMoneyBillWave } from "react-icons/fa6";
 import { FaPoundSign } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
@@ -39,11 +39,15 @@ const CurrencyRates: React.FC = () => {
 		);
 
 	return (
-		<div className='w-[60rem] mx-auto p-6 bg-primary rounded-lg shadow-lg '>
+		<div
+			style={{ backgroundImage: "url(/assets/images/exch.jpg)" }}
+			className='w-full mx-auto p-6  rounded-lg shadow-lg bg-contain bg-center bg-no-repeat '
+		>
 			<h2 className='text-3xl mt-[3rem] font-bold mb-6 text-center flex items-center justify-center bg-blue-500 text-white py-2 rounded-md'>
 				<FaMoneyBillWave className='mr-2' /> Currency Exchange Rates
 			</h2>
-			<div className='mb-4 flex justify-between items-center bg-transparent'>
+			<div className='mb-4 flex gap-[20rem] justify-center items-center bg-opacity-45  '>
+				{/* base currency */}
 				<div>
 					<label htmlFor='baseCurrency' className='block text-gray-700 mb-2 mr-2'>
 						Base Currency:
@@ -71,7 +75,9 @@ const CurrencyRates: React.FC = () => {
 						<option value='CNY'>CNY</option>
 					</select>
 				</div>
-				<div className='relative'>
+
+				{/* search */}
+				<div className='relative self-end'>
 					<input
 						type='text'
 						placeholder='Search Currency...'
@@ -103,6 +109,7 @@ const CurrencyRates: React.FC = () => {
 					</div>
 				</div>
 			</div>
+
 			{loading ? (
 				<p className='text-center flex items-center justify-center'>
 					<AiOutlineLoading3Quarters className='animate-spin mr-2' /> Loading...
@@ -110,14 +117,14 @@ const CurrencyRates: React.FC = () => {
 			) : error ? (
 				<p className='text-red-500 text-center'>{error}</p>
 			) : (
-				<div className='overflow-x-auto'>
-					<table className='min-w-full bg-white shadow-md rounded-lg'>
-						<thead className='bg-gray-200'>
-							<tr>
-								<th className='px-6 py-3 border-b text-left text-sm font-medium text-gray-900'>
+				<div className=' h-[80rem] overflow-scroll'>
+					<table className='w-[70rem] border-2 bg-slate-400 bg-opacity-35 shadow-md rounded-lg m-auto'>
+						<thead className=''>
+							<tr className={`m-[1rem] rounded-xl border font-bold jost tex-2xl`}>
+								<th className='px-6 py-3 border-b text-left  text-gray-900  jost tex-2xl font-bold jost tex-2xl'>
 									Currency
 								</th>
-								<th className='px-6 py-3 border-b text-left text-sm font-medium text-gray-900'>
+								<th className='px-6 py-3 border-b text-left font-bold jost text-2xl text-gray-900'>
 									Exchange Rate
 								</th>
 							</tr>
@@ -125,13 +132,12 @@ const CurrencyRates: React.FC = () => {
 						<tbody>
 							{filteredRates &&
 								filteredRates.map(([currency, rate]: [string, number]) => (
-									<tr key={currency} className='hover:bg-gray-100'>
-										<td className='px-6 py-4 border-b text-sm text-gray-900'>
-											{currency}
-										</td>
-										<td className='px-6 py-4 border-b text-sm text-gray-900'>
-											{rate}
-										</td>
+									<tr
+										key={currency}
+										className='hover:bg-gray-200 tetx-slate-200 hover:text-black'
+									>
+										<td className='px-6 py-4 border-b text-sm '>{currency}</td>
+										<td className='px-6 py-4 border-b text-sm '>{rate}</td>
 									</tr>
 								))}
 						</tbody>
@@ -150,9 +156,8 @@ const API_KEY = "90f39f506bd222b58c671097";
 export const getExchangeRates = async (baseCurrency: string): Promise<any> => {
 	try {
 		const response = await axios.get(`${API_URL}/${API_KEY}/latest/${baseCurrency}`);
-        if ( response.data.result === "success" )
-        {
-            console.log(response)
+		if (response.data.result === "success") {
+			console.log(response);
 			return response.data;
 		} else {
 			throw new Error("Failed to fetch exchange rates");

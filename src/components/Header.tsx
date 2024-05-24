@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Header = () => {
 	const [isConverterDropDownShowing, setisConverterDropDownShowing] = useState<boolean>(false);
@@ -55,6 +56,7 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 		setisActive(newIsActive);
 	};
 
+	const navigate = useNavigate();
 	return (
 		<ul className='flex items-center justify-between gap-[2rem]'>
 			{["home", "about", "contact", "converter", "pages"].map((eachLink, index) => {
@@ -71,6 +73,9 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 							handleNavClick(index);
 							if (eachLink === "converter") prop.handler(true);
 							if (eachLink === "pages") prop.handler2(true);
+							if (eachLink === "about") navigate("/about");
+							if (eachLink === "contact") navigate("/contact");
+							if (eachLink === "home") navigate("/");
 						}}
 					>
 						{eachLink === "converter" || eachLink === "pages" ? (
@@ -110,6 +115,7 @@ const ConverterDropDown = ({
 }) => {
 	const [activeTab, setActiveTab] = useState<string | null>(null);
 
+	const navi = useNavigate();
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
@@ -144,7 +150,9 @@ const ConverterDropDown = ({
 				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
 					activeTab === "currencyCharts" ? "bg-gray-400" : "bg-gray-200"
 				}`}
-				onClick={() => handleTabClick("currencyCharts")}
+				onClick={() => {
+					handleTabClick("currencyCharts");
+				}}
 			>
 				<p>currency charts</p>
 				<div
@@ -161,7 +169,10 @@ const ConverterDropDown = ({
 				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
 					activeTab === "exchangeRate" ? "bg-gray-400" : "bg-gray-200"
 				}`}
-				onClick={() => handleTabClick("exchangeRate")}
+				onClick={() => {
+					handleTabClick("exchangeRate");
+					navi("/rates");
+				}}
 			>
 				<p>exchange rate</p>
 				<div
@@ -171,7 +182,6 @@ const ConverterDropDown = ({
 				></div>
 			</div>
 		</div>
-
 	);
 };
 

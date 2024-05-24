@@ -11,6 +11,7 @@ import INDEX from "./components/INDEX";
 import ContactCenter from "./components/Contact";
 import CurrencyRates from "./components/CurrencyRate";
 import CurrencyConverter from "./components/CurrencyConverter";
+import SavingComponent from "./components/Savings";
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 				<Route path='/contact' element={<ContactCenter />} />
 				<Route path='/rates' element={<CurrencyRates />} />
 				<Route path='/converter' element={<CurrencyConverter />} />
+				<Route path='/saving' element={<SavingComponent />} />
 			</Routes>
 
 			<Footer />

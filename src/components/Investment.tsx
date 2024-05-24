@@ -1,6 +1,6 @@
 import React from "react";
 
-const BankingComponent: React.FC = () => {
+const Investment: React.FC = () => {
 	return (
 		<div className='flex flex-wrap justify-center z-10 items-center w-full min-h-screen p-6 bg-gray-100'>
 			<div className='w-full md:w-1/2 lg:w-1/3 p-4'>
@@ -16,7 +16,7 @@ const BankingComponent: React.FC = () => {
 	);
 };
 
-export default BankingComponent;
+export default Investment;
 
 const SavingsCard: React.FC = () => (
 	<div

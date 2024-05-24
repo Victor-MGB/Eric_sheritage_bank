@@ -4,18 +4,19 @@ import Hero from "./Hero";
 import Services from "./Service";
 import TravelInfoComponent from "./ExchangeIntro";
 import Security from "./Security";
-import Footer from "./Footer";
 import Investment from "./Investment";
+import SupportButton from "./SupportButton";
 
 const INDEX = () => {
 	return (
 		<div className='App'>
+			<SupportButton />
 			<Header />
 			<Hero />
-			<Services />
 			<Investment />
 			<TravelInfoComponent />
 			<Security />
+			<Services />
 		</div>
 	);
 };

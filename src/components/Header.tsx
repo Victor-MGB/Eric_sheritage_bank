@@ -205,6 +205,7 @@ const PageDropDown = ({
 		setActiveTab(tab);
 	};
 
+	const navi = useNavigate();
 	return (
 		<div
 			onMouseLeave={() => shutdwnVisible(false)}
@@ -215,10 +216,13 @@ const PageDropDown = ({
 			} text-nowrap text-sm flex flex-col bg-slate-300 rounded-sm overflow-hidden bg-opacity-60 z-50 top-[4rem] fixed left-[53rem] `}
 		>
 			<div
-				className={`flex  flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
+				className={`flex cursor flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
 					activeTab === "FAQ" ? "bg-gray-400 text-slate-300" : ""
 				}`}
-				onClick={() => handleTabClick("FAQ")}
+				onClick={() => {
+					handleTabClick("FAQ");
+					navi("FAQs");
+				}}
 			>
 				<p>FAQ</p>
 				<div

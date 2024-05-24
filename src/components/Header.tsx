@@ -48,7 +48,7 @@ export default Header;
  * The component maps over an array of link names and renders a list item for each one. The list item has a class that changes based on the active state, and an `onClick` handler that calls `handleNavClick` with the corresponding index.
  */
 const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boolean) => void }) => {
-	const [isActive, setisActive] = useState<boolean[]>([false, false, false, false, false]);
+	const [isActive, setisActive] = useState<boolean[]>([false, false, false, false, false, false]);
 
 	// handleNavClick function to update the isActive state based on the clicked nav item index
 	const handleNavClick = (index: number) => {
@@ -59,10 +59,10 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 	const navigate = useNavigate();
 	return (
 		<ul className='flex items-center justify-between gap-[2rem]'>
-			{["home", "about", "contact", "converter", "pages"].map((eachLink, index) => {
+			{["home", "about", "contact", "converter", "pages", "sign-In"].map((eachLink, index) => {
 				return (
 					<li
-						className={`text-sm text-neutral-600 hover:text-highlitedText hover:p-2   transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
+						className={`text-sm orbitron text-neutral-600 hover:text-highlitedText hover:p-2   transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
 							isActive[index]
 								? " border rounded-md transition-all shadow-md shadow-black text-primary "
 								: ""
@@ -76,6 +76,7 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 							if (eachLink === "about") navigate("/about");
 							if (eachLink === "contact") navigate("/contact");
 							if (eachLink === "home") navigate("/");
+							if (eachLink === "sign-In") navigate("/sign-in");
 						}}
 					>
 						{eachLink === "converter" || eachLink === "pages" ? (
@@ -200,9 +201,13 @@ const PageDropDown = ({
 	shutdwnVisible: (arg: boolean) => void;
 }) => {
 	const [activeTab, setActiveTab] = useState<string | null>(null);
-
+	const [isSubActiveTab, setisSubActiveTab] = useState<string | null>(null);
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
+	};
+
+	const handleSubActive = (tab: string) => {
+		setisSubActiveTab(tab);
 	};
 
 	const navi = useNavigate();
@@ -233,17 +238,34 @@ const PageDropDown = ({
 			</div>
 
 			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
+				className={`flex capitalize flex-col p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
 					activeTab === "Access" ? "bg-gray-400 text-slate-300" : ""
 				}`}
 				onClick={() => handleTabClick("Access")}
 			>
-				<p>Access</p>
-				<div
-					className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-						activeTab === "Access" ? "animate-bounce bg-primary h-[2.5rem] w-[2px] " : ""
-					}  group-hover:bg-cyan-500 group-hover:block`}
-				></div>
+				{/* 1 */}
+				<div className={`flex flex-row-reverse gap-2`}>
+					<p>help</p>
+					<div
+						className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
+							activeTab === "Access" ? "animate-bounce bg-primary h-[2.5rem] w-[2px] " : ""
+						}  group-hover:bg-cyan-500 group-hover:block`}
+					></div>
+				</div>
+
+				{/* 2 */}
+				<ul
+					className={`h-0 p-0 ${
+						isSubActiveTab === "help"
+							? " transition-all duration-500 h-[5rem] p-2 bg-blue-300 flex flex-col items-center justify-center gap-[1rem] cursor-pointer"
+							: "h-0 p-0"
+					}`}
+					onMouseOver={() => {
+						handleSubActive("help");
+					}}
+				>
+					<li></li>
+				</ul>
 			</div>
 
 			<div

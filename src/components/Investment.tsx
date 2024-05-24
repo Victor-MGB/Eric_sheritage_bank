@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Investment: React.FC = () => {
 	return (
@@ -31,9 +32,10 @@ const SavingsCard: React.FC = () => (
 				Earn 4.10% AER (variable) on your money with an Instant Access Savings Pot. There’s no minimum
 				deposit, and you can access your money anytime.
 			</p>
-			<a href='/savings' className='hover:bg-blue-800 bg-blue-600 text-white py-2 px-4 rounded'>
+			<Link className=' hover:bg-blue-800 bg-blue-600 text-white py-2 px-4 rounded' to={"/saving"}>
+				{" "}
 				Explore Savings Pots
-			</a>
+			</Link>
 		</div>
 	</div>
 );

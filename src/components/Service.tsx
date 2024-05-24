@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Services = () => {
 	return (
-		<div className={`z-10`} >
+		<div className={`z-10`}>
 			<h1
 				className={`text-5xl text-center  dancing-script border p-3 border-double w-[39rem] rounded-lg animate-pulse m-auto my-4 border-slate-400 `}
 			>
@@ -24,30 +24,35 @@ const ServiceAccordion: React.FC = () => {
 			icon: <FaPlane />,
 			writeUp: "Explore the world with our travel services.",
 			link: "/travel",
+			bgLink: "assets/images/travel.jpg",
 		},
 		{
 			name: "Home Loans",
 			icon: <FaHome />,
 			writeUp: "Affordable home loans for your dream home.",
 			link: "/home-loans",
+			bgLink: "assets/images/loan.jpg",
 		},
 		{
 			name: "Savings",
 			icon: <FaMoneyBillAlt />,
 			writeUp: "Save more with our high-interest savings accounts.",
 			link: "/savings",
+			bgLink: "assets/images/coins.jpg",
 		},
 		{
 			name: "Credit Cards",
 			icon: <FaCreditCard />,
 			writeUp: "Flexible credit cards for all your needs.",
 			link: "/credit-cards",
+			bgLink: "assets/images/creditCard.jpg",
 		},
 		{
 			name: "Business",
 			icon: <FaBriefcase />,
 			writeUp: "Boost your business with our financial solutions.",
 			link: "/business",
+			bgLink: "assets/images/officers.jpg",
 		},
 	];
 
@@ -59,14 +64,17 @@ const ServiceAccordion: React.FC = () => {
 
 	return (
 		<div
-			style={{ backgroundImage: `url('/assets/images/officeDoc.jpg')` }}
+			// style={{ backgroundImage: `url('/assets/images/officeDoc.jpg')` }}
 			className='max-w-full  flex flex-col  gap-3 bg-cover bg-center p-3 h-[50rem]'
 		>
 			<div className='flex gap-3'>
 				{services.map((service, index) => (
 					<div
+						style={{
+							backgroundImage: `url(${service.bgLink})`,
+						}}
 						key={index}
-						className='w-[25rem] h-[16rem]  odd:bg-gray-300 even:bg-gray-400 rounded-lg shadow-md p-2 overflow-hidden'
+						className='w-[25rem] h-[16rem] bg-center bg-contain rounded-lg shadow-md p-2 overflow-hidden'
 					>
 						<button
 							onClick={() => handleToggle(index)}
@@ -74,7 +82,9 @@ const ServiceAccordion: React.FC = () => {
 						>
 							<div className='flex items-center space-x-2'>
 								{service.icon}
-								<span className='font-medium'>{service.name}</span>
+								<span className='font-bold text-2xl text-slate-50 '>
+									{service.name}
+								</span>
 							</div>
 							<div className='flex items-center space-x-2'>
 								<span
@@ -90,8 +100,8 @@ const ServiceAccordion: React.FC = () => {
 							</div>
 						</button>
 						{expandedIndex === index && (
-							<div className='p-4 bg-gray-100'>
-								<p>{service.writeUp}</p>
+							<div className='p-4 bg-gray-100 bg-opacity-30'>
+								<p className={``}>{service.writeUp}</p>
 								<Link
 									to={service.link}
 									className='text-blue-500 hover:underline mt-2 block'

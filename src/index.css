@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.bgImage {
+@import "./global.css";
+@import "./banner.css";
+
+ .bgImage {
 	background-image: url("/public/assets/images/skyscraper.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;

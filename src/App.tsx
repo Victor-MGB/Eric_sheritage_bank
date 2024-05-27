@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Services from "./components/Service";
-import Investments from "./components/Investment";
+import Investments from "./components/Section2";
 import TravelInfoComponent from "./components/ExchangeIntro";
 import Security from "./components/Security";
 import Footer from "./components/Footer";
@@ -16,12 +16,14 @@ import FAQ from "./components/Faq";
 import SupportButton from "./components/SupportButton";
 import SignUpForm from "./components/Sign-up";
 import LoginForm from "./components/Sign-In";
+import SideBar from "./components/DashBoard/SideBar";
 
 function App() {
 	return (
 		<div className='App'>
 			<Header />
-			<SupportButton />
+			{/* <SupportButton /> */}
+			{/* <SideBar /> */}
 
 			<Routes>
 				<Route path='/' element={<INDEX />} />

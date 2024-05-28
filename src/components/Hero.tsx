@@ -47,7 +47,7 @@ const Banner: React.FC = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-		}, 5000); // Change slide every 5 seconds
+		}, 5000); 
 		return () => clearInterval(interval);
 	}, [slides.length]);
 
@@ -57,7 +57,7 @@ const Banner: React.FC = () => {
 				{slides.map((item, index) => (
 					<div
 						key={index}
-						className={`swiper-slide ${index === currentIndex ? "swiper-slide-active" : ""}`}
+						className={`swiper-slide ${index === currentIndex ? "swiper-slide-active banner-section " : ""}`}
 						style={{
 							display: index === currentIndex ? "block" : "none",
 							backgroundImage: `url(${item.image})`,
@@ -67,11 +67,12 @@ const Banner: React.FC = () => {
 							{item.patterns.map((pattern, patternIndex) => (
 								<div
 									key={patternIndex}
-									className={`pattern-${patternIndex + 1}`}
+									className={`pattern-${patternIndex + 1} pattern-1`}
 									style={{ backgroundImage: `url(${pattern})` }}
 								></div>
 							))}
 						</div>
+
 						<div className='content-outer'>
 							<div className='content-box'>
 								<div className='inner'>

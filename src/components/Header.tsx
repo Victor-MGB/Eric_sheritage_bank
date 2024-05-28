@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { BsBank } from "react-icons/bs";
 
 const Header = () => {
 	const [isConverterDropDownShowing, setisConverterDropDownShowing] = useState<boolean>(false);
@@ -15,18 +16,41 @@ const Header = () => {
 	return (
 		<>
 			<header
-				className={`w-[100vw] h-[4rem] fixed z-30  bg-transparent flex items-center justify-between p-3 bg-slate-200 `}
+				className={`w-[100vw] h-[4rem] fixed z-30 bg-gray-100 flex items-center justify-between p-3 `}
 			>
 				{/* logo space */}
-				<div>logo space </div>
-
+				<h1
+					className={` font-bold flex items-center justify-start  text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[11rem] `}
+				>
+					CC{" "}
+					<span
+						className={`text-white ml-[-0.5rem] mr-[1rem] font-bold text-5xl dancing-script drop-shadow-lg uppercase`}
+					>
+						B
+					</span>
+					<BsBank />
+					<div
+						className={`bg-red-600 transform  p-5 absolute w-[2%] h-[100%] top-0 left-[11rem] `}
+						style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}
+					></div>
+				</h1>
 				<Navlinks
 					handler2={(arg) => handleIsPageDropdownShowing(arg)}
 					handler={(arg) => handleDropdownClicks(arg)}
 				/>
-
-				{/* translator space */}
-				<div className=''>translator space </div>
+				{/* auth space */}
+				<div className='flex justify-between items-center p-3 w-[20rem]  mr-[4rem]'>
+					<button
+						className={`p-2 text-sm rounded-none w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer `}
+					>
+						log-in
+					</button>
+					<button
+						className={`p-2 rounded-none w-fit text-sm  hover:bg-black text-white hover:text-white bg-red-600 uppercase cursor-pointer `}
+					>
+						open account
+					</button>
+				</div>
 			</header>
 			<ConverterDropDown isVisible={isConverterDropDownShowing} shutdwnVisible={handleDropdownClicks} />
 			<PageDropDown isVisible={isPageDropdownShowing} shutdwnVisible={handleIsPageDropdownShowing} />
@@ -59,10 +83,10 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 	const navigate = useNavigate();
 	return (
 		<ul className='flex items-center justify-between gap-[2rem]'>
-			{["home", "about", "contact", "converter", "pages", "sign-In"].map((eachLink, index) => {
+			{["home", "about", "contact", "converter", "pages"].map((eachLink, index) => {
 				return (
 					<li
-						className={`text-sm orbitron text-neutral-600 hover:text-highlitedText hover:p-2   transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
+						className={`text-lg orbitron  text-red-600 hover:border border-black hover:p-2   transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
 							isActive[index]
 								? " border rounded-md transition-all shadow-md shadow-black text-primary "
 								: ""
@@ -76,7 +100,7 @@ const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boole
 							if (eachLink === "about") navigate("/about");
 							if (eachLink === "contact") navigate("/contact");
 							if (eachLink === "home") navigate("/");
-							if (eachLink === "sign-In") navigate("/sign-in");
+							// if (eachLink === "Log-in") navigate("/sign-in");
 						}}
 					>
 						{eachLink === "converter" || eachLink === "pages" ? (

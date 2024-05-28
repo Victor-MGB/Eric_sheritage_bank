@@ -1,5 +1,22 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useInView } from "react-intersection-observer";
-import { FaShieldAlt, FaClock, FaMoneyCheckAlt, FaHeadset, FaPlay, FaUserAlt } from "react-icons/fa";
+import {
+	FaShieldAlt,
+	FaClock,
+	FaMoneyCheckAlt,
+	FaHeadset,
+	FaPlay,
+	FaUserAlt,
+	FaApple,
+	FaGooglePlay,
+	FaHeart,
+	FaComment,
+	FaCalendarAlt,
+	FaUser,
+	FaComments,
+} from "react-icons/fa";
 import { FaDollarSign, FaCheckCircle } from "react-icons/fa";
 import {
 	FaMobileAlt,
@@ -64,6 +81,9 @@ const Section2 = () => {
 			<EMICalculator />
 			<HeroSection />
 			<StatisticsSection />
+			<MobileAppSection />
+			<TestimonialCarousel />
+			<News />
 		</div>
 	);
 };
@@ -450,5 +470,233 @@ const StatisticsSection: React.FC = () => {
 				<p>Branches in USA</p>
 			</div>
 		</section>
+	);
+};
+
+const MobileAppSection: React.FC = () => {
+	return (
+		<section className='flex max-w-full flex-col lg:flex-row items-center justify-center  bg-gray-300'>
+			{/* Left Section with Mobile Images */}
+			<div className=' flex items-center h-fit justify-center  bg-gray-100 w-[50vw] p-3'>
+				<img
+					src={"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-4.png"}
+					alt='Mobile App'
+					className='max-w-xs md:max-w-md h-auto lg:max-w-lg relative left-[5rem] m-auto'
+				/>
+				{/* big */}
+				<img
+					width={250}
+					src={"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/mockup-1.png"}
+					alt='Mobile App'
+					className='max-w-xs md:max-w-md h-auto lg:max-w-lg relative m-auto right-[4rem] shadow-md'
+				/>
+				{/* small */}
+				<img
+					width={200}
+					src={"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/mockup-2.png"}
+					alt='Mobile App'
+					className='max-w-xs md:max-w-md lg:max-w-lg relative m-auto h-auto right-[10rem] top-[3rem]'
+				/>
+			</div>
+
+			{/* Right Section with Text and Buttons */}
+			<div className='flex-1 text-center lg:text-left p-4  w-[50vw]'>
+				<h2 className='text-red-600 font-semibold mb-2'>MOBILE APP</h2>
+				<h1 className='text-3xl md:text-4xl font-bold mb-4'>Get the Fastest and Most Secure Banking</h1>
+				<p className='text-gray-600 mb-4'>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis, suscipit you take
+					action against fraud. See it the Security Center for and Mobile and Online Banking.
+				</p>
+				<div className='flex justify-center lg:justify-start space-x-4'>
+					<a
+						href='kjnnkjn'
+						className='flex items-center px-4 py-2 rounded-md text-white bg-black space-x-2 relative overflow-hidden'
+						style={{ width: "180px" }}
+					>
+						<div className='absolute top-0 left-0 w-full h-full bg-gray-800 transition-transform duration-300 transform -translate-y-full group-hover:-translate-y-0'></div>
+						<FaGooglePlay className='text-xl z-10' />
+						<div className='text-left z-10'>
+							<p className='text-xs'>Get it on</p>
+							<p className='font-semibold'>Google Play</p>
+						</div>
+					</a>
+					<a
+						href='kjnnkjn'
+						className='flex items-center px-4 py-2 rounded-md text-white bg-black space-x-2 relative overflow-hidden'
+						style={{ width: "180px" }}
+					>
+						<div className='absolute top-0 left-0 w-full h-full bg-gray-800 transition-transform duration-300 transform -translate-y-full group-hover:-translate-y-0'></div>
+						<FaApple className='text-xl z-10' />
+						<div className='text-left z-10'>
+							<p className='text-xs'>Download on the</p>
+							<p className='font-semibold'>App Store</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+	);
+};
+
+const TestimonialCarousel = () => {
+	const testimonials = [
+		{
+			name: "Rolier Demonil",
+			position: "Manager",
+			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-3.png",
+			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+		},
+		{
+			name: "Sandra Bullock",
+			position: "Manager",
+			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-1.png",
+			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+		},
+		{
+			name: "Julien Anthor",
+			position: "Manager",
+			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-2.png",
+			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+		},
+	];
+	const settings = {
+		dots: true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		responsive: [
+			{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+				},
+			},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				},
+			},
+		],
+	};
+
+	return (
+		<section className='py-12 bg-red-100 '>
+			<div className='container mx-auto text-center mb-8'>
+				<h2 className='text-red-600 font-semibold'>TESTIMONIALS</h2>
+				<h1 className='text-4xl font-bold'>Love from Our Clients</h1>
+			</div>
+			<div className='container mx-auto'>
+				<Slider {...settings}>
+					{testimonials.map((testimonial, index) => (
+						<div key={index} className='p-4'>
+							<div className='bg-white p-6 rounded-lg shadow-md text-center'>
+								<img
+									src={testimonial.image}
+									alt={testimonial.name}
+									className='w-20 h-20 rounded-full mx-auto mb-4'
+								/>
+								<h3 className='text-xl font-semibold'>{testimonial.name}</h3>
+								<p className='text-gray-600'>{testimonial.position}</p>
+								<div className='flex justify-center mb-4'>
+									<div className='flex space-x-1 text-yellow-500'>
+										{[...Array(5)].map((_, i) => (
+											<svg
+												key={i}
+												xmlns='http://www.w3.org/2000/svg'
+												fill='currentColor'
+												viewBox='0 0 24 24'
+												strokeWidth='0.5'
+												stroke='currentColor'
+												className='w-4 h-4'
+											>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M12 4.5l1.9 3.85 4.24.62-3.07 2.99.73 4.25L12 14.75l-3.8 2 0.73-4.25-3.07-2.99 4.24-.62L12 4.5z'
+												/>
+											</svg>
+										))}
+									</div>
+								</div>
+								<p className='text-gray-600'>{testimonial.review}</p>
+							</div>
+						</div>
+					))}
+				</Slider>
+			</div>
+		</section>
+	);
+};
+
+const News: React.FC = () => {
+	return (
+		<div className='min-h-screen bg-gray-100 p-8'>
+			<p className={`text-red-600 m-3 text-center uppercase font-medium`}>latest news</p>
+			<h1 className='text-3xl font-bold text-center mb-8 jost'>Our Latest Media Update</h1>
+			<div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
+				<Card
+					date='November 7, 2023'
+					title='Self-Guided Driving & Tours Walk Of Greater City'
+					imgSrc='https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/news-1.jpg'
+				/>
+				<Card
+					date='November 7, 2023'
+					title='Assistance For Homes & Properties Real Estate'
+					imgSrc='https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/news-2.jpg'
+				/>
+				<Card
+					date='November 7, 2023'
+					title='Long-Term Vision Of Health & Attractive Facility'
+					imgSrc='https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/news-3.jpg'
+				/>
+			</div>
+		</div>
+	);
+};
+
+interface CardProps {
+	date: string;
+	title: string;
+	imgSrc: string;
+}
+
+const Card: React.FC<CardProps> = ({ date, title, imgSrc }) => {
+	return (
+		<div
+			style={{ background: "linear-gradient(to bottom, #d3d3d3, #808080)" }}
+			className='relative group  h-[35rem] flex flex-col justify-between max-w-[20rem] mx-auto overflow-hidden b p-4 rounded-lg shadow-lg'
+		>
+			<img className='object-cover shadow-md sha object-center w-full h-56' src={imgSrc} alt={title} />
+
+			<div className='flex mt-3 flex-col items-start z-10 p-3  gap-3 shadow-sm h-full'>
+				<div className='mb-2 text-sm bg-gray-50 p-2 rounded-full'>
+					<FaCalendarAlt className='inline mr-1 text-red-600' /> {date}
+				</div>
+				{/* title */}
+				<h2 className='text-lg font-bold text-gray-50'>{title}</h2>
+
+				{/* comments */}
+				<div className='mt-2 flex items-center gap-4 w-full text-sm'>
+					<div className={`flex items-center justify-center`}>
+						<FaUser className='inline text-red-600' /> <p className={`text-gray-50`}>admin</p>
+					</div>
+					<div className={`flex items-center justify-center`}>
+						<FaComments className='inline text-red-600' />
+						<p className={`text-gray-50`}>No Comments</p>
+					</div>
+				</div>
+
+				{/* read more */}
+				<button className='mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition'>
+					Read More
+				</button>
+			</div>
+
+			<div className='absolute border h-0 inset-0 bg-gray-600 bg-opacity-50 group-hover:opacity-20 group-hover:duration-700 group-hover:transition-all group-hover:h-full  duration-700 transition-all z-0'></div>
+		</div>
 	);
 };

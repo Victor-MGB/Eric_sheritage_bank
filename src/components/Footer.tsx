@@ -1,119 +1,128 @@
 import React from "react";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
 	return (
-		<footer className='bg-gray-800 relative top-[7rem] z-10 text-gray-300 py-8'>
-			<div className='container mx-auto px-4'>
-				<div className='flex flex-col lg:flex-row justify-between'>
-					{/* Links Section */}
-					<div className='flex flex-col md:flex-row md:space-x-8'>
-						<div className='mb-6 md:mb-0'>
-							<h4 className='text-lg font-semibold mb-2'>Information</h4>
-							<ul className='space-y-1'>
-								<li>
-									<a
-										href='/privacy-cookies-security-legal'
-										onMouseEnter={(e) => (e.currentTarget.style.color = "blue")}
-										onMouseLeave={(e) =>
-											(e.currentTarget.style.color = "inherit")
-										}
-									>
-										Privacy, Cookies, Security & Legal
-									</a>
-								</li>
-								<li>
-									<a
-										href='/notice-of-data-collection'
-										onMouseEnter={(e) => (e.currentTarget.style.color = "blue")}
-										onMouseLeave={(e) =>
-											(e.currentTarget.style.color = "inherit")
-										}
-									>
-										Notice of Data Collection
-									</a>
-								</li>
-								<li>
-									<a
-										href='/general-terms-of-use'
-										onMouseEnter={(e) => (e.currentTarget.style.color = "blue")}
-										onMouseLeave={(e) =>
-											(e.currentTarget.style.color = "inherit")
-										}
-									>
-										General Terms of Use
-									</a>
-								</li>
-								<li>
-									<a
-										href='/online-access-agreement'
-										onMouseEnter={(e) => (e.currentTarget.style.color = "blue")}
-										onMouseLeave={(e) =>
-											(e.currentTarget.style.color = "inherit")
-										}
-									>
-										Online Access Agreement
-									</a>
-								</li>
-								<li>
-									<a
-										href='/ad-choices'
-										onMouseEnter={(e) => (e.currentTarget.style.color = "blue")}
-										onMouseLeave={(e) =>
-											(e.currentTarget.style.color = "inherit")
-										}
-									>
-										Ad Choices
-									</a>
-								</li>
-								<li>
-									<a
-										href='/report-fraud'
-										onMouseEnter={(e) => (e.currentTarget.style.color = "blue")}
-										onMouseLeave={(e) =>
-											(e.currentTarget.style.color = "inherit")
-										}
-									>
-										Report Fraud
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div className='mb-6 md:mb-0'>
-							<h4 className='text-lg font-semibold mb-2'>About</h4>
-							<ul className='space-y-1'>
-								<li>About</li>
-								<li>Careers</li>
-								<li>Diversity and Accessibility</li>
-								<li>Sitemap</li>
-							</ul>
-						</div>
-					</div>
-					{/* Legal Notice Section */}
-					<div className='lg:max-w-xl'>
-						<h4 className='text-lg font-semibold mb-2'>Legal Information</h4>
-						<p className='text-sm mb-4'>
-							1. You must be the primary account holder of an eligible consumer account...
-						</p>
-						<p className='text-sm mb-4'>
-							2. Enrollment with Zelle® through Online® or Business Online® is required...
-						</p>
-						<p className='text-sm'>
-							Investment and Insurance Products are: Not Insured by the FDIC or Any Federal
-							Government Agency...
-						</p>
-					</div>
-				</div>
-				{/* Disclaimer and Copyright */}
-				<div className='mt-8 border-t border-gray-700 pt-4 text-xs text-gray-500'>
+		<footer className='bg-black text-white py-10'>
+			<SubscriptionForm />
+			<div className='container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 mt-10'>
+				<div className={`flex flex-col`}>
+					<h2 className='text-xl font-bold mb-4'>central city Bank</h2>
 					<p>
-						Android, Chrome, Google Pay, Google Pixel, Google Play, Wear OS by Google, and the
-						Google Logo are trademarks of Google LLC...
+						Tincidunt neque pretium lectus donec risus. Mauris mi tempor nunc orci leo consequat
+						vitae erat gravida lobortis nec et sagittis.
 					</p>
-					<p>© 1999 - 2024. NMLSR ID 399801</p>
+					<div className='flex mt-4 items-center justify-between w-[10rem] bg-red-500 rounded-lg p-[1rem]'>
+						<a
+							href='https://www.facebook.com'
+							className='text-white'
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							<FaFacebook/>
+						</a>
+						<a
+							href='https://www.twitter.com'
+							className='text-white'
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							<FaTwitter/>
+						</a>
+						<a
+							href='https://www.instagram.com'
+							className='text-white scale-95'
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							<FaInstagram/>
+						</a>
+					</div>
 				</div>
+				<FooterLinks />
+				<BranchLocator />
 			</div>
+
+			<p className={`text-sm text-center m-auto capitalize`}> copyright 2024. all right reserved</p>
 		</footer>
 	);
 };
 
 export default Footer;
+
+const SubscriptionForm: React.FC = () => {
+	return (
+		<div className='bg-red-600 items-center p-2 h-[8rem] flex  justify-between '>
+			<h2 className='text-2xl font-bold w-[12rem] text-white jost mb-4 p-3  mx-[2rem]'>
+				Subscribe us to Receive Latest Updates
+			</h2>
+			<form className='flex justify-center bg-green-100 p-3 items-center jus'>
+				<input type='email' className='p-2 rounded-l-md text-black  border ' placeholder='Your Email' />
+				<button className='bg-black text-white p-2 rounded-r-md'>Subscribe Now</button>
+			</form>
+		</div>
+	);
+};
+
+const BranchLocator: React.FC = () => {
+	return (
+		<div>
+			<h3 className='text-lg font-bold mb-4 text-red-600'>Find Our Branch & ATM</h3>
+			<form className='space-y-4'>
+				<select className='p-2 w-full bg-gray-800 text-white'>
+					<option>Branch</option>
+				</select>
+				<input type='text' className='p-2 w-full bg-gray-800 text-white' placeholder='Location' />
+				<button className='bg-red-700 text-white p-2 w-full'>Find on Map</button>
+			</form>
+		</div>
+	);
+};
+
+const FooterLinks: React.FC = () => {
+	return (
+		<div className='grid grid-cols-2 gap-6'>
+			<div>
+				<h3 className='text-lg font-bold mb-4 text-red-600'>Explore</h3>
+				<ul>
+					<li>
+						<Link to={"/about"}>About Us</Link>
+					</li>
+					<li>
+						<a href='#testimonials'>Testimonials</a>
+					</li>
+					<li>
+						<a href='/careers'>Careers</a>
+					</li>
+					<li>
+						<a href='/career-detail'>Career Detail</a>
+					</li>
+					<li>
+						<Link to={"/FAQs"}>FAQ's</Link>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<h3 className='text-lg font-bold mb-4'>Useful Links</h3>
+				<ul>
+					<li className={`group w-fit `}>
+						<a href='/credit-card'>Credit Card</a>
+					</li>
+					<li>
+						<a href='/savings-account'>Saving Account</a>
+					</li>
+					<li>
+						<a href='/gift-cards'>Digital Gift Cards</a>
+					</li>
+					<li>
+						<a href='/apply-loans'>Apply For Loans</a>
+					</li>
+					<li>
+						<a href='/mobile-app'>Mobile Application</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	);
+};

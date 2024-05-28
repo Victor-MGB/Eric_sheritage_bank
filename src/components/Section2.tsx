@@ -91,7 +91,7 @@ const Section2 = () => {
 export default Section2;
 
 //guduainace
-const FinancialGuidance = () => {
+export const FinancialGuidance = () => {
 	return (
 		<section className='flex flex-wrap items-center justify-center p-8 bg-white'>
 			{/* Left Section with Image and Rating */}

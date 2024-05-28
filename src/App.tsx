@@ -16,14 +16,14 @@ import FAQ from "./components/Faq";
 import SupportButton from "./components/SupportButton";
 import SignUpForm from "./components/Sign-up";
 import LoginForm from "./components/Sign-In";
-import SideBar from "./components/DashBoard/SideBar";
+import Sidebar from "./components/DashBoard/SideBar";
 
 function App() {
 	return (
 		<div className='App'>
-			<Header />
-			{/* <SupportButton /> */}
-			{/* <SideBar /> */}
+			{/* <Header />
+			<SupportButton />
+			<SideBar />
 
 			<Routes>
 				<Route path='/' element={<INDEX />} />
@@ -42,7 +42,9 @@ function App() {
 				<Route path='/sign-in' element={<LoginForm />} />
 			</Routes>
 
-			<Footer />
+			<Footer /> */}
+
+			<Sidebar />
 		</div>
 	);
 }

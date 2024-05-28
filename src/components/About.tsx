@@ -9,82 +9,15 @@ import {
 	FaTwitterSquare,
 	FaUsers,
 } from "react-icons/fa";
+import { FinancialGuidance } from "./Section2";
 
 const About: React.FC = () => {
 	return (
 		<>
-			<div className='flex flex-col lg:flex-row items-center p-8 rounded-lg shadow-lg bg-primary'>
-				{/* Text Section */}
-				<div className='lg:w-1/2 lg:pr-8 mb-8 lg:mb-0'>
-					<h2 className='text-3xl font-bold mb-4 text-slate-100 dancing-script'>
-						We're building a bank, together
-					</h2>
-					<p className='text-lg text-gray-700 jost'>
-						By solving your problems, treating you fairly and being totally transparent, we
-						believe we can make banking better.
-					</p>
-				</div>
-				{/* SVG Section */}
-				<div className='lg:w-1/2'>
-					<img
-						src='assets/images/handshake.svg'
-						alt='Banking illustration'
-						className='w-full h-auto'
-					/>
-				</div>
-			</div>
-
+			<FinancialGuidance />
 			<Mission />
 			<CardsContainer />
-
-			<h1 className={`orbitron text-center text-2xl text-neutral-600`}>how can we help you..?</h1>
-			<p className={`text-center jost text-neutral-600`}>
-				email us{" "}
-				<a className={`hover:underline text-primary`} href='mailto:@CBSSupport'>
-					@CBSSupport
-				</a>{" "}
-				CBS Support(Opens Overlay): the official customer service
-			</p>
-			<div
-				className={`w-fit p-2 my-3 hover:cursor-pointer hover:bg-blue-600 text-nowrap m-auto rounded-md border-[2px] border-primary text-xl capitalize`}
-			>
-				apply for CCB account
-			</div>
-
-			<div className='flex justify-center mt-8'>
-				<a
-					href='https://twitter.com/yourhandle'
-					target='_blank'
-					rel='noopener noreferrer'
-					className='mx-4 text-gray-600 hover:text-gray-800'
-				>
-					<FaTwitterSquare size={24} />
-				</a>
-				<a
-					href='https://facebook.com/yourhandle'
-					target='_blank'
-					rel='noopener noreferrer'
-					className='mx-4 text-gray-600 hover:text-gray-800'
-				>
-					<FaFacebookF size={24} />
-				</a>
-				<a
-					href='https://instagram.com/yourhandle'
-					target='_blank'
-					rel='noopener noreferrer'
-					className='mx-4 text-gray-600 hover:text-gray-800'
-				>
-					<FaInstagram size={24} />
-				</a>
-				<a
-					href='https://linkedin.com/in/yourhandle'
-					target='_blank'
-					rel='noopener noreferrer'
-					className='mx-4 text-gray-600 hover:text-gray-800'
-				>
-					<FaLinkedinIn size={24} />
-				</a>
-			</div>
+			<Main />
 		</>
 	);
 };
@@ -166,6 +99,73 @@ const CardsContainer: React.FC = () => {
 				link='/careers'
 				linkText='View our careers page ›'
 			/>
+		</div>
+	);
+};
+
+//credit card
+type CreditCardProps = {
+	name: string;
+	cardNumber: string;
+	expiry: string;
+	type: "Silver" | "Gold" | "Platinum";
+	description: string;
+};
+
+const cardColors: { [key: string]: string } = {
+	Silver: "bg-gradient-to-r from-purple-500 to-green-500",
+	Gold: "bg-gradient-to-r from-orange-500 to-purple-500",
+	Platinum: "bg-gray-300",
+};
+
+const CreditCard: React.FC<CreditCardProps> = ({ name, cardNumber, expiry, type, description }) => {
+	return (
+		<div className='bg-white p-4 rounded-lg shadow-lg text-center'>
+			<div className={`p-6 rounded-lg shadow-md ${cardColors[type]}`}>
+				<div className='text-white'>
+					<div className='text-xl font-semibold'>{name}</div>
+					<div className='mt-4 text-lg'>{cardNumber}</div>
+					<div className='mt-2 text-md'>Expiry: {expiry}</div>
+					<div className='mt-2 text-md font-bold'>{type}</div>
+				</div>
+			</div>
+			<div className='mt-4'>
+				<p className='text-gray-700'>{description}</p>
+				<button className='mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>
+					Apply for Card
+				</button>
+			</div>
+		</div>
+	);
+};
+
+const Main = () => {
+	return (
+		<div className='min-h-screen bg-gray-100 p-8'>
+			<h1 className='text-4xl font-bold text-center mb-8'>Credit Cards We Provide</h1>
+			<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+				<CreditCard
+					name='Kin Jong Dilam'
+					cardNumber='1234 5678 9101 1213'
+					expiry='11/24'
+					type='Silver'
+					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis tincidunt.'
+				/>
+				<CreditCard
+					name='Donald Trump'
+					cardNumber='1234 5678 9101 1234'
+					expiry='11/24'
+					type='Gold'
+					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis tincidunt.'
+				/>
+				<CreditCard
+					name='Barak Obama'
+					cardNumber='1234 5678 9101 1213'
+					expiry='11/24'
+					type='Platinum'
+					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis tincidunt.'
+				/>
+			</div>
 		</div>
 	);
 };

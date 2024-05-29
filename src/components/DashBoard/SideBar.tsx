@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight, FaCog, FaLifeRing, FaQuestionCircle } from "react-icons/fa";
 import { FaMoneyBillAlt, FaExchangeAlt, FaHistory, FaWallet } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -34,7 +34,7 @@ const SideBar = () => {
 	};
 
 	return (
-		<aside className='w-64 h-screen fixed bg-gray-100 flex flex-col items-center p-4 shadow-lg'>
+		<aside className='w-[14rem] h-screen fixed bg-gray-100 flex flex-col items-center p-4 shadow-lg'>
 			{/* Avatar */}
 			<div className='w-full rounded-lg m-3 bg-blue-600 flex items-center p-4 gap-4 shadow-md'>
 				<div className='rounded-full w-12 h-12 bg-gray-400'></div>
@@ -69,8 +69,11 @@ const SideBar = () => {
 								{item.submenus.map((submenu, subIndex) => (
 									<li
 										key={subIndex}
-										className='text-sm text-gray-600 hover:text-gray-900 cursor-pointer'
+										className='text-sm text-gray-600 hover:text-gray-900 cursor-pointer group hover:bg-opacity-40 transition-all duration-500 ease-in-out hover:shadow-md shadow-gray-400 flex items-center justify-start gap-2'
 									>
+										<span
+											className={`w-0  opacity-0 bg-blue-300 group-hover:w-[15px] p-[2px] group-hover: group-hover: group-hover:transition-all group-hover:opacity-90 group-hover:duration-500 transition-all `}
+										></span>
 										{submenu}
 									</li>
 								))}
@@ -79,6 +82,23 @@ const SideBar = () => {
 					</div>
 				))}
 			</ul>
+
+			{/* other */}
+			<div className='w-full flex flex-col items-start gap-[1rem] p-2 justify-between'>
+				<h1 className={`text-xl font-extrabold`}>Others</h1>
+
+				<div className={`capitalize w-full  flex flex-col `}>
+					<div className={`capitalize flex items-center gap-2 w-full`}>
+						<FaLifeRing /> support
+					</div>
+					<div className={`capitalize flex items-center gap-2`}>
+						<FaCog /> settings
+					</div>
+					<div className={`capitalize flex items-center gap-2`}>
+						<FaQuestionCircle /> help
+					</div>
+				</div>
+			</div>
 		</aside>
 	);
 };

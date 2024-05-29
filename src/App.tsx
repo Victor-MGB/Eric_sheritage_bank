@@ -16,15 +16,14 @@ import FAQ from "./components/Faq";
 import SupportButton from "./components/SupportButton";
 import SignUpForm from "./components/Sign-up";
 import LoginForm from "./components/Sign-In";
-import Sidebar from "./components/DashBoard/SideBar";
+import CardContainer from "./components/DashBoard/Card";
+import Main from "./components/DashBoard/MainBar";
+import Dashboard from "./components/DashBoard/Dashboard";
 
 function App() {
 	return (
 		<div className='App'>
-			{/* <Header />
 			<SupportButton />
-			<SideBar />
-
 			<Routes>
 				<Route path='/' element={<INDEX />} />
 				<Route path='/services' element={<Services />} />
@@ -40,11 +39,12 @@ function App() {
 				<Route path='/FAQs' element={<FAQ />} />
 				<Route path='/sign-up' element={<SignUpForm />} />
 				<Route path='/sign-in' element={<LoginForm />} />
+
+				{/* dashboard */}
+				<Route path='/dashboard' element={<Dashboard />}>
+					<Route path='/dashboard/cards' element={<CardContainer />} />
+				</Route>
 			</Routes>
-
-			<Footer /> */}
-
-			<Sidebar />
 		</div>
 	);
 }

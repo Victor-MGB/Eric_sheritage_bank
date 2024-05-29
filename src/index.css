@@ -4,8 +4,10 @@
 
 @import "./global.css";
 @import "./banner.css";
+@import "./components/DashBoard/Animation.css";
 
- .bgImage {
+
+.bgImage {
 	background-image: url("/public/assets/images/skyscraper.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;

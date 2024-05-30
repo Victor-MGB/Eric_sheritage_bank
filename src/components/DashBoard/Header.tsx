@@ -6,12 +6,9 @@ const Header = () => {
 			<div className='flex items-center space-x-4'>
 				<h1 className='text-xl capitalize text-neutral-600 orbitron font-bold'>welcome user</h1>
 			</div>
+
 			<div className='flex items-center space-x-4'>
-				<input
-					type='text'
-					placeholder='Search...'
-					className='border rounded-md p-2  ring-[2px]'
-				/>
+				<input type='text' placeholder='Search...' className='border rounded-md p-2  ring-[2px]' />
 				<button className='text-gray-600'>
 					<i className='fas fa-bell'></i>
 				</button>

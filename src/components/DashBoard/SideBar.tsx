@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaCog, FaLifeRing, FaQuestionCircle } from "react-icons/fa";
 import { FaMoneyBillAlt, FaExchangeAlt, FaHistory, FaWallet } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
+	const navi = useNavigate();
 	const links = [
 		{
 			name: "My Cards",
@@ -31,6 +32,27 @@ const SideBar = () => {
 
 	const toggleSubmenu = (index: number) => {
 		setActiveIndex(activeIndex === index ? null : index);
+	};
+
+	// This code defines a function called `handle_myCards_route_Rendering` that takes a `routeName` string as an argument.
+	// The function uses a `switch` statement to check the value of `routeName`.
+	// If `routeName` is "View Cards", it navigates to the "/dashboard/cards" route using the `navi` function.
+	// If `routeName` is "Add New Card", it navigates to the "/dashboard/add-newCard" route using the `navi` function.
+	// If `routeName` is "Manage Cards", it navigates to the "/dashboard/manage-cards" route using the `navi` function.
+	// If `routeName` doesn't match any of the cases, the `default` case is executed, which doesn't do anything.
+	const handle_myCards_route_Rendering = (routeName: string) => {
+		switch (routeName) {
+			case "View Cards":
+				return navi("/dashboard/cards");
+
+			case "Add New Card":
+				return navi("/dashboard/add-newCard");
+
+			case "Manage Cards":
+				return navi("/dashboard/manage-cards");
+			default:
+				break;
+		}
 	};
 
 	return (
@@ -68,8 +90,11 @@ const SideBar = () => {
 							>
 								{item.submenus.map((submenu, subIndex) => (
 									<li
+										onClick={() => {
+											handle_myCards_route_Rendering(submenu);
+										}}
 										key={subIndex}
-										className='text-sm text-gray-600 hover:text-gray-900 cursor-pointer group hover:bg-opacity-40 transition-all duration-500 ease-in-out hover:shadow-md shadow-gray-400 flex items-center justify-start gap-2'
+										className='text-sm text-nowrap text-gray-600 hover:text-gray-900 cursor-pointer group hover:bg-opacity-40 transition-all duration-500 ease-in-out hover:shadow-md shadow-gray-400 flex items-center justify-start gap-2'
 									>
 										<span
 											className={`w-0  opacity-0 bg-blue-300 group-hover:w-[15px] p-[2px] group-hover: group-hover: group-hover:transition-all group-hover:opacity-90 group-hover:duration-500 transition-all `}

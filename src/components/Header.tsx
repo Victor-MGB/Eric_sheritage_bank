@@ -6,6 +6,7 @@ import { BsBank } from "react-icons/bs";
 const Header = () => {
 	const [isConverterDropDownShowing, setisConverterDropDownShowing] = useState<boolean>(false);
 	const [isPageDropdownShowing, setisPageDropdownShowing] = useState(false);
+	const navi = useNavigate();
 
 	const handleDropdownClicks = (arg: boolean) => {
 		setisConverterDropDownShowing(arg);
@@ -38,14 +39,17 @@ const Header = () => {
 					handler2={(arg) => handleIsPageDropdownShowing(arg)}
 					handler={(arg) => handleDropdownClicks(arg)}
 				/>
+
 				{/* auth space */}
 				<div className='flex justify-between items-center p-3 w-[20rem]  mr-[4rem]'>
 					<button
+						onClick={() => navi("/sign-in")}
 						className={`p-2 text-sm rounded-none w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer `}
 					>
 						log-in
 					</button>
 					<button
+						onClick={() => navi("/sign-up")}
 						className={`p-2 rounded-none w-fit text-sm  hover:bg-black text-white hover:text-white bg-red-600 uppercase cursor-pointer `}
 					>
 						open account

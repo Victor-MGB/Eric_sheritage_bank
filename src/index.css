@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./global.css";
+@import "./banner.css";
+@import "./components/DashBoard/Animation.css";
+
+
 .bgImage {
 	background-image: url("/public/assets/images/skyscraper.jpg");
 	background-size: cover;

@@ -14,12 +14,12 @@ export default Security;
 
 const SecurityInfoCard: React.FC = () => (
 	<div className='bg-white p-6 rounded-lg shadow-lg max-w-xl'>
-		<h2 className='text-2xl font-bold mb-4'>We’re serious about your security</h2>
-		<p className='mb-4'>
+		<h2 className='text-2xl font-bold mb-4 orbitron text-red-600'>We’re serious about your security</h2>
+		<p className='mb-4 jost'>
 			We use industry-first technology, like a tool that tells you whether or not you're speaking to a
 			scammer in real time, to keep you safe.
 		</p>
-		<p className='mb-4'>
+		<p className='mb-4 jost'>
 			You can freeze your card instantly if you need to, or speak to one of our experts in-app if something
 			doesn’t feel right.
 		</p>

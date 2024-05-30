@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Services from "./components/Service";
-import Investments from "./components/Investment";
+import Investments from "./components/Section2";
 import TravelInfoComponent from "./components/ExchangeIntro";
 import Security from "./components/Security";
 import Footer from "./components/Footer";
@@ -16,13 +16,14 @@ import FAQ from "./components/Faq";
 import SupportButton from "./components/SupportButton";
 import SignUpForm from "./components/Sign-up";
 import LoginForm from "./components/Sign-In";
+import CardContainer from "./components/DashBoard/Card";
+import Main from "./components/DashBoard/MainBar";
+import Dashboard from "./components/DashBoard/Dashboard";
 
 function App() {
 	return (
 		<div className='App'>
-			<Header />
 			<SupportButton />
-
 			<Routes>
 				<Route path='/' element={<INDEX />} />
 				<Route path='/services' element={<Services />} />
@@ -38,9 +39,12 @@ function App() {
 				<Route path='/FAQs' element={<FAQ />} />
 				<Route path='/sign-up' element={<SignUpForm />} />
 				<Route path='/sign-in' element={<LoginForm />} />
-			</Routes>
 
-			<Footer />
+				{/* dashboard */}
+				<Route path='/dashboard' element={<Dashboard />}>
+					<Route path='/dashboard/cards' element={<CardContainer />} />
+				</Route>
+			</Routes>
 		</div>
 	);
 }

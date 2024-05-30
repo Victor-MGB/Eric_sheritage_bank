@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface LoginFormInputs {
 	accountNumber: string;
@@ -51,7 +53,16 @@ const LoginForm: React.FC = () => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (validateForm()) {
-			console.log(formData);
+			console.log("formData is valid");
+
+			axios.post("hjbhjb", JSON.stringify(formData)).then((response) => {
+				if (response.status === 200) {
+					const userData = response.data.user;
+
+					//make the user data accessable by other components.
+					sessionStorage.setItem(userData, userData);
+				}
+			});
 		}
 	};
 
@@ -98,6 +109,17 @@ const LoginForm: React.FC = () => {
 					</label>
 					{errors.password && <p className='mt-2 text-sm text-red-600'>{errors.password}</p>}
 				</div>
+
+				<p className={`text-sm my-5 text-gray-100 capitalize`}>
+					already not enrolled?{" "}
+					<Link
+						to={"/sign-up"}
+						className={`text-blue-500 underline cursor-pointer hover:text-white`}
+					>
+						{" "}
+						register
+					</Link>
+				</p>
 				<button
 					type='submit'
 					className='w-full bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline'

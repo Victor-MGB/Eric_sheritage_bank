@@ -19,6 +19,7 @@ import LoginForm from "./components/Sign-In";
 import CardContainer from "./components/DashBoard/Card";
 import Main from "./components/DashBoard/MainBar";
 import Dashboard from "./components/DashBoard/Dashboard";
+import OTPPage from "./components/OTP";
 
 function App() {
 	return (
@@ -39,10 +40,13 @@ function App() {
 				<Route path='/FAQs' element={<FAQ />} />
 				<Route path='/sign-up' element={<SignUpForm />} />
 				<Route path='/sign-in' element={<LoginForm />} />
+				<Route path='/otp' element={<OTPPage />} />
 
 				{/* dashboard */}
 				<Route path='/dashboard' element={<Dashboard />}>
 					<Route path='/dashboard/cards' element={<CardContainer />} />
+					<Route path='/dashboard/add-newCard' element={<CardContainer />} />
+					<Route path='/dashboard/manage-cards' element={<CardContainer />} />
 				</Route>
 			</Routes>
 		</div>

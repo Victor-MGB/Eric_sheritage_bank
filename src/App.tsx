@@ -1,11 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
 import Services from "./components/Service";
 import Investments from "./components/Section2";
 import TravelInfoComponent from "./components/ExchangeIntro";
 import Security from "./components/Security";
-import Footer from "./components/Footer";
 import About from "./components/About";
 import INDEX from "./components/INDEX";
 import ContactCenter from "./components/Contact";
@@ -17,7 +15,6 @@ import SupportButton from "./components/SupportButton";
 import SignUpForm from "./components/Sign-up";
 import LoginForm from "./components/Sign-In";
 import CardContainer from "./components/DashBoard/Card";
-import Main from "./components/DashBoard/MainBar";
 import Dashboard from "./components/DashBoard/Dashboard";
 import OTPPage from "./components/OTP";
 

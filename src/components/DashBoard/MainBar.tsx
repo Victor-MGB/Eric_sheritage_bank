@@ -19,7 +19,7 @@ const Main = () => {
 	};
 
 	return (
-		<main className='flex-1 bg-gray-400 rounded-xl p-6 w-[63rem] bg-opacity-40 min-h-screen m-auto my-[2rem] bg-opacity-75'>
+		<main className='flex-1 bg-gray-400 rounded-xl p-6 w-[63rem] bg-opacity-40 min-h-screen m-auto my-[2rem]'>
 			<BalanceOverview />
 
 			{/* chart and loan section */}

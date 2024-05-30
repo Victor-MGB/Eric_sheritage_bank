@@ -4,7 +4,7 @@ const Header = () => {
 	return (
 		<header className='bg-gray-100 rounded-xl w-full max-w-full shadow-md py-4 px-6 flex justify-between items-center'>
 			<div className='flex items-center space-x-4'>
-				<h1 className='text-xl capitalize text-neutral-600 orbitron font-bold'>welcome user</h1>
+				<h1 className='text-xl capitalize text-neutral-600 orbitron font-bold'>DashBoard</h1>
 			</div>
 
 			<div className='flex items-center space-x-4'>

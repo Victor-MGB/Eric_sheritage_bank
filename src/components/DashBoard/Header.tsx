@@ -1,10 +1,19 @@
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+	const navigate = useNavigate();
 	return (
-		<header className='bg-gray-100 rounded-xl w-full max-w-full shadow-md py-4 px-6 flex justify-between items-center'>
-			<div className='flex items-center space-x-4'>
-				<h1 className='text-xl capitalize text-neutral-600 orbitron font-bold'>DashBoard</h1>
+		<header className='bg-gray-100 rounded-xl w-full max-w-full shadow-md py-4 px-6 flex justify-between items-center mb-[1rem'>
+			<div
+				className='flex items-center space-x-4 cursor-pointer'
+				onClick={() => {
+					navigate("/dashboard");
+				}}
+			>
+				<h1 className='text-xl hover:text-red-300 capitalize text-neutral-600 orbitron font-bold'>
+					DashBoard
+				</h1>
 			</div>
 
 			<div className='flex items-center space-x-4'>

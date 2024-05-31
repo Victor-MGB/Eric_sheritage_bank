@@ -10,7 +10,17 @@ const Dashboard = () => {
 	const location = useLocation();
 
 	// Define the routes where you want to render the Outlet and hide Main
-	const outletRoutes = ["/dashboard/cards", "/dashboard/add-newCard", "/dashboard/manage-cards"];
+	const outletRoutes = [
+		"/dashboard/cards",
+		"/dashboard/add-newCard",
+		"/dashboard/manage-cards",
+		"/dashboard/my-accounts",
+		"/dashboard/other-banks",
+		"/dashboard/international",
+		"/dashboard/profile",
+		"/dashboard/security",
+		"/dashboard/security/reset-password",
+	];
 
 	const shouldRenderOutlet = outletRoutes.includes(location.pathname);
 

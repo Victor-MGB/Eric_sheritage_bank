@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaCog, FaHandHoldingUsd, FaLifeRing, FaQuestionCircle } from "react-icons/fa";
-import { FaMoneyBillAlt, FaExchangeAlt, FaHistory, FaWallet } from "react-icons/fa";
+import { FaMoneyBillAlt, FaExchangeAlt, FaWallet } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -16,18 +16,14 @@ const SideBar = () => {
 		{
 			name: "account",
 			icon: <FaWallet />,
-			submenus: ["profile", "security", "kyc", "email-verification", "language"],
+			submenus: ["profile", "security", "kyc", "language"],
 		},
 		{
 			name: "Transfer",
 			icon: <FaMoneyBillAlt />,
 			submenus: ["To My Accounts", "To Other Banks", "International Transfer"],
 		},
-		{
-			name: "Transactions",
-			icon: <FaHistory />,
-			submenus: ["View Transactions", "Filter Transactions", "Export Transactions"],
-		},
+
 		{
 			name: "Exchange",
 			icon: <FaExchangeAlt />,
@@ -93,6 +89,17 @@ const SideBar = () => {
 				break;
 		}
 	};
+	const handle_Exchange_route_Rendering = (routeName: string) => {
+		switch (routeName) {
+			case "Currency Exchange":
+				return navi("/dashboard/currencyExchange");
+
+			case "Rates":
+				return navi("/dashboard/rates");
+			default:
+				break;
+		}
+	};
 
 	return (
 		<aside className='w-[14rem] h-screen fixed bg-white flex flex-col items-center p-4 shadow-lg'>
@@ -136,6 +143,7 @@ const SideBar = () => {
 												handle_myCards_route_Rendering(submenu);
 												handle_transfer_route_Rendering(submenu);
 												handle_profile_route_Rendering(submenu);
+												handle_Exchange_route_Rendering(submenu);
 											}}
 											key={subIndex}
 											className='text-sm capitalize w-fit  text-nowrap text-gray-600  rounded-md hover:text-gray-900 cursor-pointer group hover:bg-opacity-40 transition-all duration-500 ease-in-out hover:shadow-md shadow-gray-400 flex items-center justify-start gap-2'
@@ -158,7 +166,10 @@ const SideBar = () => {
 				<h1 className={`text-xl font-extrabold`}>Others</h1>
 
 				<div className={`capitalize w-full  flex flex-col `}>
-					<div className={`capitalize flex items-center gap-2 w-full`}>
+					<div
+						onClick={() => navi("/dashboard/support")}
+						className={`capitalize flex items-center gap-2 cursor-pointer hover:text-slate-400 w-full`}
+					>
 						<FaLifeRing /> support
 					</div>
 					<div className={`capitalize flex items-center gap-2`}>

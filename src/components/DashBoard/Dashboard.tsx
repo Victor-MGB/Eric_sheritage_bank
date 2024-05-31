@@ -20,6 +20,9 @@ const Dashboard = () => {
 		"/dashboard/profile",
 		"/dashboard/security",
 		"/dashboard/security/reset-password",
+		"/dashboard/rates",
+		"/dashboard/currencyExchange",
+		"/dashboard/support",
 	];
 
 	const shouldRenderOutlet = outletRoutes.includes(location.pathname);

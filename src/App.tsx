@@ -17,6 +17,10 @@ import LoginForm from "./components/Sign-In";
 import CardContainer from "./components/DashBoard/Card";
 import Dashboard from "./components/DashBoard/Dashboard";
 import OTPPage from "./components/OTP";
+import { InternationalTransfer, TransferToMyAccounts, TransferToOtherBanks } from "./components/DashBoard/Transfer";
+import Profile from "./components/DashBoard/Profile";
+import UserSecurity from "./components/DashBoard/Security";
+import ResetPasswordForm from "./components/DashBoard/Reset";
 
 function App() {
 	return (
@@ -44,6 +48,17 @@ function App() {
 					<Route path='/dashboard/cards' element={<CardContainer />} />
 					<Route path='/dashboard/add-newCard' element={<CardContainer />} />
 					<Route path='/dashboard/manage-cards' element={<CardContainer />} />
+
+					{/* transfer routes */}
+					<Route path='my-accounts' element={<TransferToMyAccounts />} />
+					<Route path='other-banks' element={<TransferToOtherBanks />} />
+					<Route path='international' element={<InternationalTransfer />} />
+
+					{/* account routes */}
+					<Route path='profile' element={<Profile />} />
+					<Route path='security' element={<UserSecurity />}>
+						<Route path='reset-password' element={<ResetPasswordForm />} />
+					</Route>
 				</Route>
 			</Routes>
 		</div>

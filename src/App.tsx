@@ -21,6 +21,7 @@ import { InternationalTransfer, TransferToMyAccounts, TransferToOtherBanks } fro
 import Profile from "./components/DashBoard/Profile";
 import UserSecurity from "./components/DashBoard/Security";
 import ResetPasswordForm from "./components/DashBoard/Reset";
+import Support from "./components/DashBoard/Support";
 
 function App() {
 	return (
@@ -55,10 +56,17 @@ function App() {
 					<Route path='international' element={<InternationalTransfer />} />
 
 					{/* account routes */}
-					<Route path='profile' element={<Profile />} />
-					<Route path='security' element={<UserSecurity />}>
-						<Route path='reset-password' element={<ResetPasswordForm />} />
+					<Route path='/dashboard/profile' element={<Profile />} />
+					<Route path='/dashboard/security' element={<UserSecurity />}>
+						<Route path='/dashboard/security/reset-password' element={<ResetPasswordForm />} />
 					</Route>
+
+					{/* exchange routes */}
+					<Route path='/dashboard/rates' element={<CurrencyRates />} />
+					<Route path='/dashboard/currencyExchange' element={<CurrencyConverter />} />
+
+					{/* support route */}
+					<Route path='/dashboard/support' element={<Support />} />
 				</Route>
 			</Routes>
 		</div>
@@ -66,3 +74,5 @@ function App() {
 }
 
 export default App;
+
+//i need a react typescript component for email verification. on the default  show email not verified and click to verify. style with tailwindcss and reeact-icons

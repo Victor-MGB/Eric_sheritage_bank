@@ -3,15 +3,38 @@ import Header from "./Header";
 import Footer from "./Footer";
 import SideBar from "./SideBar";
 import Main from "./MainBar";
+import { Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
+	const location = useLocation();
+
+	// Define the routes where you want to render the Outlet and hide Main
+	const outletRoutes = [
+		"/dashboard/cards",
+		"/dashboard/add-newCard",
+		"/dashboard/manage-cards",
+		"/dashboard/my-accounts",
+		"/dashboard/other-banks",
+		"/dashboard/international",
+		"/dashboard/profile",
+		"/dashboard/security",
+		"/dashboard/security/reset-password",
+		"/dashboard/rates",
+		"/dashboard/currencyExchange",
+		"/dashboard/support",
+	];
+
+	const shouldRenderOutlet = outletRoutes.includes(location.pathname);
+
 	return (
 		<div>
 			<Animation />
 			<SideBar />
-			<div className={`h-fit  bg-transparent m-auto mr-[5rem] w-[65rem] p-3`}>
+			<div className={`h-fit bg-transparent m-auto mr-[5rem] w-[65rem] p-3`}>
 				<Header />
-				<Main />
+				{/* Conditionally render the Outlet or Main based on the current route */}
+				{shouldRenderOutlet ? <Outlet /> : <Main />}
 			</div>
 			<Footer />
 		</div>

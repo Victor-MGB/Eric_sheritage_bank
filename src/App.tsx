@@ -1,11 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
 import Services from "./components/Service";
 import Investments from "./components/Section2";
 import TravelInfoComponent from "./components/ExchangeIntro";
 import Security from "./components/Security";
-import Footer from "./components/Footer";
 import About from "./components/About";
 import INDEX from "./components/INDEX";
 import ContactCenter from "./components/Contact";
@@ -17,8 +15,13 @@ import SupportButton from "./components/SupportButton";
 import SignUpForm from "./components/Sign-up";
 import LoginForm from "./components/Sign-In";
 import CardContainer from "./components/DashBoard/Card";
-import Main from "./components/DashBoard/MainBar";
 import Dashboard from "./components/DashBoard/Dashboard";
+import OTPPage from "./components/OTP";
+import { InternationalTransfer, TransferToMyAccounts, TransferToOtherBanks } from "./components/DashBoard/Transfer";
+import Profile from "./components/DashBoard/Profile";
+import UserSecurity from "./components/DashBoard/Security";
+import ResetPasswordForm from "./components/DashBoard/Reset";
+import Support from "./components/DashBoard/Support";
 
 function App() {
 	return (
@@ -39,10 +42,31 @@ function App() {
 				<Route path='/FAQs' element={<FAQ />} />
 				<Route path='/sign-up' element={<SignUpForm />} />
 				<Route path='/sign-in' element={<LoginForm />} />
+				<Route path='/otp' element={<OTPPage />} />
 
 				{/* dashboard */}
 				<Route path='/dashboard' element={<Dashboard />}>
 					<Route path='/dashboard/cards' element={<CardContainer />} />
+					<Route path='/dashboard/add-newCard' element={<CardContainer />} />
+					<Route path='/dashboard/manage-cards' element={<CardContainer />} />
+
+					{/* transfer routes */}
+					<Route path='my-accounts' element={<TransferToMyAccounts />} />
+					<Route path='other-banks' element={<TransferToOtherBanks />} />
+					<Route path='international' element={<InternationalTransfer />} />
+
+					{/* account routes */}
+					<Route path='/dashboard/profile' element={<Profile />} />
+					<Route path='/dashboard/security' element={<UserSecurity />}>
+						<Route path='/dashboard/security/reset-password' element={<ResetPasswordForm />} />
+					</Route>
+
+					{/* exchange routes */}
+					<Route path='/dashboard/rates' element={<CurrencyRates />} />
+					<Route path='/dashboard/currencyExchange' element={<CurrencyConverter />} />
+
+					{/* support route */}
+					<Route path='/dashboard/support' element={<Support />} />
 				</Route>
 			</Routes>
 		</div>
@@ -50,3 +74,5 @@ function App() {
 }
 
 export default App;
+
+//i need a react typescript component for email verification. on the default  show email not verified and click to verify. style with tailwindcss and reeact-icons

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Services from "./components/Service";
 import Investments from "./components/Section2";
@@ -22,57 +22,89 @@ import Profile from "./components/DashBoard/Profile";
 import UserSecurity from "./components/DashBoard/Security";
 import ResetPasswordForm from "./components/DashBoard/Reset";
 import Support from "./components/DashBoard/Support";
+import Admin from "./components/Admin/Admin";
+import NotifyUser from "./components/Admin/NotifyUser";
+import SendEmail from "./components/Admin/SendEmail";
+import ManageUsers from "./components/Admin/MangeUser";
+export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
+type userDetailsType = {
+	firstName: string;
+	lastName: string;
+	email: string;
+	phoneNumber: string;
+	password: string;
+};
 function App() {
+	const [USER, setUSER] = useState<userDetailsType | null>(null);
+
+	// This function extracts user details from an login components with properties for firstName, lastName, email, phoneNumber, and password.
+	// It checks if the userDetails object is truthy (i.e., not null or undefined), and if so, it sets the USER state with the provided userDetails object.
+	function extractUserDetails(userDetails: userDetailsType) {
+		if (userDetails) {
+			setUSER(userDetails);
+		}
+	}
+
 	return (
 		<div className='App'>
 			<SupportButton />
-			<Routes>
-				<Route path='/' element={<INDEX />} />
-				<Route path='/services' element={<Services />} />
-				<Route path='/investments' element={<Investments />} />
-				<Route path='/travel-info' element={<TravelInfoComponent />} />
-				<Route path='/security' element={<Security />} />
-				<Route path='/about' element={<About />} />
-				<Route path='/contact' element={<ContactCenter />} />
-				<Route path='/rates' element={<CurrencyRates />} />
-				<Route path='/converter' element={<CurrencyConverter />} />
-				<Route path='/saving' element={<SavingComponent />} />
-				<Route path='/saving-pot' element={<QRComponent />} />
-				<Route path='/FAQs' element={<FAQ />} />
-				<Route path='/sign-up' element={<SignUpForm />} />
-				<Route path='/sign-in' element={<LoginForm />} />
-				<Route path='/otp' element={<OTPPage />} />
+			<UserDataCOntext.Provider value={USER && USER}>
+				<Routes>
+					<Route path='/' element={<INDEX />} />
+					<Route path='/services' element={<Services />} />
+					<Route path='/investments' element={<Investments />} />
+					<Route path='/travel-info' element={<TravelInfoComponent />} />
+					<Route path='/security' element={<Security />} />
+					<Route path='/about' element={<About />} />
+					<Route path='/contact' element={<ContactCenter />} />
+					<Route path='/rates' element={<CurrencyRates />} />
+					<Route path='/converter' element={<CurrencyConverter />} />
+					<Route path='/saving' element={<SavingComponent />} />
+					<Route path='/saving-pot' element={<QRComponent />} />
+					<Route path='/FAQs' element={<FAQ />} />
+					<Route path='/sign-up' element={<SignUpForm />} />
+					<Route path='/sign-in' element={<LoginForm extractUserDetails={extractUserDetails} />} />
+					<Route path='/otp' element={<OTPPage />} />
 
-				{/* dashboard */}
-				<Route path='/dashboard' element={<Dashboard />}>
-					<Route path='/dashboard/cards' element={<CardContainer />} />
-					<Route path='/dashboard/add-newCard' element={<CardContainer />} />
-					<Route path='/dashboard/manage-cards' element={<CardContainer />} />
+					{/* user dashboard */}
+					<Route path='/dashboard' element={<Dashboard />}>
+						<Route path='/dashboard/cards' element={<CardContainer />} />
+						<Route path='/dashboard/add-newCard' element={<CardContainer />} />
+						<Route path='/dashboard/manage-cards' element={<CardContainer />} />
 
-					{/* transfer routes */}
-					<Route path='my-accounts' element={<TransferToMyAccounts />} />
-					<Route path='other-banks' element={<TransferToOtherBanks />} />
-					<Route path='international' element={<InternationalTransfer />} />
+						{/* transfer routes */}
+						<Route path='my-accounts' element={<TransferToMyAccounts />} />
+						<Route path='other-banks' element={<TransferToOtherBanks />} />
+						<Route path='international' element={<InternationalTransfer />} />
 
-					{/* account routes */}
-					<Route path='/dashboard/profile' element={<Profile />} />
-					<Route path='/dashboard/security' element={<UserSecurity />}>
-						<Route path='/dashboard/security/reset-password' element={<ResetPasswordForm />} />
+						{/* account routes */}
+						<Route path='/dashboard/profile' element={<Profile />} />
+						<Route path='/dashboard/security' element={<UserSecurity />}>
+							<Route
+								path='/dashboard/security/reset-password'
+								element={<ResetPasswordForm />}
+							/>
+						</Route>
+
+						{/* exchange routes */}
+						<Route path='/dashboard/rates' element={<CurrencyRates />} />
+						<Route path='/dashboard/currencyExchange' element={<CurrencyConverter />} />
+
+						{/* support route */}
+						<Route path='/dashboard/support' element={<Support />} />
 					</Route>
 
-					{/* exchange routes */}
-					<Route path='/dashboard/rates' element={<CurrencyRates />} />
-					<Route path='/dashboard/currencyExchange' element={<CurrencyConverter />} />
-
-					{/* support route */}
-					<Route path='/dashboard/support' element={<Support />} />
-				</Route>
-			</Routes>
+					{/* admin */}
+					<Route path='/admin' element={<Admin />}>
+						<Route path='/admin/notify-user' element={<NotifyUser />} />
+						<Route path='/admin/users' element={<ManageUsers />} />
+						<Route path='/admin/send-email' element={<SendEmail />} />
+					</Route>
+				</Routes>
+			</UserDataCOntext.Provider>
 		</div>
 	);
 }
 
 export default App;
-
-//i need a react typescript component for email verification. on the default  show email not verified and click to verify. style with tailwindcss and reeact-icons

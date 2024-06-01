@@ -1,10 +1,51 @@
-import { memo } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserDataCOntext } from "../../App";
+import { FaBell } from "react-icons/fa";
+import NotificationComponent from "./Notification";
+import axios from "axios";
+
+type Notification = {
+	id: number;
+	message: string;
+	date: string;
+};
 
 const Header = () => {
 	const navigate = useNavigate();
+	const [notifications, setNotifications] = useState<Notification[]>([]);
+	const userDataContextConsumer = useContext(UserDataCOntext);
+	const username = userDataContextConsumer?.firstName;
+
+	const [showNotifications, setShowNotifications] = useState(false);
+	const [hasNewNotification, setHasNewNotification] = useState(false);
+
+	useEffect(() => {
+		if (notifications.length > 0) {
+			setHasNewNotification(true);
+		}
+	}, [notifications]);
+
+	const handleBellClick = () => {
+		setShowNotifications(!showNotifications);
+		setHasNewNotification(false);
+	};
+
+	useEffect(() => {
+		const fetchNotifications = async () => {
+			try {
+				const response = await axios.get("/api/notifications");
+				setNotifications(response.data);
+			} catch (error) {
+				console.error("Error fetching notifications:", error);
+			}
+		};
+
+		fetchNotifications();
+	}, []);
+
 	return (
-		<header className='bg-gray-100 rounded-xl w-full max-w-full shadow-md py-4 px-6 flex justify-between items-center mb-[1rem'>
+		<header className='bg-gray-100 rounded-xl w-full max-w-full shadow-md py-4 px-6 flex justify-between items-center mb-4'>
 			<div
 				className='flex items-center space-x-4 cursor-pointer'
 				onClick={() => {
@@ -16,18 +57,37 @@ const Header = () => {
 				</h1>
 			</div>
 
-			<div className='flex items-center space-x-4'>
-				<input type='text' placeholder='Search...' className='border rounded-md p-2  ring-[2px]' />
-				<button className='text-gray-600'>
-					<i className='fas fa-bell'></i>
-				</button>
-				<div className='flex items-center space-x-2'>
-					<img src='/path-to-profile-pic.jpg' alt='Profile' className='w-8 h-8 rounded-full' />
-					<span className='text-gray-600'>John Doe</span>
+			<div className='flex gap-3 justify-center w-auto items-center relative'>
+				<div className='text-gray-600 relative'>
+					<FaBell
+						className={`text-xl cursor-pointer transition-all ${
+							hasNewNotification ? "text-red-500" : ""
+						}`}
+						onClick={handleBellClick}
+					/>
+					{hasNewNotification && (
+						<span className='absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-400'></span>
+					)}
+				</div>
+				{showNotifications && (
+					<NotificationComponent
+						showNotification={setShowNotifications}
+						notifications={notifications}
+					/>
+				)}
+				<div className='flex flex-row-reverse items-center gap-3 text-neutral-900 w-[10rem] h-full rounded-md p-2'>
+					<img
+						src='/path-to-profile-pic.jpg'
+						alt='Profile'
+						className='w-8 h-8 rounded-full object-contain'
+					/>
+					<span className='capitalize text-neutral-600 orbitron'>
+						{username ? username : "user"}
+					</span>
 				</div>
 			</div>
 		</header>
 	);
 };
 
-export default memo(Header);
+export default React.memo(Header);

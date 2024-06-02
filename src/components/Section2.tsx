@@ -117,9 +117,13 @@ export const FinancialGuidance = () => {
 					Financial Guidance for Every Stage of Life.
 				</h2>
 				<p className='mt-4 text-gray-600'>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis, suscipit you take
-					action against fraud. See it the Security Center for and Mobile and Online Banking.
+					At central city bank, we prioritize the security and privacy of our users' data. Our
+					robust security measures, including advanced encryption and access controls, ensure that
+					your sensitive information remains confidential and protected from unauthorized access or
+					misuse. We continuously monitor and enhance our security protocols to stay ahead of
+					emerging threats, giving you peace of mind when using our platform.
 				</p>
+
 				<div className='mt-8 flex flex-col space-y-4'>
 					<div className='flex items-center '>
 						<div className='p-4 bg-red-20 rounded-full'>
@@ -128,8 +132,11 @@ export const FinancialGuidance = () => {
 						<div className='ml-4'>
 							<h3 className='text-lg font-semibold'>Solution Focused</h3>
 							<p className='text-gray-600'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis
-								tincidunt feugiat.
+								Section 2 provides an overview of the key features and benefits of our
+								product. It highlights the innovative technology and user-friendly
+								design that sets our offering apart from competitors. With concise and
+								engaging language, this section aims to capture the reader's interest
+								and encourage them to explore further details.
 							</p>
 						</div>
 					</div>
@@ -140,8 +147,11 @@ export const FinancialGuidance = () => {
 						<div className='ml-4'>
 							<h3 className='text-lg font-semibold'>99.99% Success</h3>
 							<p className='text-gray-600'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis
-								tincidunt feugiat.
+								an overview of the key features and benefits of our product. It
+								highlights the innovative technology behind our solution and how it
+								addresses common challenges faced by our target customers. The section
+								aims to capture the reader's interest and encourage them to learn more
+								about our offering.
 							</p>
 						</div>
 					</div>
@@ -149,7 +159,7 @@ export const FinancialGuidance = () => {
 
 				<div
 					style={{ animationDuration: "3s" }}
-					className={`flex animate-ping  items-center justify-center left-[31rem]  shadow-sm shadow-white rounded-full w-[15rem] h-[15rem] border-t-0 border-t-transparent border-r-transparent border-r-[0px] border-[5px] border-slate-50 absolute top-[72rem]`}
+					className={`flex animate-ping  items-center justify-center left-[31rem]  shadow-sm shadow-white rounded-full w-[15rem] h-[15rem] border-t-0 border-t-transparent border-r-transparent border-r-[0px] border-[5px] border-slate-50 absolute top-[93rem]`}
 				>
 					<div
 						className={`rounded-full w-[10rem]  m-3 h-[10rem] bg-red-600 text-white flex flex-col items-center justify-center gap-2`}
@@ -546,19 +556,19 @@ const TestimonialCarousel = () => {
 			name: "Rolier Demonil",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-3.png",
-			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+			review: "Central City Banking has been a game-changer for me. Their exceptional service and personalized approach have made managing my finances a breeze. I highly recommend their services.",
 		},
 		{
 			name: "Sandra Bullock",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-1.png",
-			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+			review: "I've been a customer of Central City Banking for years, and I'm consistently impressed by their professionalism and commitment to customer satisfaction. They truly go above and beyond.",
 		},
 		{
 			name: "Julien Anthor",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-2.png",
-			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+			review: "Central City Banking has been a trusted partner in my financial journey. Their knowledgeable staff and innovative solutions have helped me achieve my financial goals with ease.",
 		},
 	];
 	const settings = {

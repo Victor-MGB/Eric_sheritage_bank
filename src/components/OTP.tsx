@@ -6,42 +6,62 @@ import Spinner from "../hooks/UseSpinner";
 
 const OTPPage: React.FC = () => {
 	const [otp, setOtp] = useState("");
+	const [email, setEmail] = useState("");
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 	const [showNotification, setShowNotification] = useState(false);
 	const navigate = useNavigate();
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setOtp(e.target.value);
+		if (e.target.name === "otp") {
+			setOtp(e.target.value);
+		} else if (e.target.name === "email") {
+			setEmail(e.target.value);
+		}
 		setError(null);
 	};
 
-	const validateOtp = (otp: string): boolean => {
-		if (otp.length !== 5) {
-			setError("OTP must be 5 digits.");
+	const validateOtp = (otp: string, email: string): boolean => {
+		if (otp.length !== 6) {
+			setError("OTP must be 6 digits.");
 			return false;
 		}
-		if (!/^\d{5}$/.test(otp)) {
-			setError("OTP must contain only numbers.");
+		if (!/^[a-zA-Z0-9]{6}$/.test(otp)) {
+			setError("OTP must contain 6 alphanumeric characters.");
+			return false;
+		}
+		if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+			setError("Invalid email address.");
 			return false;
 		}
 		return true;
 	};
 
+	const navi = useNavigate();
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (validateOtp(otp)) {
+		if (validateOtp(otp, email)) {
 			setLoading(true);
-			axios.post("https://lee-man-online-banking.onrender.com/verify-otp", { otp })
+			const data = JSON.stringify({ otp, email });
+			axios.post("https://lee-man-online-banking.onrender.com/api/verify-otp", data, {
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+			})
 				.then((response) => {
+					console.log(response);
 					setLoading(false);
-					if (response.status === 200) {
+					if (response.status === 201) {
 						setShowNotification(true);
+						setTimeout(() => {
+							navi("/sign-in");
+						}, 4000);
 					}
 				})
 				.catch((error) => {
 					setLoading(false);
-					setError("Invalid OTP. Please try again.");
+					setError(`${error.message}, Please try again`);
 				});
 		}
 	};
@@ -59,6 +79,16 @@ const OTPPage: React.FC = () => {
 					Please enter the OTP sent to your registered email to complete your registration.
 				</p>
 				<form onSubmit={handleSubmit}>
+					<div className='mb-6'>
+						<input
+							type='text'
+							name='email'
+							value={email}
+							onChange={handleChange}
+							className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-600 peer'
+							placeholder='Enter Email'
+						/>
+					</div>
 					<div className='mb-6'>
 						<input
 							type='text'

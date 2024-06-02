@@ -1,14 +1,5 @@
 import React from "react";
-import {
-	FaComments,
-	FaFacebookF,
-	FaHandHoldingUsd,
-	FaInstagram,
-	FaLinkedinIn,
-	FaMapMarkerAlt,
-	FaTwitterSquare,
-	FaUsers,
-} from "react-icons/fa";
+import { FaComments, FaHandHoldingUsd, FaMapMarkerAlt, FaUsers } from "react-icons/fa";
 import { FinancialGuidance } from "./Section2";
 
 const About: React.FC = () => {

@@ -54,7 +54,7 @@ interface CardProps {
 	status: "Active" | "Expired";
 }
 
-const Card: React.FC<CardProps> = ({ type, balance, cardNumber, expireDate, cvc, status }) => {
+export const Card: React.FC<CardProps> = ({ type, balance, cardNumber, expireDate, cvc, status }) => {
 	const statusClasses = status === "Active" ? "bg-green-500" : "bg-red-500";
 
 	return (

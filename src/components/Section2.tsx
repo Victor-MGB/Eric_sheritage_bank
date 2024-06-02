@@ -11,8 +11,6 @@ import {
 	FaUserAlt,
 	FaApple,
 	FaGooglePlay,
-	FaHeart,
-	FaComment,
 	FaCalendarAlt,
 	FaUser,
 	FaComments,
@@ -35,32 +33,36 @@ const Section2 = () => {
 		{
 			icon: <FaShieldAlt size={50} />,
 			title: "Secure International Transaction",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"Our secure international transaction system ensures that your financial dealings are safeguarded with the highest levels of encryption and security protocols. Rest assured, your funds are in capable hands as they traverse borders.",
 		},
 		{
 			icon: <FaClock size={50} />,
 			title: "Less Time in any Loans Approval",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"We understand the urgency of financial needs, which is why our streamlined loan approval process is designed to minimize delays. With our efficient system, you can expect a swift resolution to your loan application, allowing you to access the funds you require in a timely manner.",
 		},
 		{
 			icon: <FaMoneyCheckAlt size={50} />,
 			title: "Lowest Processing Fee than Other Banks",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"At our institution, we prioritize affordability and strive to provide our clients with the most competitive rates in the market. Our processing fees are among the lowest in the industry, ensuring that you can maximize the value of your transactions without unnecessary financial burdens.",
 		},
 		{
 			icon: <FaHeadset size={50} />,
 			title: "24/7 Support from the Expert Team",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"Our dedicated team of experts is available around the clock to address your inquiries and provide comprehensive support. Whether you require assistance with a transaction, have questions about our services, or need guidance on financial matters, our knowledgeable professionals are just a call away, ready to offer personalized solutions tailored to your needs.",
 		},
 	];
 
 	return (
-		<div className='w-full p-2 bg-gray-20 flex flex-col items-center justify-center gap-4'>
-			<section className='flex items-center  justify-center gap-4 bg-slate-200'>
+		<div className='w-full p-2 bg-gray-200 flex flex-col items-center justify-center gap-4'>
+			<section className='flex items-center  justify-between gap-4 bg-slate-200'>
 				{features.map((feature, index) => (
 					<div
 						key={index}
-						className=' w-[15rem] relative flex flex-col items-center p-6 bg-gray-200 rounded-lg overflow-hidden group hover:shadow-md shadow-red-500 '
+						className=' w-[15rem] relative flex flex-col items-center p-6 bg-red-200 rounded-lg overflow-hidden group hover:shadow-md shadow-red-500 '
 					>
 						<div className='absolute inset-0 bg-red-600 h-0 group-hover:h-full transition-all duration-500 ease-in-out'></div>
 						<div className='relative z-10 mb-4 text-red-500 group-hover:text-white transition-colors duration-300 ease-in-out'>
@@ -115,9 +117,13 @@ export const FinancialGuidance = () => {
 					Financial Guidance for Every Stage of Life.
 				</h2>
 				<p className='mt-4 text-gray-600'>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis, suscipit you take
-					action against fraud. See it the Security Center for and Mobile and Online Banking.
+					At central city bank, we prioritize the security and privacy of our users' data. Our
+					robust security measures, including advanced encryption and access controls, ensure that
+					your sensitive information remains confidential and protected from unauthorized access or
+					misuse. We continuously monitor and enhance our security protocols to stay ahead of
+					emerging threats, giving you peace of mind when using our platform.
 				</p>
+
 				<div className='mt-8 flex flex-col space-y-4'>
 					<div className='flex items-center '>
 						<div className='p-4 bg-red-20 rounded-full'>
@@ -126,8 +132,11 @@ export const FinancialGuidance = () => {
 						<div className='ml-4'>
 							<h3 className='text-lg font-semibold'>Solution Focused</h3>
 							<p className='text-gray-600'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis
-								tincidunt feugiat.
+								Section 2 provides an overview of the key features and benefits of our
+								product. It highlights the innovative technology and user-friendly
+								design that sets our offering apart from competitors. With concise and
+								engaging language, this section aims to capture the reader's interest
+								and encourage them to explore further details.
 							</p>
 						</div>
 					</div>
@@ -138,8 +147,11 @@ export const FinancialGuidance = () => {
 						<div className='ml-4'>
 							<h3 className='text-lg font-semibold'>99.99% Success</h3>
 							<p className='text-gray-600'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis
-								tincidunt feugiat.
+								an overview of the key features and benefits of our product. It
+								highlights the innovative technology behind our solution and how it
+								addresses common challenges faced by our target customers. The section
+								aims to capture the reader's interest and encourage them to learn more
+								about our offering.
 							</p>
 						</div>
 					</div>
@@ -147,7 +159,7 @@ export const FinancialGuidance = () => {
 
 				<div
 					style={{ animationDuration: "3s" }}
-					className={`flex animate-ping  items-center justify-center left-[31rem]  shadow-sm shadow-white rounded-full w-[15rem] h-[15rem] border-t-0 border-t-transparent border-r-transparent border-r-[0px] border-[5px] border-slate-50 absolute top-[72rem]`}
+					className={`flex animate-ping  items-center justify-center left-[31rem]  shadow-sm shadow-white rounded-full w-[15rem] h-[15rem] border-t-0 border-t-transparent border-r-transparent border-r-[0px] border-[5px] border-slate-50 absolute top-[93rem]`}
 				>
 					<div
 						className={`rounded-full w-[10rem]  m-3 h-[10rem] bg-red-600 text-white flex flex-col items-center justify-center gap-2`}
@@ -544,19 +556,19 @@ const TestimonialCarousel = () => {
 			name: "Rolier Demonil",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-3.png",
-			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+			review: "Central City Banking has been a game-changer for me. Their exceptional service and personalized approach have made managing my finances a breeze. I highly recommend their services.",
 		},
 		{
 			name: "Sandra Bullock",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-1.png",
-			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+			review: "I've been a customer of Central City Banking for years, and I'm consistently impressed by their professionalism and commitment to customer satisfaction. They truly go above and beyond.",
 		},
 		{
 			name: "Julien Anthor",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-2.png",
-			review: "Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque etiam nis quis at arcu nunc neque ac integer sit lobortis diam semper nulla duis in blandit.",
+			review: "Central City Banking has been a trusted partner in my financial journey. Their knowledgeable staff and innovative solutions have helped me achieve my financial goals with ease.",
 		},
 	];
 	const settings = {

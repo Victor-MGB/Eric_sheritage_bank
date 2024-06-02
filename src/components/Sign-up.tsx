@@ -20,7 +20,7 @@ interface FormInputs {
 	password: string;
 	confirmPassword: string;
 	accountPin: string;
-	agree: boolean;
+	termsAgreement: boolean;
 }
 
 interface FormErrors {
@@ -40,7 +40,7 @@ interface FormErrors {
 	password?: string;
 	confirmPassword?: string;
 	accountPin?: string;
-	agree?: string;
+	termsAgreement?: string;
 }
 
 const SignUpForm: React.FC = () => {
@@ -61,7 +61,7 @@ const SignUpForm: React.FC = () => {
 		password: "",
 		confirmPassword: "",
 		accountPin: "",
-		agree: false,
+		termsAgreement: false,
 	});
 	const [loading, setLoading] = useState(false);
 
@@ -109,15 +109,22 @@ const SignUpForm: React.FC = () => {
 
 	const navigateToOTP = useNavigate();
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		setLoading(true);
 		e.preventDefault();
 		if (validateForm()) {
-			console.log(formData);
-			axios.post("https://lee-man-online-banking.onrender.com/register", { formData })
+			setLoading(true);
+			console.log(JSON.stringify(formData));
+			axios.post("https://lee-man-online-banking.onrender.com/api/register", JSON.stringify(formData), {
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+			})
 				.then((response) => {
 					setLoading(false);
 					console.log(response);
-					if (response.status === 201) {
+					if ( response.status === 201 )
+					{
+						
 						navigateToOTP("/OTP");
 					}
 				})
@@ -127,6 +134,8 @@ const SignUpForm: React.FC = () => {
 				});
 		}
 	};
+
+	const isFormEmpty = Object.values(formData).every((value) => value === "" || value === false);
 
 	return (
 		<div className='flex justify-center items-center min-h-screen bg-white p-7'>
@@ -176,16 +185,16 @@ const SignUpForm: React.FC = () => {
 				</div>
 				<div className='flex items-center mb-6'>
 					<input
-						name='agree'
+						name='termsAgreement'
 						type='checkbox'
-						checked={formData.agree}
+						checked={formData.termsAgreement}
 						onChange={handleChange}
 						className='w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500'
 					/>
-					<label htmlFor='agree' className='ml-2 text-sm font-medium text-gray-900'>
-						I agree to the terms and conditions
+					<label htmlFor='termsAgreement' className='ml-2 text-sm font-medium text-gray-900'>
+						I termsAgreement to the terms and conditions
 					</label>
-					{errors.agree && <p className='mt-2 text-sm text-red-600'>{errors.agree}</p>}
+					{errors.termsAgreement && <p className='mt-2 text-sm text-red-600'>{errors.termsAgreement}</p>}
 				</div>
 				<p className='text-sm my-5 text-gray-600'>
 					Already enrolled?{" "}
@@ -196,10 +205,11 @@ const SignUpForm: React.FC = () => {
 				<button
 					type='submit'
 					className='w-full bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+					disabled={isFormEmpty || loading}
 				>
 					Sign Up
 				</button>
-				{loading && <Spinner />}
+				{loading && !errors.email && !errors.password && !errors.confirmPassword && <Spinner />}
 			</form>
 		</div>
 	);

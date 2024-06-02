@@ -11,8 +11,6 @@ import {
 	FaUserAlt,
 	FaApple,
 	FaGooglePlay,
-	FaHeart,
-	FaComment,
 	FaCalendarAlt,
 	FaUser,
 	FaComments,
@@ -35,32 +33,36 @@ const Section2 = () => {
 		{
 			icon: <FaShieldAlt size={50} />,
 			title: "Secure International Transaction",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"Our secure international transaction system ensures that your financial dealings are safeguarded with the highest levels of encryption and security protocols. Rest assured, your funds are in capable hands as they traverse borders.",
 		},
 		{
 			icon: <FaClock size={50} />,
 			title: "Less Time in any Loans Approval",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"We understand the urgency of financial needs, which is why our streamlined loan approval process is designed to minimize delays. With our efficient system, you can expect a swift resolution to your loan application, allowing you to access the funds you require in a timely manner.",
 		},
 		{
 			icon: <FaMoneyCheckAlt size={50} />,
 			title: "Lowest Processing Fee than Other Banks",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"At our institution, we prioritize affordability and strive to provide our clients with the most competitive rates in the market. Our processing fees are among the lowest in the industry, ensuring that you can maximize the value of your transactions without unnecessary financial burdens.",
 		},
 		{
 			icon: <FaHeadset size={50} />,
 			title: "24/7 Support from the Expert Team",
-			description: "Tortor neque sed tellus estian eget dui id ante tristique more tristique dolor.",
+			description:
+				"Our dedicated team of experts is available around the clock to address your inquiries and provide comprehensive support. Whether you require assistance with a transaction, have questions about our services, or need guidance on financial matters, our knowledgeable professionals are just a call away, ready to offer personalized solutions tailored to your needs.",
 		},
 	];
 
 	return (
-		<div className='w-full p-2 bg-gray-20 flex flex-col items-center justify-center gap-4'>
-			<section className='flex items-center  justify-center gap-4 bg-slate-200'>
+		<div className='w-full p-2 bg-gray-200 flex flex-col items-center justify-center gap-4'>
+			<section className='flex items-center  justify-between gap-4 bg-slate-200'>
 				{features.map((feature, index) => (
 					<div
 						key={index}
-						className=' w-[15rem] relative flex flex-col items-center p-6 bg-gray-200 rounded-lg overflow-hidden group hover:shadow-md shadow-red-500 '
+						className=' w-[15rem] relative flex flex-col items-center p-6 bg-red-200 rounded-lg overflow-hidden group hover:shadow-md shadow-red-500 '
 					>
 						<div className='absolute inset-0 bg-red-600 h-0 group-hover:h-full transition-all duration-500 ease-in-out'></div>
 						<div className='relative z-10 mb-4 text-red-500 group-hover:text-white transition-colors duration-300 ease-in-out'>

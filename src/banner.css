@@ -359,5 +359,262 @@
 }
 
 
+/* Responsive Css */
 
+
+@media only screen and (max-width: 828px){
+	.mr_post_tags {
+    	display: inline !important;
+	}
+
+}
+
+
+@media only screen and (max-width: 998px){
+	.pagination {
+        position: relative;
+        display: block;
+        margin-bottom: 30px;
+	}
+
+}
+
+
+
+@media only screen and (max-width: 1200px){
+
+  .main-menu,
+  .sticky-header,
+  .main-header.style-one .outer-container:before{
+    display: none !important;
+  }
+
+  .menu-area .mobile-nav-toggler {
+    display: block;
+    padding: 10px;
+  }
+
+  .megamenu ul li:first-child{
+    display: none;
+  }
+
+  .main-header .outer-box .logo-box{
+    margin-top: 0px;
+    padding: 31px 30px !important;
+  }
+
+  .main-header .outer-box .logo-box:before,
+  .main-header .outer-box .logo-box:after,
+  .main-header .outer-box .logo-box .shape{
+    display: none;
+  }
+
+  .header-top .top-inner{
+    padding-left: 0px;
+  }
+
+  .rtl .header-top .top-inner{
+    padding-right: 0px;
+  }
+
+  .header-style-two .header-top{
+    padding-left: 40px;
+  }
+	
+	.metrobank_price_range:before {
+		position: absolute;
+		content: '';
+		background: #212226;
+		width: 100% !important;
+		height: 100% !important;
+		top: 0px;
+		left: 0px;
+	}
+	
+	.feature-block-two .inner-box h3 a {
+    	color: #ffffff !important;
+	}
+	
+	.feature-block-two .inner-box p {
+    	color: #ffffff;
+		
+	}
+
+
+}
+
+
+
+@media only screen and (min-width: 768px){
+  .main-menu .navigation > li > ul,
+  .main-menu .navigation > li > ul > li > ul,
+  .main-menu .navigation > li > .megamenu{
+    display:block !important;
+    visibility:hidden;
+    opacity:0;
+  }
+}
+
+
+
+@media only screen and (max-width: 991px){
+  .main-footer .footer-widget{
+    margin: 0px 0px 30px 0px !important;
+  }
+
+  .main-footer .widget-section{
+    padding-bottom: 83px;
+  }
+
+  .header-style-two .header-top{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+}
+
+
+@media only screen and (max-width: 767px){
+  .header-top .top-inner{
+    display: block;
+    text-align: center;
+  }
+
+  .header-top .links-list,
+  .header-top .info-list{
+    justify-content: center;
+  }
+
+  .main-header .menu-right-content{
+    display: none;
+  }
+	
+	.feature-block-two .inner-box h3 a {
+    	color: #ffffff !important;
+	}
+	
+	.feature-block-two .inner-box p {
+    	color: #ffffff;
+		
+	}
+
+  .sec-title h2{
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .main-footer .pattern-layer{
+    display: none;
+  }
+
+  .main-footer .widget-section{
+    padding: 80px 0px 50px 0px;
+  }
+	
+	.banner-section .banner-slider-nav {
+    	display: none;
+	}
+
+}
+
+@media only screen and (max-width: 599px){
+
+  	.banner-section .content-box .inner {
+    	position: relative;
+    	padding-top: 70px;
+	}
+	
+	.banner-section .content-box {
+    	padding: 0px 15px 0px;
+	}
+
+
+}
+
+
+@media only screen and (max-width: 499px){
+	
+	.banner-section .content-box h1 {
+		position: relative;
+		color: #ffffff;
+		font-size: 60px;
+		line-height: 60px;
+		font-weight: 700;
+		margin-bottom: 20px;
+	}
+
+  .mobile-menu{
+    width: 100%;
+  }
+
+  .header-top .info-list{
+    display: block;
+  }
+
+  .header-top .info-list li{
+    display: inline-block;
+    margin: 0px 5px !important;
+  }
+
+  .main-header .outer-box .logo-box{
+    padding: 15px !important;
+  }
+
+  .header-style-two .header-top{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .header-style-two .header-lower{
+    padding-right: 15px;
+  }
+
+  .rtl .header-style-two .header-lower{
+    padding-left: 15px;
+  }
+
+  .header-style-two.main-header .outer-box .logo-box .logo{
+    max-width: 150px;
+  }
+	.feature-block-two .inner-box h3 a {
+    	color: #ffffff !important;
+	}
+
+  .header-top .links-list li{
+    	margin-right: 20px;
+  }
+
+  .rtl .header-top .links-list li{
+    	margin-left: 20px;
+  }
+
+  .header-style-three .header-top .top-inner{
+    	padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .pagination li a{
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+  }
+	
+	.banner-slider-control.banner-slider-button-prev {
+    	display: none;
+	}
+	
+	.banner-slider-control.banner-slider-button-next {
+    	display: none;
+	}
+	.banner-section .content-box .inner {
+    	position: relative;
+    	padding-top: 70px;
+	
+	}
+	.banner-section.style-two .content-box {
+    	min-height: 600px;
+    	padding-bottom: 150p
+	}
+
+}
 

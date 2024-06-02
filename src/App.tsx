@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Services from "./components/Service";
 import Investments from "./components/Section2";
@@ -12,8 +12,8 @@ import CurrencyConverter from "./components/CurrencyConverter";
 import SavingComponent, { QRComponent } from "./components/Savings";
 import FAQ from "./components/Faq";
 import SupportButton from "./components/SupportButton";
-import SignUpForm from "./components/Sign-up";
-import LoginForm from "./components/Sign-In";
+import SignUpForm from "./components/Auth/Sign-up";
+import LoginForm from "./components/Auth/Sign-In";
 import CardContainer from "./components/DashBoard/Card";
 import Dashboard from "./components/DashBoard/Dashboard";
 import OTPPage from "./components/OTP";
@@ -26,6 +26,8 @@ import Admin from "./components/Admin/Admin";
 import NotifyUser from "./components/Admin/NotifyUser";
 import SendEmail from "./components/Admin/SendEmail";
 import ManageUsers from "./components/Admin/MangeUser";
+import CardManager from "./components/DashBoard/ManageCards";
+import Authenticator from "./components/Auth/Authenticator";
 export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
 type userDetailsType = {
@@ -37,6 +39,7 @@ type userDetailsType = {
 };
 function App() {
 	const [USER, setUSER] = useState<userDetailsType | null>(null);
+	const [isAuthenticated, setisAuthenticated] = useState(false);
 
 	// This function extracts user details from an login components with properties for firstName, lastName, email, phoneNumber, and password.
 	// It checks if the userDetails object is truthy (i.e., not null or undefined), and if so, it sets the USER state with the provided userDetails object.
@@ -45,6 +48,11 @@ function App() {
 			setUSER(userDetails);
 		}
 	}
+	const token = useRef<string | null>(null);
+	useEffect(() => {
+		token.current = sessionStorage.getItem("userToken") || null;
+		token.current ? setisAuthenticated(!isAuthenticated) : setisAuthenticated(false);
+	}, [isAuthenticated]);
 
 	return (
 		<div className='App'>
@@ -68,10 +76,16 @@ function App() {
 					<Route path='/otp' element={<OTPPage />} />
 
 					{/* user dashboard */}
-					<Route path='/dashboard' element={<Dashboard />}>
-						<Route path='/dashboard/cards' element={<CardContainer />} />
+					<Route
+						path='/dashboard'
+						element={
+							<Authenticator authenticated={isAuthenticated} token={token.current}>
+								<Dashboard />
+							</Authenticator>
+						}
+					>
 						<Route path='/dashboard/add-newCard' element={<CardContainer />} />
-						<Route path='/dashboard/manage-cards' element={<CardContainer />} />
+						<Route path='/dashboard/manage-cards' element={<CardManager />} />
 
 						{/* transfer routes */}
 						<Route path='my-accounts' element={<TransferToMyAccounts />} />

@@ -37,6 +37,18 @@ type userDetailsType = {
 	phoneNumber: string;
 	password: string;
 };
+
+/**
+ * The main App component that renders the entire application.
+ * It manages the authentication state, provides user data context, and renders the main routes and nested routes.
+ *
+ * The `extractUserDetails` function is used to update the `USER` state with the user details provided from a login component.
+ * The `handlelogoutUser` function is used to remove the user token from session storage and set the `isAuthenticated` state to false.
+ *
+ * The main routes include pages like the index, services, investments, travel info, security, about, contact, currency rates, currency converter, saving, saving pot, FAQs, sign-up, and sign-in.
+ * The user dashboard routes include managing cards, transferring to my accounts/other banks/international, managing profile and security, checking currency rates and exchange, and accessing support.
+ * The admin routes include notifying users, managing users, and sending emails.
+ */
 function App() {
 	const [USER, setUSER] = useState<userDetailsType | null>(null);
 	const [isAuthenticated, setisAuthenticated] = useState(false);
@@ -51,9 +63,13 @@ function App() {
 	const token = useRef<string | null>(null);
 	useEffect(() => {
 		token.current = sessionStorage.getItem("userToken") || null;
-		token.current ? setisAuthenticated(!isAuthenticated) : setisAuthenticated(false);
+		token.current ? setisAuthenticated(true) : setisAuthenticated(false);
 	}, [isAuthenticated]);
 
+	const handlelogoutUser = () => {
+		sessionStorage.removeItem("userToken");
+		setisAuthenticated(false);
+	};
 	return (
 		<div className='App'>
 			<SupportButton />
@@ -79,7 +95,11 @@ function App() {
 					<Route
 						path='/dashboard'
 						element={
-							<Authenticator authenticated={isAuthenticated} token={token.current}>
+							<Authenticator
+								logOut={handlelogoutUser}
+								authenticated={isAuthenticated}
+								token={token.current}
+							>
 								<Dashboard />
 							</Authenticator>
 						}

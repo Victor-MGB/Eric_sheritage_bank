@@ -58,11 +58,11 @@ const Section2 = () => {
 
 	return (
 		<div className='w-full p-2 bg-gray-200 flex flex-col items-center justify-center gap-4'>
-			<section className='flex items-center  justify-between gap-4 bg-slate-200'>
+			<section className='md:flex flex md:flex-row flex-col  items-center  justify-between gap-4 bg-slate-200'>
 				{features.map((feature, index) => (
 					<div
 						key={index}
-						className=' w-[15rem] relative flex flex-col items-center p-6 bg-red-200 rounded-lg overflow-hidden group hover:shadow-md shadow-red-500 '
+						className=' w-full md:w-[15rem] relative flex flex-col items-center md:p-6 bg-red-200 rounded-lg overflow-hidden group hover:shadow-md shadow-red-500 '
 					>
 						<div className='absolute inset-0 bg-red-600 h-0 group-hover:h-full transition-all duration-500 ease-in-out'></div>
 						<div className='relative z-10 mb-4 text-red-500 group-hover:text-white transition-colors duration-300 ease-in-out'>
@@ -97,22 +97,20 @@ export const FinancialGuidance = () => {
 	return (
 		<section className='flex flex-wrap items-center justify-center p-8 bg-white'>
 			{/* Left Section with Image and Rating */}
-			<div className='relative w-full md:w-1/2'>
+			<div className='relative w-full md:w-1/2 mb-8 md:mb-0'>
 				<img
 					src='/assets/images/cashWallet.jpg'
 					alt='Financial Guidance'
 					className='w-full h-auto rounded-lg'
 				/>
-				<div className='absolute top-[9rem] bg-white p-3 h-[5rem] w-[15rem]  shadow-lg'>
-					<div className='flex items-center  justify-start flex-col'>
-						<div className='text-yellow-500 text-lg animate-ping'>★★★★★</div>
-						<span className='ml-2 text-sm font-semibold'>5 Star Rating Bank</span>
-					</div>
+				<div className='absolute top-32 left-1/2 transform -translate-x-1/2 bg-white p-3 h-[5rem] w-[15rem] shadow-lg flex flex-col items-center'>
+					<div className='text-yellow-500 text-lg animate-ping'>★★★★★</div>
+					<span className='text-sm font-semibold'>5 Star Rating Bank</span>
 				</div>
 			</div>
 
 			{/* Right Section with Text and Icons */}
-			<div className='w-full md:w-1/2 px-4 mt-8 md:mt-0'>
+			<div className='w-full md:w-1/2 px-4'>
 				<h2 className='text-3xl font-bold text-gray-800'>
 					Financial Guidance for Every Stage of Life.
 				</h2>
@@ -124,10 +122,10 @@ export const FinancialGuidance = () => {
 					emerging threats, giving you peace of mind when using our platform.
 				</p>
 
-				<div className='mt-8 flex flex-col space-y-4'>
-					<div className='flex items-center '>
-						<div className='p-4 bg-red-20 rounded-full'>
-							<FaDollarSign className='text-red-500 text-5xl' />
+				<div className='mt-8 flex flex-col space-y-8'>
+					<div className='flex items-start'>
+						<div className='p-4 bg-red-100 rounded-full'>
+							<FaDollarSign className='text-red-500 text-2xl' />
 						</div>
 						<div className='ml-4'>
 							<h3 className='text-lg font-semibold'>Solution Focused</h3>
@@ -140,14 +138,14 @@ export const FinancialGuidance = () => {
 							</p>
 						</div>
 					</div>
-					<div className='flex items-center '>
-						<div className='p-4 bg-red-20 rounded-full'>
-							<FaCheckCircle className='text-red-500 text-5xl' />
+					<div className='flex items-start'>
+						<div className='p-4 bg-red-100 rounded-full'>
+							<FaCheckCircle className='text-red-500 text-2xl' />
 						</div>
 						<div className='ml-4'>
 							<h3 className='text-lg font-semibold'>99.99% Success</h3>
 							<p className='text-gray-600'>
-								an overview of the key features and benefits of our product. It
+								An overview of the key features and benefits of our product. It
 								highlights the innovative technology behind our solution and how it
 								addresses common challenges faced by our target customers. The section
 								aims to capture the reader's interest and encourage them to learn more
@@ -159,22 +157,20 @@ export const FinancialGuidance = () => {
 
 				<div
 					style={{ animationDuration: "3s" }}
-					className={`flex animate-ping  items-center justify-center left-[31rem]  shadow-sm shadow-white rounded-full w-[15rem] h-[15rem] border-t-0 border-t-transparent border-r-transparent border-r-[0px] border-[5px] border-slate-50 absolute top-[93rem]`}
+					className='flex animate-ping items-center justify-center shadow-sm shadow-white rounded-full w-36 h-36 border-t-0 border-t-transparent border-r-transparent border-r-0 border-5 border-slate-50 absolute left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-auto md:right-0 top-[calc(100%+4rem)] md:top-1/2 md:-translate-y-1/2'
 				>
-					<div
-						className={`rounded-full w-[10rem]  m-3 h-[10rem] bg-red-600 text-white flex flex-col items-center justify-center gap-2`}
-					>
-						<h1 className={`text-3xl text-center capitalize font-bold`}>40 years</h1>
-						<p className={`capitalize  text-white`}>of experience</p>
+					<div className='rounded-full w-28 h-28 bg-red-600 text-white flex flex-col items-center justify-center gap-2'>
+						<h1 className='text-3xl text-center capitalize font-bold'>40 years</h1>
+						<p className='capitalize text-white'>of experience</p>
 					</div>
 				</div>
 			</div>
 
 			{/* Overlay Button */}
 			<div className='relative mt-8'>
-				<button className='  relative px-6 py-3 bg-red-600 text-white font-semibold uppercase overflow-hidden star-button '>
+				<button className='relative px-6 py-3 bg-red-600 text-white font-semibold uppercase overflow-hidden star-button'>
 					Discover More
-					<span className='absolute inset-0 flex items-center  justify-center text-2xl font-bold text-yellow-500 transition-transform duration-500 transform translate-y-full group-hover:-translate-y-0'>
+					<span className='absolute inset-0 flex items-center justify-center text-2xl font-bold text-yellow-500 transition-transform duration-500 transform translate-y-full group-hover:-translate-y-0'>
 						★
 					</span>
 				</button>
@@ -449,7 +445,7 @@ const StatisticsSection: React.FC = () => {
 	return (
 		<section
 			ref={ref}
-			className='flex relative w-[80rem] h-[9rem] top-[-5rem] flex-col md:flex-row justify-center items-center '
+			className='flex relative p-2 w-full md:w-[80rem] md:h-[9rem] top-[1rem] md:top-[-5rem] flex-col md:flex-row justify-center items-center '
 		>
 			<div className='flex items-center  justify-between w-full text-center p-4 bg-gray-50'>
 				<div className={`w-[4rem] h-[4rem] rounded-full bg-red-200 flex items-center  justify-center`}>
@@ -487,32 +483,32 @@ const StatisticsSection: React.FC = () => {
 
 const MobileAppSection: React.FC = () => {
 	return (
-		<section className='flex max-w-full flex-col lg:flex-row items-center justify-center  bg-gray-300'>
+		<section className='flex flex-col lg:flex-row items-center justify-center bg-gray-300 p-4 lg:p-8'>
 			{/* Left Section with Mobile Images */}
-			<div className=' flex items-center h-fit justify-center  bg-gray-100 w-[50vw] p-3'>
+			<div className='flex flex-wrap items-center justify-center bg-gray-100 w-full lg:w-1/2 p-4 lg:p-8'>
 				<img
 					src={"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-4.png"}
 					alt='Mobile App'
-					className='max-w-xs md:max-w-md h-auto lg:max-w-lg relative left-[5rem] m-auto'
+					className='max-w-xs md:max-w-md h-auto lg:max-w-lg m-auto'
 				/>
 				{/* big */}
 				<img
 					width={250}
 					src={"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/mockup-1.png"}
 					alt='Mobile App'
-					className='max-w-xs md:max-w-md h-auto lg:max-w-lg relative m-auto right-[4rem] shadow-md'
+					className='max-w-xs md:max-w-md h-auto lg:max-w-lg m-auto shadow-md mt-4 lg:mt-0'
 				/>
 				{/* small */}
 				<img
 					width={200}
 					src={"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/mockup-2.png"}
 					alt='Mobile App'
-					className='max-w-xs md:max-w-md lg:max-w-lg relative m-auto h-auto right-[10rem] top-[3rem]'
+					className='max-w-xs md:max-w-md lg:max-w-lg m-auto h-auto mt-4 lg:mt-0'
 				/>
 			</div>
 
 			{/* Right Section with Text and Buttons */}
-			<div className='flex-1 text-center lg:text-left p-4  w-[50vw]'>
+			<div className='flex-1 text-center lg:text-left p-4 lg:p-8 w-full lg:w-1/2'>
 				<h2 className='text-red-600 font-semibold mb-2'>MOBILE APP</h2>
 				<h1 className='text-3xl md:text-4xl font-bold mb-4'>Get the Fastest and Most Secure Banking</h1>
 				<p className='text-gray-600 mb-4'>
@@ -525,7 +521,7 @@ const MobileAppSection: React.FC = () => {
 						className='flex items-center px-4 py-2 rounded-md text-white bg-black space-x-2 relative overflow-hidden'
 						style={{ width: "180px" }}
 					>
-						<div className='absolute top-0 left-0 w-full h-full bg-gray-800 transition-transform duration-300 transform -translate-y-full group-hover:-translate-y-0'></div>
+						<div className='absolute top-0 left-0 w-full h-full bg-gray-800 transition-transform duration-300 transform -translate-y-full group-hover:translate-y-0'></div>
 						<FaGooglePlay className='text-xl z-10' />
 						<div className='text-left z-10'>
 							<p className='text-xs'>Get it on</p>
@@ -537,7 +533,7 @@ const MobileAppSection: React.FC = () => {
 						className='flex items-center px-4 py-2 rounded-md text-white bg-black space-x-2 relative overflow-hidden'
 						style={{ width: "180px" }}
 					>
-						<div className='absolute top-0 left-0 w-full h-full bg-gray-800 transition-transform duration-300 transform -translate-y-full group-hover:-translate-y-0'></div>
+						<div className='absolute top-0 left-0 w-full h-full bg-gray-800 transition-transform duration-300 transform -translate-y-full group-hover:translate-y-0'></div>
 						<FaApple className='text-xl z-10' />
 						<div className='text-left z-10'>
 							<p className='text-xs'>Download on the</p>
@@ -550,7 +546,7 @@ const MobileAppSection: React.FC = () => {
 	);
 };
 
-const TestimonialCarousel = () => {
+const TestimonialCarousel: React.FC = () => {
 	const testimonials = [
 		{
 			name: "Rolier Demonil",
@@ -571,6 +567,7 @@ const TestimonialCarousel = () => {
 			review: "Central City Banking has been a trusted partner in my financial journey. Their knowledgeable staff and innovative solutions have helped me achieve my financial goals with ease.",
 		},
 	];
+
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -596,7 +593,7 @@ const TestimonialCarousel = () => {
 	};
 
 	return (
-		<section className='py-12 bg-red-100 '>
+		<section className='py-12 bg-red-100 md:w-[85rem] w-full'>
 			<div className='container mx-auto text-center mb-8'>
 				<h2 className='text-red-600 font-semibold'>TESTIMONIALS</h2>
 				<h1 className='text-4xl font-bold'>Love from Our Clients</h1>

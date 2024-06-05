@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ViewUsers from "./Users";
-import { useLocation } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
+import axios from "axios";
 
 interface SentMail {
 	Email: string;
@@ -15,8 +15,14 @@ const MainContent: React.FC = () => {
 	const location = useLocation();
 	const isOutletRoutes = ["/admin/users", "/admin/notify-user", "/admin/send-email"].includes(location.pathname);
 
-	const sentMails = localStorage.getItem("sentmails");
-	const parsedData: SentMail[] = sentMails ? JSON.parse(sentMails) : [];
+	const { userCount, isLoading, error } = useFetchUsers();
+	const [parsedData, setParsedData] = useState<SentMail[]>([]);
+
+	useEffect(() => {
+		const sentMails = localStorage.getItem("sentMails");
+		const parsedData: SentMail[] = sentMails ? JSON.parse(sentMails) : [];
+		setParsedData(parsedData);
+	}, []);
 
 	return (
 		<>
@@ -29,21 +35,23 @@ const MainContent: React.FC = () => {
 						<div className='bg-white shadow-md rounded p-6'>
 							<h2 className='text-xl font-semibold mb-4 text-red-600'>Active Users</h2>
 							<p>This section displays the number of active users.</p>
+							{isLoading ? (
+								<p>Loading...</p>
+							) : error ? (
+								<p className='text-red-500'>{error}</p>
+							) : (
+								<p>Total active users: {userCount}</p>
+							)}
 						</div>
 						<div className='bg-white shadow-md rounded p-6'>
-							<h2 className='text-xl font-semibold mb-4 text-red-600'>Messages Sent</h2>
-							<p>This section displays the number of messages sent to users.</p>
-							<p>Total mails sent: {parsedData.length > 0 && parsedData.length}</p>
-						</div>
-						<div className='bg-white shadow-md rounded p-6'>
-							<h2 className='text-xl font-semibold mb-4 text-red-600'>Emails Sent</h2>
+							<h2 className='text-xl font-semibold mb-4 text-red-600'>Sent Emails</h2>
 							<p>
 								This section displays the emails and the number of emails sent to users.
-								<p>Total mails sent: {parsedData.length > 0 && parsedData.length}</p>
+								<p>Total mails sent: {parsedData.length}</p>
 							</p>
 							<div className='mt-4'>
 								{parsedData.length > 0 ? (
-									<ul>
+									<ul className={"flex flex-wrap"}>
 										{parsedData.map((mail, index) => (
 											<li
 												key={index}
@@ -73,11 +81,9 @@ const MainContent: React.FC = () => {
 							</div>
 						</div>
 					</div>
-					<div className='bg-white shadow-md rounded p-6 mt-6'>
+					<div className='bg-white shadow-md rounded p-6 mt-6 overflow-scroll overflow-x-hidden'>
 						<h2 className='text-xl font-semibold mb-4 text-red-600'>All Users</h2>
-						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-							<ViewUsers />
-						</div>
+						<ViewUsers />
 					</div>
 				</div>
 			)}
@@ -86,3 +92,28 @@ const MainContent: React.FC = () => {
 };
 
 export default MainContent;
+
+const useFetchUsers = () => {
+	const [userCount, setUserCount] = useState<number>(0);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const fetchUsers = async () => {
+			try {
+				setIsLoading(true);
+				setError(null);
+				const response = await axios.get("https://lee-man-online-banking.onrender.com/api/users");
+				setUserCount(response.data.users.length);
+			} catch (error) {
+				setError("An error occurred while fetching users. Please try again later.");
+			} finally {
+				setIsLoading(false);
+			}
+		};
+
+		fetchUsers();
+	}, []);
+
+	return { userCount, isLoading, error };
+};

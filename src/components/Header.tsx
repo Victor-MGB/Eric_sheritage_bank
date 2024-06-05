@@ -2,55 +2,80 @@ import React, { useState } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { BsBank } from "react-icons/bs";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
 	const [isConverterDropDownShowing, setisConverterDropDownShowing] = useState<boolean>(false);
 	const [isPageDropdownShowing, setisPageDropdownShowing] = useState(false);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const navi = useNavigate();
 
 	const handleDropdownClicks = (arg: boolean) => {
 		setisConverterDropDownShowing(arg);
 	};
+
 	const handleIsPageDropdownShowing = (arg: boolean) => {
 		setisPageDropdownShowing(arg);
 	};
+
+	const toggleMobileMenu = () => {
+		setIsMobileMenuOpen(!isMobileMenuOpen);
+	};
+
 	return (
 		<>
 			<header
-				className={`w-[100vw] h-[4rem] fixed z-30 bg-gray-100 flex items-center justify-between p-3 `}
+				className={`w-full h-[4rem] fixed z-30 bg-gray-50 flex items-center justify-between  md:p-3 max-w-full `}
 			>
+				{/* Mobile Menu Icon */}
+				<div className='lg:hidden flex items-center '>
+					<button onClick={toggleMobileMenu} className='text-3xl text-red-600'>
+						{isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+					</button>
+				</div>
+
 				{/* logo space */}
 				<h1
-					className={` font-bold flex items-center justify-start  text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[11rem] `}
+					className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}
 				>
 					CC{" "}
 					<span
-						className={`text-white ml-[-0.5rem] mr-[1rem] font-bold text-5xl dancing-script drop-shadow-lg uppercase`}
+						className={`text-white lg:ml-[-0.5rem] mr-[1rem] font-bold text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase`}
 					>
 						B
 					</span>
 					<BsBank />
 					<div
-						className={`bg-red-600 transform  p-5 absolute w-[2%] h-[100%] top-0 left-[11rem] `}
+						className={`bg-red-600 transform p-5 absolute w-[2%] h-[100%] top-0 left-[6.6rem] lg:left-[11rem]`}
 						style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}
 					></div>
 				</h1>
-				<Navlinks
-					handler2={(arg) => handleIsPageDropdownShowing(arg)}
-					handler={(arg) => handleDropdownClicks(arg)}
-				/>
+
+				{/* Navigation Links */}
+				<div
+					className={`lg:flex  left-[14rem] overflow-hidden w-0  fixed  bg-opacity-950 md:hidden  ${
+						isMobileMenuOpen
+							? " w-[15rem] top-[3.5rem] h-screen opacity-85 transition-all duration-700 bg-black p-2"
+							: "w-0 opacity-60 transition-all duration-1000 ease-in"
+					} flex-col lg:flex-row items-center justify-between lg:w-auto`}
+				>
+					<Navlinks
+						handler2={(arg) => handleIsPageDropdownShowing(arg)}
+						handler={(arg) => handleDropdownClicks(arg)}
+					/>
+				</div>
 
 				{/* auth space */}
-				<div className='flex justify-between items-center p-3 w-[20rem]  mr-[4rem]'>
+				<div className='flex justify-between bg-transparent gap-3 h-auto items-center p-1 md:p-3 lg:w-[20rem] lg:mr-[4rem]'>
 					<button
 						onClick={() => navi("/sign-in")}
-						className={`p-2 text-sm rounded-none w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer `}
+						className={`md:p-2 text-nowrap p-1 text-sm rounded-none w-fit md:w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer`}
 					>
 						log-in
 					</button>
 					<button
 						onClick={() => navi("/sign-up")}
-						className={`p-2 rounded-none w-fit text-sm  hover:bg-black text-white hover:text-white bg-red-600 uppercase cursor-pointer `}
+						className={`md:p-2 p-1 text-nowrap rounded-none w-fit text-sm hover:bg-black text-white hover:text-white bg-red-600 uppercase cursor-pointer`}
 					>
 						open account
 					</button>
@@ -78,42 +103,40 @@ export default Header;
 const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boolean) => void }) => {
 	const [isActive, setisActive] = useState<boolean[]>([false, false, false, false, false, false]);
 
-	// handleNavClick function to update the isActive state based on the clicked nav item index
 	const handleNavClick = (index: number) => {
 		const newIsActive = isActive.map((item, i) => i === index);
 		setisActive(newIsActive);
 	};
 
 	const navigate = useNavigate();
+
 	return (
-		<ul className='flex items-center justify-between gap-[2rem]'>
+		<ul className='flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-[2rem]'>
 			{["home", "about", "contact", "converter", "pages"].map((eachLink, index) => {
 				return (
 					<li
-						className={`text-lg orbitron  text-red-600 hover:border border-black hover:p-2   transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
+						className={`text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
 							isActive[index]
-								? " border rounded-md transition-all shadow-md shadow-black text-primary "
+								? "border rounded-md transition-all shadow-md shadow-black text-primary"
 								: ""
-						} `}
+						}`}
 						key={index}
 						onClick={() => {
-							console.log(isActive);
 							handleNavClick(index);
 							if (eachLink === "converter") prop.handler(true);
 							if (eachLink === "pages") prop.handler2(true);
 							if (eachLink === "about") navigate("/about");
 							if (eachLink === "contact") navigate("/contact");
 							if (eachLink === "home") navigate("/");
-							// if (eachLink === "Log-in") navigate("/sign-in");
 						}}
 					>
 						{eachLink === "converter" || eachLink === "pages" ? (
 							<span className={"flex items-center gap-[0.5rem]"}>
 								{eachLink}
 								<IoMdArrowDropup
-									className={` text-[20px] ${
+									className={`text-[20px] ${
 										isActive[index]
-											? "text-primary transition-all  rotate-180 duration-700"
+											? "text-primary transition-all rotate-180 duration-700"
 											: "text-blue-400 transition rotate-0 duration-700"
 									}`}
 								/>

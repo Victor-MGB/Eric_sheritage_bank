@@ -103,7 +103,7 @@ export const FinancialGuidance = () => {
 					alt='Financial Guidance'
 					className='w-full h-auto rounded-lg'
 				/>
-				<div className='absolute top-32 left-1/2 transform -translate-x-1/2 bg-white p-3 h-[5rem] w-[15rem] shadow-lg flex flex-col items-center'>
+				<div className='absolute top-32 left-[15%] transform -translate-x-1/2 bg-white p-3 h-[5rem] w-[15rem] shadow-lg flex flex-col items-center'>
 					<div className='text-yellow-500 text-lg animate-ping'>★★★★★</div>
 					<span className='text-sm font-semibold'>5 Star Rating Bank</span>
 				</div>

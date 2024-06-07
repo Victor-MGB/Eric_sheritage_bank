@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import SideBar from "./SideBar";
 import Main from "./MainBar";
 import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { UserDataCOntext, type userDetailsType } from "../../App";
 
 const Dashboard = () => {
 	const location = useLocation();
@@ -27,10 +28,14 @@ const Dashboard = () => {
 
 	const shouldRenderOutlet = outletRoutes.includes(location.pathname);
 
+	const userDataContext = useContext<userDetailsType | null>(UserDataCOntext);
+
+	const userName = userDataContext?.firstName + " " + userDataContext?.lastName;
+	const Acc = userDataContext?.accounts[0].accountNumber || 0;
 	return (
 		<div>
 			<Animation />
-			<SideBar />
+			<SideBar UserName={userName} accountNumber={Acc} />
 			<div className={`h-fit bg-transparent m-auto mr-[5rem] w-[65rem] p-3`}>
 				<Header />
 				{/* Conditionally render the Outlet or Main based on the current route */}

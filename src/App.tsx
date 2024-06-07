@@ -45,6 +45,7 @@ export type userDetailsType = {
 	accountPin: string;
 	agree: boolean;
 	kycStatus: string;
+	country: string;
 	accounts: {
 		accountId: string;
 		accountNumber: number;

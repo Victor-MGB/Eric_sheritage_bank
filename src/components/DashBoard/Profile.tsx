@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
 	FaUserCircle,
 	FaEnvelope,
@@ -14,22 +14,25 @@ import {
 	FaMobileAlt,
 	FaPhoneAlt,
 	FaBuilding,
-	FaChartLine,
 	FaCheckCircle,
-	FaCreditCard,
-	FaHandHoldingUsd,
 	FaLock,
 } from "react-icons/fa";
 import { FaVenusMars } from "react-icons/fa6";
+import { UserDataCOntext } from "../../App";
 
 const Profile = () => {
 	const [profilePicture, setProfilePicture] = useState<File | null>(null);
+	const user = useContext(UserDataCOntext);
 
 	const handleProfilePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files && event.target.files.length > 0) {
 			setProfilePicture(event.target.files[0]);
 		}
 	};
+
+	if (!user) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<div className='bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto'>
@@ -47,7 +50,9 @@ const Profile = () => {
 				</div>
 				<div>
 					<div className={`flex flex-col justify-start`}>
-						<h2 className='text-3xl font-bold'>John Doe</h2>
+						<h2 className='text-3xl font-bold'>
+							{user.firstName} {user.lastName}
+						</h2>
 						<p className='text-gray-600'>Banking User</p>
 					</div>
 					<div className='mt-8 text-center'>
@@ -68,31 +73,39 @@ const Profile = () => {
 				</div>
 			</div>
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-				<ProfileField icon={<FaEnvelope />} label='Email' value='john.doe@example.com' />
-				<ProfileField icon={<FaPhone />} label='Phone' value='+1 (555) 555-5555' />
-				<ProfileField icon={<FaMapMarkerAlt />} label='Address' value='123 Main Street, Anytown USA' />
-				<ProfileField icon={<FaCalendarAlt />} label='Date of Birth' value='January 1, 1990' />
-				<ProfileField icon={<FaIdCard />} label='Account Number' value='1234567890' />
-				<ProfileField icon={<FaMoneyBillAlt />} label='Current Balance' value='$10,000' />
-				<ProfileField icon={<FaVenusMars />} label='Gender' value='Male' />
+				<ProfileField icon={<FaEnvelope />} label='Email' value={user.email} />
+				<ProfileField icon={<FaPhone />} label='Phone' value={user.phoneNumber} />
+				<ProfileField icon={<FaMapMarkerAlt />} label='Address' value={user.address} />
+				<ProfileField
+					icon={<FaCalendarAlt />}
+					label='Date of Birth'
+					value={user.dateOfBirth || "N/A"}
+				/>
+				<ProfileField
+					icon={<FaIdCard />}
+					label='Account Number'
+					value={String(user.accounts[0].accountNumber)}
+				/>
+				<ProfileField
+					icon={<FaMoneyBillAlt />}
+					label='Current Balance'
+					value={`$ ${user.accounts[0].balance}`}
+				/>
+				<ProfileField icon={<FaVenusMars />} label='Gender' value={user.gender || "N/A"} />
 				<ProfileField icon={<FaGlobeAmericas />} label='Nationality' value='American' />
 				<ProfileField icon={<FaCity />} label='City' value='New York' />
-				<ProfileField icon={<FaMapMarkedAlt />} label='State/Province' value='New York' />
-				<ProfileField icon={<FaMailBulk />} label='Postal Code' value='10001' />
-				<ProfileField icon={<FaGlobeAmericas />} label='Country' value='United States' />
-				<ProfileField icon={<FaMobileAlt />} label='Mobile Number' value='+1 (555) 555-5555' />
-				<ProfileField icon={<FaPhoneAlt />} label='Home Number' value='+1 (555) 555-5556' />
-				<ProfileField icon={<FaCheckCircle />} label='Account Type' value='Checking' />
-				<ProfileField icon={<FaCheckCircle />} label='Account Type' value='Savings' />
-				<ProfileField icon={<FaCreditCard />} label='Account Type' value='Credit Card' />
-				<ProfileField icon={<FaHandHoldingUsd />} label='Account Type' value='Loan' />
-				<ProfileField icon={<FaChartLine />} label='Account Type' value='Investment' />
+				<ProfileField icon={<FaMapMarkedAlt />} label='State/Province' value={user.state || "N/A"} />
+				<ProfileField icon={<FaMailBulk />} label='Postal Code' value={user.postalCode} />
+				<ProfileField icon={<FaGlobeAmericas />} label='Country' value={user.country || "N/A"} />
+				<ProfileField icon={<FaMobileAlt />} label='Mobile Number' value={user.phoneNumber} />
+				<ProfileField icon={<FaPhoneAlt />} label='Home Number' value={user.phoneNumber} />
+				<ProfileField icon={<FaCheckCircle />} label='Account Type' value={user.accounts[0].type} />
 				<ProfileField
 					icon={<FaBuilding />}
 					label='Home Branch Location'
 					value='123 Main Street, New York, NY 10001'
 				/>
-				<ProfileField icon={<FaCheckCircle />} label='Account Status' value='Active' />
+				<ProfileField icon={<FaCheckCircle />} label='Account Status' value={user.kycStatus} />
 				<ProfileField icon={<FaUserCircle />} label='Username' value='johndoe' />
 				<ProfileField icon={<FaLock />} label='Password' value='(hashed)' />
 			</div>

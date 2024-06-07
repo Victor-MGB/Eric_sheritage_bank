@@ -4,7 +4,11 @@ import { FaMoneyBillAlt, FaExchangeAlt, FaWallet } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const SideBar = () => {
+type sideBarProp = {
+	UserName: string;
+	accountNumber: number;
+};
+const SideBar = ({ UserName, accountNumber }: sideBarProp) => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
 	const navi = useNavigate();
 	const links = [
@@ -107,8 +111,8 @@ const SideBar = () => {
 			<div className='w-full rounded-lg m-3 bg-blue-600 flex items-center p-4 gap-4 shadow-md'>
 				<div className='rounded-full w-12 h-12 bg-gray-400'></div>
 				<div className='flex flex-col items-start justify-center w-full text-white'>
-					<p className='font-semibold'>UserName</p>
-					<p className='text-sm'>Account Number</p>
+					<p className='font-semibold'>{UserName !== "" ? UserName : "userName"}</p>
+					<p className='text-sm'>{accountNumber ? accountNumber:0}</p>
 				</div>
 			</div>
 

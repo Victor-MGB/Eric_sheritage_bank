@@ -70,22 +70,23 @@ const LoginForm: React.FC<{
 				.then((response: any) => {
 					if (response.status === 200) {
 						setIsSuccess(true);
+						sessionStorage.setItem("userToken", response.data.token);
 						const userData = {
 							firstName: response.data.user.firstName,
-							middleName: "",
+							middleName: response.data.user.middleName,
 							lastName: response.data.user.lastName,
 							email: response.data.user.email,
 							phoneNumber: response.data.user.phoneNumber,
-							gender: "",
-							dateOfBirth: "",
-							accountType: "",
+							gender: response.data.user.gender,
+							dateOfBirth: response.user.dateOfBirth,
+							accountType: response.data.user.accountType,
 							address: response.data.user.address,
 							postalCode: response.data.user.postalCode,
-							state: "",
-							country: "",
+							state: response.user.state,
+							country: response.user.country,
 							password: response.data.user.password,
 							accountPin: response.data.user.accountPin,
-							agree: false,
+							agree: response.user.agree,
 							kycStatus: response.data.user.kycStatus,
 							dateOfAccountCreation: response.data.userdateOfAccountCreation,
 							accounts: response.data.user.accounts.map((account: any) => ({
@@ -100,8 +101,6 @@ const LoginForm: React.FC<{
 						console.log(response.data);
 						extractUserDetails(userData);
 						sessionStorage.setItem("userDetails", JSON.stringify(userData));
-						const token = response.data.token;
-						sessionStorage.setItem("userToken", token);
 						navigate("/dashboard");
 					}
 				})

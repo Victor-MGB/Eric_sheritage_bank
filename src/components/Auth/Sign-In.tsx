@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import type { userDetailsType } from "../../App.js";
 
 interface LoginFormInputs {
 	accountNumber: string;
@@ -13,13 +14,7 @@ interface LoginFormErrors {
 }
 
 const LoginForm: React.FC<{
-	extractUserDetails: (userDetails: {
-		firstName: string;
-		lastName: string;
-		email: string;
-		phoneNumber: string;
-		password: string;
-	}) => void;
+	extractUserDetails: (userDetails: userDetailsType) => void;
 }> = ({ extractUserDetails }) => {
 	const [formData, setFormData] = useState<LoginFormInputs>({
 		accountNumber: "",
@@ -59,30 +54,58 @@ const LoginForm: React.FC<{
 		setErrors(newErrors);
 		return valid;
 	};
+	const navigate = useNavigate();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (validateForm()) {
 			setIsLoading(true);
-			const data = JSON.stringify(formData);
-			console.log(data);
+			const data = formData;
 			axios.post("https://lee-man-online-banking.onrender.com/api/login", data, {
 				headers: {
 					"Content-Type": "application/json",
 					Accept: "application/json",
 				},
 			})
-				.then((response) => {
+				.then((response: any) => {
 					if (response.status === 200) {
 						setIsSuccess(true);
-						const userData = response.data.user;
-
-						//make the user data accessable by other components.
+						const userData = {
+							firstName: response.data.user.firstName,
+							middleName: "",
+							lastName: response.data.user.lastName,
+							email: response.data.user.email,
+							phoneNumber: response.data.user.phoneNumber,
+							gender: "",
+							dateOfBirth: "",
+							accountType: "",
+							address: response.data.user.address,
+							postalCode: response.data.user.postalCode,
+							state: "",
+							country: "",
+							password: response.data.user.password,
+							accountPin: response.data.user.accountPin,
+							agree: false,
+							kycStatus: response.data.user.kycStatus,
+							dateOfAccountCreation: response.data.userdateOfAccountCreation,
+							accounts: response.data.user.accounts.map((account: any) => ({
+								accountId: account.accountId,
+								accountNumber: account.accountNumber,
+								type: account.type,
+								balance: account.balance,
+								currency: account.currency,
+								transactions: account.transactions,
+							})),
+						};
+						console.log(response.data);
 						extractUserDetails(userData);
+						sessionStorage.setItem("userDetails", JSON.stringify(userData));
 						const token = response.data.token;
 						sessionStorage.setItem("userToken", token);
+						navigate("/dashboard");
 					}
 				})
+
 				.catch((err) => {
 					console.log(err);
 					setErrors(err.message);

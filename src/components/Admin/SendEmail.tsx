@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
+import { ClipLoader } from "react-spinners"; // Import the spinner
 
 const SendEmail = () => {
 	const [email, setEmail] = useState("");
@@ -7,47 +9,66 @@ const SendEmail = () => {
 	const [message, setMessage] = useState("");
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [showError, setShowError] = useState(false);
-	const [sentMails, setsentMails] = useState<
-		| {
-				Email: string;
-				subject: string;
-				message: string;
-				time: string;
-				date: string;
-		  }[]
-		| []
-	>();
+	const [loading, setLoading] = useState(false); // State to manage loading status
+	const [sentMails, setSentMails] = useState<
+		{ email: string; subject: string; message: string; time: string; date: string }[] | []
+	>([]);
+
+	useEffect(() => {
+		const savedMails = localStorage.getItem("sentMails");
+		try {
+			if (savedMails) {
+				setSentMails(JSON.parse(savedMails));
+			}
+		} catch (error) {
+			console.error("Error parsing sentMails from localStorage", error);
+		}
+	}, []);
 
 	useEffect(() => {
 		localStorage.setItem("sentMails", JSON.stringify(sentMails));
 	}, [sentMails]);
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		// Add logic to send email here
-		console.log("Email:", email, "Subject:", subject, "Message:", message);
+		setLoading(true); // Set loading to true when the submit starts
 
-		//save to localstorage
-		setsentMails((prev) => {
-			const oldData = prev ? [...prev] : [];
-			oldData.push({
-				Email: email,
+		try {
+			const response = await axios.post(
+				"https://lee-man-online-banking.onrender.com/api/send-notification",
+				{
+					email,
+					subject,
+					message,
+				}
+			);
+			console.log(response.data);
+
+			const newMail = {
+				email: email,
 				subject: subject,
 				message: message,
 				date: new Date().toDateString(),
 				time: new Date().toLocaleTimeString(),
-			});
-			return oldData;
-		});
+			};
 
-		// Simulate email sending success or failure
-		const success = Math.random() > 0.5;
-		if (success) {
+			setSentMails((prev) => {
+				const updatedMails = [...prev, newMail];
+				localStorage.setItem("sentMails", JSON.stringify(updatedMails)); // Save immediately after updating state
+				return updatedMails;
+			});
+
 			setShowSuccess(true);
 			setShowError(false);
-		} else {
-			setShowSuccess(false);
+			setEmail("");
+			setSubject("");
+			setMessage("");
+		} catch (error) {
+			console.error(error);
 			setShowError(true);
+			setShowSuccess(false);
+		} finally {
+			setLoading(false); // Set loading to false when the submit ends
 		}
 	};
 
@@ -116,9 +137,16 @@ const SendEmail = () => {
 				<button
 					type='submit'
 					className='flex items-center justify-center bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+					disabled={loading} // Disable the button while loading
 				>
-					<MdEmail className='mr-2' />
-					Send Email
+					{loading ? (
+						<ClipLoader size={20} color={"#ffffff"} />
+					) : (
+						<>
+							<MdEmail className='mr-2' />
+							Send Email
+						</>
+					)}
 				</button>
 			</form>
 		</div>

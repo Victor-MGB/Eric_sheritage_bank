@@ -47,7 +47,7 @@ const Banner: React.FC = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-		}, 5000); 
+		}, 5000);
 		return () => clearInterval(interval);
 	}, [slides.length]);
 
@@ -57,7 +57,9 @@ const Banner: React.FC = () => {
 				{slides.map((item, index) => (
 					<div
 						key={index}
-						className={`swiper-slide ${index === currentIndex ? "swiper-slide-active banner-section " : ""}`}
+						className={`swiper-slide bg-contain bg-center  ${
+							index === currentIndex ? "swiper-slide-active banner-section " : ""
+						}`}
 						style={{
 							display: index === currentIndex ? "block" : "none",
 							backgroundImage: `url(${item.image})`,

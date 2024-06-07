@@ -25,55 +25,77 @@ import Support from "./components/DashBoard/Support";
 import Admin from "./components/Admin/Admin";
 import NotifyUser from "./components/Admin/NotifyUser";
 import SendEmail from "./components/Admin/SendEmail";
-import ManageUsers from "./components/Admin/MangeUser";
 import CardManager from "./components/DashBoard/ManageCards";
-import Authenticator from "./components/Auth/Authenticator";
+import UserList from "./components/Admin/MangeUser";
 export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
-type userDetailsType = {
+export type userDetailsType = {
 	firstName: string;
+	middleName: string;
 	lastName: string;
 	email: string;
 	phoneNumber: string;
+	gender: string;
+	dateOfBirth: string;
+	accountType: string;
+	address: string;
+	postalCode: string;
+	state: string;
 	password: string;
+	accountPin: string;
+	agree: boolean;
+	kycStatus: string;
+	country: string;
+	accounts: {
+		accountId: string;
+		accountNumber: number;
+		type: string;
+		balance: number;
+		currency: string;
+		transactions: any[];
+	}[];
+	dateOfAccountCreation: string;
 };
 
-/**
- * The main App component that renders the entire application.
- * It manages the authentication state, provides user data context, and renders the main routes and nested routes.
- *
- * The `extractUserDetails` function is used to update the `USER` state with the user details provided from a login component.
- * The `handlelogoutUser` function is used to remove the user token from session storage and set the `isAuthenticated` state to false.
- *
- * The main routes include pages like the index, services, investments, travel info, security, about, contact, currency rates, currency converter, saving, saving pot, FAQs, sign-up, and sign-in.
- * The user dashboard routes include managing cards, transferring to my accounts/other banks/international, managing profile and security, checking currency rates and exchange, and accessing support.
- * The admin routes include notifying users, managing users, and sending emails.
- */
 function App() {
 	const [USER, setUSER] = useState<userDetailsType | null>(null);
 	const [isAuthenticated, setisAuthenticated] = useState(false);
 
-	// This function extracts user details from an login components with properties for firstName, lastName, email, phoneNumber, and password.
-	// It checks if the userDetails object is truthy (i.e., not null or undefined), and if so, it sets the USER state with the provided userDetails object.
+	useEffect(() => {
+		const storedUserDetails = sessionStorage.getItem("userDetails");
+		if (storedUserDetails) {
+			setUSER(JSON.parse(storedUserDetails));
+		}
+	}, []);
+
 	function extractUserDetails(userDetails: userDetailsType) {
 		if (userDetails) {
 			setUSER(userDetails);
 		}
 	}
+
 	const token = useRef<string | null>(null);
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		token.current = sessionStorage.getItem("userToken") || null;
 		token.current ? setisAuthenticated(true) : setisAuthenticated(false);
-	}, [isAuthenticated]);
+	});
 
-	const handlelogoutUser = () => {
-		sessionStorage.removeItem("userToken");
-		setisAuthenticated(false);
-	};
+	// const handlelogoutUser = () => {
+	// 	sessionStorage.removeItem("userToken");
+	// 	sessionStorage.removeItem("userDetails");
+	// 	setisAuthenticated(false);
+	// };
+
+	useEffect(() => {
+		console.log(USER);
+	}, [USER]);
+
 	return (
 		<div className='App'>
 			<SupportButton />
-			<UserDataCOntext.Provider value={USER && USER}>
+			<UserDataCOntext.Provider value={USER}>
 				<Routes>
 					<Route path='/' element={<INDEX />} />
 					<Route path='/services' element={<Services />} />
@@ -95,13 +117,11 @@ function App() {
 					<Route
 						path='/dashboard'
 						element={
-							<Authenticator
-								logOut={handlelogoutUser}
-								authenticated={isAuthenticated}
-								token={token.current}
-							>
+							isAuthenticated && token.current ? (
 								<Dashboard />
-							</Authenticator>
+							) : (
+								<LoginForm extractUserDetails={extractUserDetails} />
+							)
 						}
 					>
 						<Route path='/dashboard/add-newCard' element={<CardContainer />} />
@@ -132,7 +152,7 @@ function App() {
 					{/* admin */}
 					<Route path='/admin' element={<Admin />}>
 						<Route path='/admin/notify-user' element={<NotifyUser />} />
-						<Route path='/admin/users' element={<ManageUsers />} />
+						<Route path='/admin/users' element={<UserList />} />
 						<Route path='/admin/send-email' element={<SendEmail />} />
 					</Route>
 				</Routes>

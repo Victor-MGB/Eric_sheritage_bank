@@ -27,7 +27,7 @@ const SecurityInfoCard: React.FC = () => (
 );
 
 const SecurityImage: React.FC<{ src: string }> = ({ src }) => (
-	<div className='flex justify-center items-center w-[50vw]'>
+	<div className='flex justify-center items-center w-full md:w-[50vw]'>
 		<img src={src} alt='Security' className='rounded-lg shadow-lg w-full h-auto' />
 	</div>
 );

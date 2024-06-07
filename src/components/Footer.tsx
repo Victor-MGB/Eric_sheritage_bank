@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
 	return (
-		<footer className='bg-black text-white py-10'>
+		<footer className='bg-black text-white py-5 px-4 md:py-10'>
 			<SubscriptionForm />
 			<div className='container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 mt-10'>
 				<div className={`flex flex-col`}>
 					<h2 className='text-xl font-bold mb-4'>central city Bank</h2>
 					<p>
-						Tincidunt neque pretium lectus donec risus. Mauris mi tempor nunc orci leo consequat
-						vitae erat gravida lobortis nec et sagittis.
+						Our banking services provide secure and convenient financial solutions for all your
+						needs. With a wide range of products and services, we strive to offer personalized
+						experiences tailored to your unique requirements.
 					</p>
+
 					<div className='flex mt-4 items-center justify-between w-[10rem] bg-red-500 rounded-lg p-[1rem]'>
 						<a
 							href='https://www.facebook.com'
@@ -20,7 +22,7 @@ const Footer: React.FC = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							<FaFacebook/>
+							<FaFacebook />
 						</a>
 						<a
 							href='https://www.twitter.com'
@@ -28,7 +30,7 @@ const Footer: React.FC = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							<FaTwitter/>
+							<FaTwitter />
 						</a>
 						<a
 							href='https://www.instagram.com'
@@ -36,7 +38,7 @@ const Footer: React.FC = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							<FaInstagram/>
+							<FaInstagram />
 						</a>
 					</div>
 				</div>
@@ -44,7 +46,9 @@ const Footer: React.FC = () => {
 				<BranchLocator />
 			</div>
 
-			<p className={`text-sm text-center m-auto capitalize`}> copyright 2024. all right reserved</p>
+			<p className={`text-sm text-center m-auto capitalize`}>
+				copyright {new Date().getFullYear()}. all right reserved
+			</p>
 		</footer>
 	);
 };
@@ -54,12 +58,12 @@ export default Footer;
 const SubscriptionForm: React.FC = () => {
 	return (
 		<div className='bg-red-600 items-center p-2 h-[8rem] flex  justify-between '>
-			<h2 className='text-2xl font-bold w-[12rem] text-white jost mb-4 p-3  mx-[2rem]'>
+			<h2 className='md:text-2xl text-sm md:font-bold w-fit md:w-[12rem] text-white jost md:mb-4 p-1 md:p-3  md:mx-[2rem]'>
 				Subscribe us to Receive Latest Updates
 			</h2>
-			<form className='flex justify-center bg-green-100 p-3 items-center jus'>
-				<input type='email' className='p-2 rounded-l-md text-black  border ' placeholder='Your Email' />
-				<button className='bg-black text-white p-2 rounded-r-md'>Subscribe Now</button>
+			<form className='flex md:flex flex-col  justify-center p-1 bg-green-100 md:p-3 items-center gap-3 jus'>
+				<input type='email' className=' p-2 rounded-l-md text-black bg-blue-200 border ' placeholder='Your Email' />
+				<button className='bg-black p-1 text-white text-xs md:text-xl md:p-2 rounded-r-md'>Subscribe Now</button>
 			</form>
 		</div>
 	);

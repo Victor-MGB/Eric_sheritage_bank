@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserDataCOntext } from "../../App";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaSignOutAlt } from "react-icons/fa";
 import NotificationComponent from "./Notification";
 import axios from "axios";
 
@@ -15,7 +15,8 @@ const Header = () => {
 	const navigate = useNavigate();
 	const [notifications, setNotifications] = useState<Notification[]>([]);
 	const userDataContextConsumer = useContext(UserDataCOntext);
-	const username = userDataContextConsumer?.firstName;
+	const firstName = userDataContextConsumer?.firstName;
+	const lastName = userDataContextConsumer?.lastName;
 
 	const [showNotifications, setShowNotifications] = useState(false);
 	const [hasNewNotification, setHasNewNotification] = useState(false);
@@ -57,7 +58,7 @@ const Header = () => {
 				</h1>
 			</div>
 
-			<div className='flex gap-3 justify-center w-auto items-center relative'>
+			<div className='flex gap-3 justify-between  items-center relative w-[30rem]'>
 				<div className='text-gray-600 relative'>
 					<FaBell
 						className={`text-xl cursor-pointer transition-all ${
@@ -75,14 +76,15 @@ const Header = () => {
 						notifications={notifications}
 					/>
 				)}
-				<div className='flex flex-row-reverse items-center gap-3 text-neutral-900 w-[10rem] h-full rounded-md p-2'>
+				<div className='flex flex-row-reverse items-center justify-between text-neutral-900 w-[20rem] h-full rounded-md p-2'>
+					<FaSignOutAlt className='text-2xl cursor-pointer text-gray-500' title={"logout"} />
 					<img
 						src='/path-to-profile-pic.jpg'
 						alt='Profile'
 						className='w-8 h-8 rounded-full object-contain'
 					/>
 					<span className='capitalize text-neutral-600 orbitron'>
-						{username ? username : "user"}
+						{firstName && lastName ? `${firstName} ${lastName}` : "User"}
 					</span>
 				</div>
 			</div>

@@ -28,7 +28,7 @@ const Authenticator: React.FC<AuthenticatorProps> = ({ token, children, authenti
 		return null;
 	}
 
-	return <LogOutContext.Provider value={logOut}>{children}</LogOutContext.Provider>;
+	return <>{children}</>;
 };
 
 export const useLogOut = () => useContext(LogOutContext);

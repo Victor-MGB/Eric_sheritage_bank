@@ -36,7 +36,7 @@ const Dashboard = () => {
 		<div>
 			<Animation />
 			<SideBar UserName={userName} accountNumber={Acc} />
-			<div className={`h-fit bg-transparent m-auto mr-[5rem] w-[65rem] p-3`}>
+			<div className={`h-fit bg-transparent m-auto mr-[5rem]  w-[100rem] p-3`}>
 				<Header />
 				{/* Conditionally render the Outlet or Main based on the current route */}
 				{shouldRenderOutlet ? <Outlet /> : <Main />}

@@ -1,32 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import { FaArrowAltCircleDown, FaArrowAltCircleRight, FaWallet } from "react-icons/fa";
+import { UserDataCOntext } from "../../App";
 
-const Main = () => {
-	const [isLoanShowing, setisLoanShowing] = useState<boolean>(false);
+interface BalanceChartData {
+	labels: string[];
+	datasets: {
+		label: string;
+		data: number[];
+		borderColor: string;
+		backgroundColor: string;
+	}[];
+}
 
-	const balanceChartData = {
+const Main: React.FC = () => {
+	const [isLoanShowing, setIsLoanShowing] = useState<boolean>(false);
+	const [balance, setBalance] = useState<number>(0);
+	const balanceContextData = useContext(UserDataCOntext);
+
+	useEffect(() => {
+		setBalance(balanceContextData?.accounts[0].balance || 0);
+	}, [balanceContextData?.accounts]);
+
+	const balanceChartData: BalanceChartData = {
 		labels: ["January", "February", "March", "April", "May", "June"],
 		datasets: [
 			{
 				label: "Balance",
-				data: [0],
+				data: [balanceContextData?.accounts[0].balance || 0, 0, 0],
 				borderColor: "rgba(75,192,192,1)",
-				backgroundColor: "rgba(75,192,192,0.2)",
+				backgroundColor: "rgba(75,180,192,0.2)",
 			},
 		],
 	};
 
 	return (
-		<main className='flex-1 bg-gray-400 rounded-xl p-6 w-[63rem] bg-opacity-40 min-h-screen m-auto my-[2rem]'>
-			<BalanceOverview />
+		<main className='flex-1 bg-gray-400 flex flex-col gap-[3rem] rounded-xl p-6 w-auto bg-opacity-40 h-auto m-auto my-[2rem]'>
+			<BalanceOverview balance={balance} />
 
 			{/* chart and loan section */}
 			<BalanceChart
 				balanchartData={balanceChartData}
 				setterAndGetter={{
-					handler: setisLoanShowing,
+					handler: setIsLoanShowing,
 					state: isLoanShowing,
 				}}
 			/>
@@ -36,57 +53,68 @@ const Main = () => {
 		</main>
 	);
 };
-
 export default Main;
 
-const BalanceOverview = () => {
-	return (
-		<div className='bg-white p-6 rounded-lg shadow-md mb-6 flex items-center gap-[5rem] justify-normal'>
-			{/* Balance Overview */}
-			<div className={`flex items-center p-2 gap-2`}>
-				<div
-					className={`flex flex-col text-sm w-[10rem] p-2 bg-red-600 opacity-55 rounded-md text-white`}
-				>
-					<div className='flex items-center mb-2 w-full'>
-						<FaWallet className='mr-2' />
-						<h2 className='text-sm font-semibold'>Current Balance</h2>
-					</div>
-					<p className='text-2xl font-bold'>$0</p>
-				</div>
+interface BalanceOverviewProps {
+	balance: number;
+}
 
-				{/* loan balance */}
-				<div
-					className={`flex flex-col text-sm w-[10rem] p-2 bg-green-600 opacity-55 rounded-md text-white`}
-				>
-					<div className='flex items-center mb-2 w-full'>
-						<FaWallet className='mr-2' />
-						<h2 className='text-sm font-semibold'>loan Balance</h2>
+const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
+	const [withdrawalOpen, setWithdrawalOpen] = useState<boolean>(false);
+	const [sendOpen, setSendOpen] = useState<boolean>(false);
+
+	return (
+		<div className='bg-white p-6 rounded-lg shadow-md mb-6 sm:flex flex-wrap justify-between items-center'>
+			{/* loan and balance view */}
+			<div className='flex items-center gap-6 mb-6'>
+				<div className='flex flex-col'>
+					<div className='flex items-center mb-2'>
+						<FaWallet className='mr-2 text-xl text-blue-500' />
+						<h2 className='text-lg font-semibold'>Current Balance</h2>
 					</div>
-					<p className='text-2xl font-bold'>$0</p>
+					<p className='text-xl font-bold'>${balance}</p>
+				</div>
+				<div className='flex flex-col'>
+					<div className='flex items-center mb-2'>
+						<FaWallet className='mr-2 text-xl text-blue-500' />
+						<h2 className='text-lg font-semibold'>Loan Balance</h2>
+					</div>
+					<p className='text-xl font-bold'>$0</p>
 				</div>
 			</div>
 
-			{/* transact wiget */}
-			<div className={`flex items-center justify-between p-2 w-full gap-3`}>
-				{/* withdrawal */}
+			{/* withdraw and send view */}
+			<div className='flex flex-col md:flex-row items-center gap-6'>
 				<div
-					className={`flex flex-col text-sm w-full cursor-pointer hover:border-cyan hover:shadow-black shadow-md  items-center p-3 bg-yellow-600 bg-opacity-55 rounded-md text-white capitalize`}
+					className='flex items-center p-3 bg-yellow-600 bg-opacity-75 rounded-lg cursor-pointer'
+					onClick={() => setWithdrawalOpen(!withdrawalOpen)}
 				>
-					<div className='flex items-center mb-2 w-full'>
-						<h2 className='text-lg font-semibold'>withdrawal</h2>
-						<FaArrowAltCircleDown className='ml-2 text-lg' />
-					</div>
+					<FaArrowAltCircleDown className='text-xl mr-2' />
+					<h2 className='text-lg font-semibold'>Withdrawal</h2>
 				</div>
-
-				{/* send  */}
+				{withdrawalOpen && (
+					<div className='flex flex-col border p-4 rounded-md bg-gray-100'>
+						<label className='text-gray-600'>Amount:</label>
+						<input type='number' className='border rounded-md p-2 mb-4' />
+						<button className='bg-blue-500 text-white rounded-md py-2 px-4'>Withdraw</button>
+					</div>
+				)}
 				<div
-					className={`flex flex-col text-sm w-full hover:shadow-black shadow-md items-center p-3 bg-blue-600 bg-opacity-55 rounded-md text-white capitalize`}
+					className='flex items-center p-3 bg-blue-600 bg-opacity-75 rounded-lg cursor-pointer'
+					onClick={() => setSendOpen(!sendOpen)}
 				>
-					<div className='flex items-center mb-2 w-full'>
-						<h2 className='text-lg font-semibold'>send</h2>
-						<FaArrowAltCircleRight className='ml-2 text-lg' />
-					</div>
+					<FaArrowAltCircleRight className='text-xl mr-2' />
+					<h2 className='text-lg font-semibold'>Send</h2>
 				</div>
+				{sendOpen && (
+					<div className='flex flex-col border p-4 rounded-md bg-gray-100'>
+						<label className='text-gray-600'>Recipient:</label>
+						<input type='text' className='border rounded-md p-2 mb-4' />
+						<label className='text-gray-600'>Amount:</label>
+						<input type='number' className='border rounded-md p-2 mb-4' />
+						<button className='bg-blue-500 text-white rounded-md py-2 px-4'>Send</button>
+					</div>
+				)}
 			</div>
 		</div>
 	);

@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 interface AuthenticatorProps {
@@ -8,7 +8,7 @@ interface AuthenticatorProps {
 	logOut: () => void;
 }
 
-const LogOutContext = createContext<() => void>(() => {});
+// const LogOutContext = createContext<() => void>(() => {});
 
 /**
  * A React functional component that handles user authentication.
@@ -30,7 +30,5 @@ const Authenticator: React.FC<AuthenticatorProps> = ({ token, children, authenti
 
 	return <>{children}</>;
 };
-
-export const useLogOut = () => useContext(LogOutContext);
 
 export default Authenticator;

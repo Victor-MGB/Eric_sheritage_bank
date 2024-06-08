@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Services from "./components/Service";
 import Investments from "./components/Section2";
@@ -68,29 +68,26 @@ function App() {
 		}
 	}, []);
 
-	function extractUserDetails(userDetails: userDetailsType) {
+	function extractUserDetails(userDetails: userDetailsType, token: string) {
 		if (userDetails) {
 			setUSER(userDetails);
 		}
+		if (token !== "") setisAuthenticated(true);
 	}
 
-	const token = useRef<string | null>(null);
+	// const token = useRef<string | null>(null);
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	useEffect(() => {
-		token.current = sessionStorage.getItem("userToken") || null;
-		token.current ? setisAuthenticated(true) : setisAuthenticated(false);
-	});
+	// // eslint-disable-next-line react-hooks/exhaustive-deps
+	// useEffect(() => {
+	// 	token.current = sessionStorage.getItem("userToken") || null;
+	// 	token.current ? setisAuthenticated(true) : setisAuthenticated(false);
+	// });
 
 	// const handlelogoutUser = () => {
 	// 	sessionStorage.removeItem("userToken");
 	// 	sessionStorage.removeItem("userDetails");
 	// 	setisAuthenticated(false);
 	// };
-
-	useEffect(() => {
-		console.log(USER);
-	}, [USER]);
 
 	return (
 		<div className='App'>
@@ -117,7 +114,7 @@ function App() {
 					<Route
 						path='/dashboard'
 						element={
-							isAuthenticated && token.current ? (
+							isAuthenticated ? (
 								<Dashboard />
 							) : (
 								<LoginForm extractUserDetails={extractUserDetails} />

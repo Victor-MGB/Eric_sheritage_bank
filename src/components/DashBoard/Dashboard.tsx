@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import SideBar from "./SideBar";
-import Main from "./MainBar";
+import Main, { RecentTransactions } from "./MainBar";
 import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { UserDataCOntext, type userDetailsType } from "../../App";
@@ -34,12 +34,14 @@ const Dashboard = () => {
 	const Acc = userDataContext?.accounts[0].accountNumber || 0;
 	return (
 		<div>
-			<Animation />
+			{/* <Animation /> */}
 			<SideBar UserName={userName} accountNumber={Acc} />
-			<div className={`h-fit bg-transparent m-auto mr-[5rem]  w-[100rem] p-3`}>
+			<div className={`h-screen bg-gray-800 m-auto mr-[1rem]  w-[100rem] p-3`}>
 				<Header />
 				{/* Conditionally render the Outlet or Main based on the current route */}
 				{shouldRenderOutlet ? <Outlet /> : <Main />}
+				{/* Recent Transactions */}
+				<RecentTransactions />
 			</div>
 			<Footer />
 		</div>

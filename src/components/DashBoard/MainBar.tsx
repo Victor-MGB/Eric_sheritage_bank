@@ -28,7 +28,7 @@ const Main: React.FC = () => {
 		datasets: [
 			{
 				label: "Balance",
-				data: [balanceContextData?.accounts[0].balance || 0, 0, 0],
+				data: [balanceContextData?.accounts[0].balance || 0, 0, 0, 0.5, 2],
 				borderColor: "rgba(75,192,192,1)",
 				backgroundColor: "rgba(75,180,192,0.2)",
 			},
@@ -36,7 +36,7 @@ const Main: React.FC = () => {
 	};
 
 	return (
-		<main className='flex-1 bg-gray-400 flex flex-col gap-[3rem] rounded-xl p-6 w-auto bg-opacity-40 h-auto m-auto my-[2rem]'>
+		<main className='flex-1 bg-gray-100 flex flex-col gap-[3rem] rounded-xl p-6 w-auto  h-auto m-auto my-[2rem] [margin:0 4rem] '>
 			<BalanceOverview balance={balance} />
 
 			{/* chart and loan section */}
@@ -48,8 +48,7 @@ const Main: React.FC = () => {
 				}}
 			/>
 
-			{/* Recent Transactions */}
-			<RecentTransactions />
+			
 		</main>
 	);
 };
@@ -192,7 +191,7 @@ const BalanceChart: React.FC<{
 	);
 };
 
-const RecentTransactions = () => {
+export const RecentTransactions = () => {
 	const [transactions, setTransactions] = useState<{ date: string; description: string; amount: number }[] | []>(
 		[]
 	);

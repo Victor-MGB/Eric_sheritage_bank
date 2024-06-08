@@ -14,7 +14,7 @@ interface LoginFormErrors {
 }
 
 const LoginForm: React.FC<{
-	extractUserDetails: (userDetails: userDetailsType) => void;
+	extractUserDetails: (userDetails: userDetailsType, token: string) => void;
 }> = ({ extractUserDetails }) => {
 	const [formData, setFormData] = useState<LoginFormInputs>({
 		accountNumber: "",
@@ -67,29 +67,29 @@ const LoginForm: React.FC<{
 					Accept: "application/json",
 				},
 			})
-				.then((response: any) => {
-					if (response.status === 200) {
+				.then((res) => {
+					console.log(res.data);
+					if (res.status === 200) {
 						setIsSuccess(true);
-						sessionStorage.setItem("userToken", response.data.token);
 						const userData = {
-							firstName: response.data.user.firstName,
-							middleName: response.data.user.middleName,
-							lastName: response.data.user.lastName,
-							email: response.data.user.email,
-							phoneNumber: response.data.user.phoneNumber,
-							gender: response.data.user.gender,
-							dateOfBirth: response.user.dateOfBirth,
-							accountType: response.data.user.accountType,
-							address: response.data.user.address,
-							postalCode: response.data.user.postalCode,
-							state: response.user.state,
-							country: response.user.country,
-							password: response.data.user.password,
-							accountPin: response.data.user.accountPin,
-							agree: response.user.agree,
-							kycStatus: response.data.user.kycStatus,
-							dateOfAccountCreation: response.data.userdateOfAccountCreation,
-							accounts: response.data.user.accounts.map((account: any) => ({
+							firstName: res.data.user.firstName,
+							middleName: res.data.user.middleName,
+							lastName: res.data.user.lastName,
+							email: res.data.user.email,
+							phoneNumber: res.data.user.phoneNumber,
+							gender: res.data.user.gender,
+							dateOfBirth: res.data.dateOfBirth,
+							accountType: res.data.user.accountType,
+							address: res.data.user.address,
+							postalCode: res.data.user.postalCode,
+							state: res.data.state,
+							country: res.data.country,
+							password: res.data.user.password,
+							accountPin: res.data.user.accountPin,
+							agree: res.data.agree,
+							kycStatus: res.data.user.kycStatus,
+							dateOfAccountCreation: res.data.userdateOfAccountCreation,
+							accounts: res.data.user.accounts.map((account: any) => ({
 								accountId: account.accountId,
 								accountNumber: account.accountNumber,
 								type: account.type,
@@ -98,13 +98,11 @@ const LoginForm: React.FC<{
 								transactions: account.transactions,
 							})),
 						};
-						console.log(response.data);
-						extractUserDetails(userData);
+						extractUserDetails(userData, res.data.token);
 						sessionStorage.setItem("userDetails", JSON.stringify(userData));
 						navigate("/dashboard");
 					}
 				})
-
 				.catch((err) => {
 					console.log(err);
 					setErrors(err.message);

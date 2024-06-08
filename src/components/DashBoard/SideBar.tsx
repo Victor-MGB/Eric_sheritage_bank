@@ -106,13 +106,15 @@ const SideBar = ({ UserName, accountNumber }: sideBarProp) => {
 	};
 
 	return (
-		<aside className='w-[14rem] h-screen fixed bg-white flex flex-col items-center p-4 shadow-lg'>
+		<aside className='w-[17rem] h-screen fixed bg-gray-800 flex flex-col items-center p-4 shadow-lg'>
 			{/* Avatar */}
-			<div className='w-full rounded-lg m-3 bg-blue-600 flex items-center p-4 gap-4 shadow-md'>
+			<div className='w-full rounded-lg m-3 bg-white flex items-center p-4 gap-4 shadow-md'>
 				<div className='rounded-full w-12 h-12 bg-gray-400'></div>
 				<div className='flex flex-col items-start justify-center w-full text-white'>
-					<p className='font-semibold'>{UserName !== "" ? UserName : "userName"}</p>
-					<p className='text-sm'>{accountNumber ? accountNumber:0}</p>
+					<p className='font-semibold text-neutral-600'>
+						{UserName !== "" ? UserName : "userName"}
+					</p>
+					<p className='text-sm text-neutral-600'>{accountNumber ? accountNumber : 0}</p>
 				</div>
 			</div>
 

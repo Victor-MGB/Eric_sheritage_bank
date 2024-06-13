@@ -1,40 +1,60 @@
-import React, { useState } from "react";
-import { IoMdArrowDropup } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import React, { useState, createContext, useContext } from "react";
+import { FaTimes, FaBars } from "react-icons/fa";
 import { BsBank } from "react-icons/bs";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+
+type HeaderContextType = {
+	handleOverAll: () => void;
+	isOverAllActive: boolean;
+	setIsOverAllActive: React.Dispatch<React.SetStateAction<boolean>>;
+	activeTab: string;
+	setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const HeaderContext = createContext<HeaderContextType>({
+	handleOverAll: () => {},
+	isOverAllActive: false,
+	setIsOverAllActive: () => {},
+	activeTab: "",
+	setActiveTab: () => {},
+});
 
 const Header = () => {
-	const [isConverterDropDownShowing, setisConverterDropDownShowing] = useState<boolean>(false);
-	const [isPageDropdownShowing, setisPageDropdownShowing] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isOverAllActive, setIsOverAllActive] = useState(false);
+	const [activeTab, setActiveTab] = useState("");
 	const navi = useNavigate();
-
-	const handleDropdownClicks = (arg: boolean) => {
-		setisConverterDropDownShowing(arg);
-	};
-
-	const handleIsPageDropdownShowing = (arg: boolean) => {
-		setisPageDropdownShowing(arg);
-	};
 
 	const toggleMobileMenu = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
 
+	//handler for overAll dropdown
+	const handleOverAll = () => {
+		setIsOverAllActive(true);
+	};
+
 	return (
-		<>
+		<HeaderContext.Provider
+			value={{
+				handleOverAll,
+				isOverAllActive,
+				setIsOverAllActive,
+				activeTab,
+				setActiveTab,
+			}}
+		>
 			<header
-				className={`w-full h-[4rem] fixed z-30 bg-gray-50 flex items-center justify-between  md:p-3 max-w-full `}
+				className={`w-full h-[4rem] fixed z-30 bg-gray-50 flex items-center justify-between md:p-3 max-w-full`}
 			>
 				{/* Mobile Menu Icon */}
-				<div className='lg:hidden flex items-center '>
+				<div className='lg:hidden flex items-center'>
 					<button onClick={toggleMobileMenu} className='text-3xl text-red-600'>
 						{isMobileMenuOpen ? <FaTimes /> : <FaBars />}
 					</button>
 				</div>
 
-				{/* logo space */}
+				{/* Logo space */}
 				<h1
 					className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}
 				>
@@ -53,19 +73,22 @@ const Header = () => {
 
 				{/* Navigation Links */}
 				<div
-					className={`lg:flex  left-[14rem] overflow-hidden w-0  fixed  bg-opacity-950 md:hidden  ${
+					className={`lg:flex left-[29rem] overflow-hidden w-0 fixed bg-opacity-950 md:hidden ${
 						isMobileMenuOpen
-							? " w-[15rem] top-[3.5rem] h-screen opacity-85 transition-all duration-700 bg-black p-2"
+							? "w-[15rem] top-[3.5rem] h-screen opacity-85 transition-all duration-700 bg-black p-2"
 							: "w-0 opacity-60 transition-all duration-1000 ease-in"
 					} flex-col lg:flex-row items-center justify-between lg:w-auto`}
 				>
-					<Navlinks
-						handler2={(arg) => handleIsPageDropdownShowing(arg)}
-						handler={(arg) => handleDropdownClicks(arg)}
-					/>
+					<Link
+						to={"/"}
+						className={`text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1`}
+					>
+						Home
+					</Link>
+					<Navlinks />
 				</div>
 
-				{/* auth space */}
+				{/* Auth space */}
 				<div className='flex justify-between bg-transparent gap-3 h-auto items-center p-1 md:p-3 lg:w-[20rem] lg:mr-[4rem]'>
 					<button
 						onClick={() => navi("/sign-in")}
@@ -81,273 +104,351 @@ const Header = () => {
 					</button>
 				</div>
 			</header>
-			<ConverterDropDown isVisible={isConverterDropDownShowing} shutdwnVisible={handleDropdownClicks} />
-			<PageDropDown isVisible={isPageDropdownShowing} shutdwnVisible={handleIsPageDropdownShowing} />
-		</>
+			<OverAllDropDown />
+		</HeaderContext.Provider>
 	);
 };
 
 export default Header;
 
-// nav links components
+const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boolean) => void }) => {
+	const [isActive, setIsActive] = useState<boolean[]>([false, false, false, false, false, false]);
 
-/**
- * Renders a navigation links component with active state management.
- *
- * The `Navlinks` component renders a list of navigation links with the ability to track which link is currently active. The active state is managed using the `useState` hook, which stores an array of boolean values indicating the active state of each link.
- *
- * The `handleNavClick` function is used to update the active state when a link is clicked. It takes the index of the clicked link as a parameter and updates the `isActive` state accordingly.
- *
- * The component maps over an array of link names and renders a list item for each one. The list item has a class that changes based on the active state, and an `onClick` handler that calls `handleNavClick` with the corresponding index.
- */
-const Navlinks = (prop: { handler: (arg: boolean) => void; handler2: (arg: boolean) => void }) => {
-	const [isActive, setisActive] = useState<boolean[]>([false, false, false, false, false, false]);
+	const { handleOverAll, setActiveTab } = useContext(HeaderContext);
 
-	const handleNavClick = (index: number) => {
+	const handleMouseEnter = (index: number) => {
+		// Update isActive state based on index
 		const newIsActive = isActive.map((item, i) => i === index);
-		setisActive(newIsActive);
+		setIsActive(newIsActive);
+
+		// Call handleOverAll from context
+		handleOverAll();
 	};
 
-	const navigate = useNavigate();
+	const handleClick = (index: number, tab: string) => {
+		setActiveTab(tab);
+		handleOverAll();
+	};
 
 	return (
 		<ul className='flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-[2rem]'>
-			{["home", "about", "contact", "converter", "pages"].map((eachLink, index) => {
-				return (
-					<li
-						className={`text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-500 uppercase bold p-2 cursor-pointer m-1 ${
-							isActive[index]
-								? "border rounded-md transition-all shadow-md shadow-black text-primary"
-								: ""
-						}`}
-						key={index}
-						onClick={() => {
-							handleNavClick(index);
-							if (eachLink === "converter") prop.handler(true);
-							if (eachLink === "pages") prop.handler2(true);
-							if (eachLink === "about") navigate("/about");
-							if (eachLink === "contact") navigate("/contact");
-							if (eachLink === "home") navigate("/");
-						}}
-					>
-						{eachLink === "converter" || eachLink === "pages" ? (
-							<span className={"flex items-center gap-[0.5rem]"}>
-								{eachLink}
-								<IoMdArrowDropup
-									className={`text-[20px] ${
-										isActive[index]
-											? "text-primary transition-all rotate-180 duration-700"
-											: "text-blue-400 transition rotate-0 duration-700"
-									}`}
-								/>
-							</span>
-						) : (
-							eachLink
-						)}
-					</li>
-				);
-			})}
+			{["personal", "business", "why central?", "translator"].map((eachLink, index) => (
+				<li
+					onMouseEnter={() => {
+						handleMouseEnter(index);
+						handleClick(index, eachLink);
+					}}
+					className={`text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
+						isActive[index]
+							? "border rounded-md transition-all shadow-md shadow-black text-primary"
+							: ""
+					}`}
+					key={index}
+				>
+					{eachLink}
+				</li>
+			))}
 		</ul>
 	);
 };
 
-/**
- * A dropdown component that displays a list of currency conversion, currency charts, and exchange rate options.
- *
- * @param isVisible - A boolean indicating whether the dropdown should be visible or not.
- * @param shutdwnVisible - A function that takes a boolean argument to control the visibility of the dropdown.
- */
+const OverAllDropDown: React.FC = () => {
+	const { isOverAllActive, activeTab, setIsOverAllActive } = useContext(HeaderContext);
 
-const ConverterDropDown = ({
-	isVisible,
-	shutdwnVisible,
-}: {
-	isVisible: boolean;
-	shutdwnVisible: (arg: boolean) => void;
-}) => {
-	const [activeTab, setActiveTab] = useState<string | null>(null);
+	const renderContent = () => {
+		if (activeTab === "personal") {
+			return (
+				<div className={`flex gap-4 p-2`}>
+					{/* banking */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`font-bold`}>Banking</h3>
+						<ul>
+							<li>
+								<a href='/personal/checking.asp'>Personal Checking</a>
+							</li>
+							<li>
+								<a href='/personal/newopportunity.asp'>New Opportunity Checking</a>
+							</li>
+							<li>
+								<a href='/personal/savings.asp'>Savings &amp; Money Market</a>
+							</li>
+							<li>
+								<a href='/personal/itmakescents.asp'>It Makes ¢ents!</a>
+							</li>
+							<li>
+								<a href='/personal/certificates-deposit-cds.asp'>
+									Certificates of Deposit (CDs)
+								</a>
+							</li>
+						</ul>
+					</div>
 
-	const navi = useNavigate();
-	const handleTabClick = (tab: string) => {
-		setActiveTab(tab);
-	};
+					{/* lending */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`font-bold`}>Lending</h3>
+						<ul>
+							<li>
+								<a href='/mortgages/'>Home Mortgages</a>
+							</li>
+							<li>
+								<a href='/personal/autolending.asp'>Auto Loans</a>
+							</li>
+							<li>
+								<a href='/personal/lending.asp'>Personal Loans</a>
+							</li>
+							<li>
+								<a href='/personal/lending.asp'>Credit Cards</a>
+							</li>
+							<li>
+								<a href='/personal/lending.asp#creditlines'>Credit Lines</a>
+							</li>
+							<li>
+								<a href='/mortgages/heloc.asp'>Home Equity Line of Credit</a>
+							</li>
+						</ul>
+					</div>
 
-	return (
-		<div
-			onMouseLeave={() => shutdwnVisible(false)}
-			className={`w-[9rem] z-50  h-0 ${
-				isVisible
-					? " duration-1000 gap-[1rem] transition-all p-3 h-[13rem]"
-					: "h-0 transition-all duration-1000 ease-out"
-			} text-nowrap text-sm flex flex-col  overflow-hidden bg-slate-300 bg-opacity-60 z-30 fixed top-[4rem] left-[43rem] `}
-		>
-			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
-					activeTab === "convertCurrency" ? "bg-gray-400 text-slate-300" : "bg-gray-200"
-				}`}
-				onClick={() => handleTabClick("convertCurrency")}
-			>
-				<p>convert currency</p>
-				<div
-					className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-						activeTab === "convertCurrency"
-							? "animate-bounce bg-primary h-[2.5rem] w-[2px] "
-							: ""
-					}  group-hover:bg-cyan-500 group-hover:block`}
-				></div>
-			</div>
+					{/* investment */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`font-bold`}>Investments</h3>
+						<ul>
+							<li>
+								<a href='/whycentral/meetus.asp#trustofficers'>Our Officers</a>
+							</li>
+							<li>
+								<a href='/personal/investments.asp'>Investment Options</a>
+							</li>
+							<li>
+								<a href='/personal/raymondjames.asp'>
+									Raymond James Financial Services
+								</a>
+							</li>
+						</ul>
+					</div>
 
-			{/* currency charts */}
-			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
-					activeTab === "currencyCharts" ? "bg-gray-400" : "bg-gray-200"
-				}`}
-				onClick={() => {
-					handleTabClick("currencyCharts");
-				}}
-			>
-				<p>currency charts</p>
-				<div
-					className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-						activeTab === "currencyCharts"
-							? "animate-bounce bg-primary h-[2.5rem] w-[2px] "
-							: ""
-					}  group-hover:bg-cyan-500 group-hover:block`}
-				></div>
-			</div>
-
-			{/* exchange rate */}
-			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-400 group items-center justify-center ${
-					activeTab === "exchangeRate" ? "bg-gray-400" : "bg-gray-200"
-				}`}
-				onClick={() => {
-					handleTabClick("exchangeRate");
-					navi("/rates");
-				}}
-			>
-				<p>exchange rate</p>
-				<div
-					className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-						activeTab === "exchangeRate" ? "animate-bounce bg-primary h-[2.5rem] w-[2px] " : ""
-					}  group-hover:bg-cyan-500 group-hover:block`}
-				></div>
-			</div>
-		</div>
-	);
-};
-
-/**
- * Renders a dropdown menu with various options, such as FAQ, Access, Account, and Terms of Service/Privacy Policy.
- * The dropdown is positioned absolutely and is shown or hidden based on the `isVisible` prop.
- * The `shutdwnVisible` function is called when the user moves the mouse away from the dropdown to hide it.
- * Each option in the dropdown has a hover effect and an active state that changes the background color and text color.
- * The active tab is tracked using the `activeTab` state variable, which is updated when the user clicks on an option.
- */
-const PageDropDown = ({
-	isVisible,
-	shutdwnVisible,
-}: {
-	isVisible: boolean;
-	shutdwnVisible: (arg: boolean) => void;
-}) => {
-	const [activeTab, setActiveTab] = useState<string | null>(null);
-	const [isSubActiveTab, setisSubActiveTab] = useState<string | null>(null);
-	const handleTabClick = (tab: string) => {
-		setActiveTab(tab);
-	};
-
-	const handleSubActive = (tab: string) => {
-		setisSubActiveTab(tab);
-	};
-
-	const navi = useNavigate();
-	return (
-		<div
-			onMouseLeave={() => shutdwnVisible(false)}
-			className={`w-[9rem] h-0 ${
-				isVisible
-					? " duration-1000 gap-[1rem] transition-all p-3 h-[13rem]"
-					: "h-0 transition-all duration-1000 ease-out"
-			} text-nowrap text-sm flex flex-col bg-slate-300 rounded-sm overflow-hidden bg-opacity-60 z-50 top-[4rem] fixed left-[53rem] `}
-		>
-			<div
-				className={`flex cursor flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
-					activeTab === "FAQ" ? "bg-gray-400 text-slate-300" : ""
-				}`}
-				onClick={() => {
-					handleTabClick("FAQ");
-					navi("FAQs");
-				}}
-			>
-				<p>FAQ</p>
-				<div
-					className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-						activeTab === "FAQ" ? "animate-bounce bg-primary h-[2.5rem] w-[2px] " : ""
-					}  group-hover:bg-cyan-500 group-hover:block`}
-				></div>
-			</div>
-
-			<div
-				className={`flex capitalize flex-col p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
-					activeTab === "Access" ? "bg-gray-400 text-slate-300" : ""
-				}`}
-				onClick={() => handleTabClick("Access")}
-			>
-				{/* 1 */}
-				<div className={`flex flex-row-reverse gap-2`}>
-					<p>help</p>
-					<div
-						className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-							activeTab === "Access" ? "animate-bounce bg-primary h-[2.5rem] w-[2px] " : ""
-						}  group-hover:bg-cyan-500 group-hover:block`}
-					></div>
+					{/* services */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`font-bold`}>Services</h3>
+						<ul>
+							<li>
+								<a href='/whycentral/onlinemobile.asp'>Online and Mobile Technology</a>
+							</li>
+							<li>
+								<a href='/whycentral/moneycentral.asp'>MoneyCentral</a>
+							</li>
+							<li>
+								<a href='/personal/giftcards.asp'>Gift Cards</a>
+							</li>
+							<li>
+								<a href='/personal/safedepositboxes.asp'>Safe Deposit Box</a>
+							</li>
+							<li>
+								<a href='/help/fraud-protection.asp'>Fraud Protection</a>
+							</li>
+							<li>
+								<a href='http://blog.centralnational.com/'>CNB Connect Blog</a>
+							</li>
+							<li>
+								<a href='/whycentral/lifenowrewards.asp'>Rewards</a>
+							</li>
+						</ul>
+					</div>
 				</div>
+			);
+		} else if (activeTab === "business") {
+			return (
+				<div className='flex justify-between'>
+					{/* banking */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`font-bold`}>Banking</h3>
+						<ul>
+							<li>
+								<a href='/business/checking.asp'>Business Checking</a>
+							</li>
+							<li>
+								<a href='/business/lending.asp'>Commercial Lending</a>
+							</li>
+							<li>
+								<a href='/whycentral/meetus.asp#businesslenders'>Our Lenders</a>
+							</li>
+						</ul>
+					</div>
 
-				{/* 2 */}
-				<ul
-					className={`h-0 p-0 ${
-						isSubActiveTab === "help"
-							? " transition-all duration-500 h-[5rem] p-2 bg-blue-300 flex flex-col items-center justify-center gap-[1rem] cursor-pointer"
-							: "h-0 p-0"
-					}`}
-					onMouseOver={() => {
-						handleSubActive("help");
-					}}
-				>
-					<li></li>
-				</ul>
-			</div>
+					{/* service solution */}
+					<div className='flex flex-col p-2'>
+						<h3>
+							<a href='/business/services.asp'>Service Solutions</a>
+						</h3>
+						<ul>
+							<li>
+								<a href='/business/services.asp#achservices'>ACH Services</a>
+							</li>
+							<li>
+								<a href='/business/services.asp#centralbusinessbanking'>
+									Central Business Banking
+								</a>
+							</li>
+							<li>
+								<a href='/business/services.asp#creditcardprocessing'>
+									Credit Card Processing
+								</a>
+							</li>
+							<li>
+								<a href='/business/services.asp#remotedepositcapture'>
+									Remote Deposit Capture
+								</a>
+							</li>
+							<li>
+								<a href='/business/services.asp#payrollcards'>Payroll Cards</a>
+							</li>
 
-			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
-					activeTab === "Account" ? "bg-gray-400 text-slate-300" : ""
-				}`}
-				onClick={() => handleTabClick("Account")}
-			>
-				<p>Account</p>
-				<div
-					className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-						activeTab === "Account" ? "animate-bounce bg-primary h-[2.5rem] w-[2px] " : ""
-					}  group-hover:bg-cyan-500 group-hover:block`}
-				></div>
-			</div>
+							<li>
+								<a href='/business/services.asp#lockbox'>Lockbox Services</a>
+							</li>
+						</ul>
+					</div>
 
-			<div
-				className={`flex flex-row-reverse p-2 gap-2 hover:bg-gray-200 bg-gray-100 group items-center justify-center ${
-					activeTab === "Terms of Service Privacy Policy" ? "bg-gray-400 text-slate-300" : ""
-				}`}
-				onClick={() => handleTabClick("Terms of Service Privacy Policy")}
-			>
-				<p>Terms of Service </p>
-				<div
-					className={`h-0  w-[5px] group-hover:transition-all group-hover:duration-700 group-hover:h-[3rem] ${
-						activeTab === "Terms of Service Privacy Policy"
-							? "animate-bounce bg-primary h-[2.5rem] w-[2px] "
-							: ""
-					}  group-hover:bg-cyan-500 group-hover:block`}
-				></div>
-			</div>
+					{/* investment */}
+					<div className='flex flex-col p-2'>
+						<h3>Investments</h3>
+						<ul>
+							<li>
+								<a href='/whycentral/meetus.asp#trustofficers'>Our Officers</a>
+							</li>
+							<li>
+								<a href='/personal/investments.asp#'>Investment Options</a>
+							</li>
+							<li>
+								<a href='/personal/raymondjames.asp'>
+									Raymond James Financial Services
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			);
+		} else if (activeTab === "why central?") {
+			return (
+				<div className='flex gap-5 p-2 justify-between'>
+					{/* location */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`fontbold`}>Locations</h3>
+						<p>Where can we help you?</p>
+						<ul>
+							<li>
+								<a href='/locations.asp'>
+									<span className='fa fa-map-marker' aria-hidden='true'></span>
+									Locations
+								</a>
+							</li>
+							<li>
+								<span className='fa fa-phone' aria-hidden='true'></span>888.262.5456
+							</li>
+						</ul>
+					</div>
+
+					{/* technology */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`fontbold`}>Technology</h3>
+						<p>Old bank, new tech.</p>
+						<ul>
+							<li>
+								<a href='/whycentral/onlinemobile.asp'>Online and Mobile Technology</a>
+							</li>
+							<li>
+								<a href='/whycentral/onlinemobile.asp#smartphone'>Smartphone App</a>
+							</li>
+							<li>
+								<a href='/whycentral/onlinemobile.asp#ITM'>
+									Interactive Teller Machines
+								</a>
+							</li>
+							<li>
+								<a href='/whycentral/moneycentral.asp'>MoneyCentral</a>
+							</li>
+							<li>
+								<a href='/whycentral/onlinemobile.asp#billpay'>Bill Pay</a>
+							</li>
+							<li>
+								<a href='/whycentral/onlinemobile.asp#estatements'>E-Statements</a>
+							</li>
+							<li>
+								<a href='/whycentral/onlinemobile.asp#mobiledeposit'>Mobile Deposit</a>
+							</li>
+						</ul>
+					</div>
+					{/* history */}
+					<div className='flex flex-col p-2'>
+						<a href='/whycentral/history.asp'>
+							<h3>History</h3>
+							<p>Dedicated to you since 1884.</p>
+							<img
+								src='https://centralnational.com/images/MM_HistoryPicture.jpg'
+								alt='History of Central National Bank'
+								width='260'
+								height='260'
+							/>
+						</a>
+					</div>
+
+					{/* rewards */}
+					<div className='flex flex-col p-2'>
+						<a href='/whycentral/lifenowrewards.asp'>
+							<h3>Rewards</h3>
+							<p>Benefits you'll use.</p>
+							<img
+								src='https://centralnational.com/images/MM_lifenowlogo.png'
+								alt='Life Now Rewards'
+								width='190'
+								height='190'
+							/>
+						</a>
+					</div>
+
+					{/* service */}
+					<div className='flex flex-col p-2'>
+						<h3 className={`fontbold`}>Services</h3>
+						<p>What else can we do for you?</p>
+						<ul>
+							<li>
+								<a href='/personal/giftcards.asp'>Gift Cards</a>
+							</li>
+							<li>
+								<a href='/help/fraud-protection.asp'>Fraud Protection</a>
+							</li>
+							<li>
+								<a href='http://blog.centralnational.com/'>CNB Connect Blog</a>
+							</li>
+							<li>
+								<a href='http://myfinancialwingman.com'>My Financial Wingman Blog</a>
+							</li>
+							<li>
+								<a href='http://csas.centralnational.com'>
+									Central Secret Agent Savers
+								</a>
+							</li>
+							<li>
+								<a href='/careers'>Careers</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			);
+		}
+		return <p>Some debug text to check visibility of the OverAllDropDown component.</p>;
+	};
+
+	return (
+		<div
+			onMouseLeave={() => setIsOverAllActive(false)}
+			className={`w-[64rem] overflow-hidden rounded-md absolute top-[4rem] left-[29rem] ${
+				isOverAllActive
+					? "h-[20rem]  p-3 transition-all duration-500"
+					: "h-0 duration-700 transition-all"
+			} bg-gray-50 text-neutral-600 border-gray-950 shadow-lg shadow-black overflow-hidden`}
+			style={{ zIndex: 20 }}
+		>
+			{renderContent()}
 		</div>
 	);
 };

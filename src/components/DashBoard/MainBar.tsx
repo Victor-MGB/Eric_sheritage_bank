@@ -36,7 +36,7 @@ const Main: React.FC = () => {
 	};
 
 	return (
-		<main className='flex-1 bg-gray-100 flex flex-col gap-[3rem] rounded-xl p-6 w-auto  h-auto m-auto my-[2rem] [margin:0 4rem] '>
+		<main className='flex-1 bg-gray-100 flex flex-col gap-0 md:gap-[3rem] rounded-xl p-6 w-auto  h-fit m-auto my-[2rem] [margin:0 4rem] '>
 			<BalanceOverview balance={balance} />
 
 			{/* chart and loan section */}
@@ -47,8 +47,6 @@ const Main: React.FC = () => {
 					state: isLoanShowing,
 				}}
 			/>
-
-			
 		</main>
 	);
 };
@@ -57,13 +55,13 @@ export default Main;
 interface BalanceOverviewProps {
 	balance: number;
 }
-
+//balance overview
 const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
 	const [withdrawalOpen, setWithdrawalOpen] = useState<boolean>(false);
 	const [sendOpen, setSendOpen] = useState<boolean>(false);
 
 	return (
-		<div className='bg-white p-6 rounded-lg shadow-md mb-6 sm:flex flex-wrap justify-between items-center'>
+		<div className='bg-white p-6 rounded-lg shadow-md mb-6 md:w-full w sm:flex flex-wrap justify-between items-center'>
 			{/* loan and balance view */}
 			<div className='flex items-center gap-6 mb-6'>
 				<div className='flex flex-col'>
@@ -83,16 +81,16 @@ const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
 			</div>
 
 			{/* withdraw and send view */}
-			<div className='flex flex-col md:flex-row items-center gap-6'>
+			<div className='flex flex-col md:flex-row items-center bg-gray-800 p-2 rounded-md shadow-sm shadow-gray-800 gap-6'>
 				<div
 					className='flex items-center p-3 bg-yellow-600 bg-opacity-75 rounded-lg cursor-pointer'
 					onClick={() => setWithdrawalOpen(!withdrawalOpen)}
 				>
-					<FaArrowAltCircleDown className='text-xl mr-2' />
+					<FaArrowAltCircleDown className='text-xl mr-2 text-white' />
 					<h2 className='text-lg font-semibold'>Withdrawal</h2>
 				</div>
 				{withdrawalOpen && (
-					<div className='flex flex-col border p-4 rounded-md bg-gray-100'>
+					<div className='flex flex-col border p-4 rounded-md bg-gray-100 absolute left-[8rem]'>
 						<label className='text-gray-600'>Amount:</label>
 						<input type='number' className='border rounded-md p-2 mb-4' />
 						<button className='bg-blue-500 text-white rounded-md py-2 px-4'>Withdraw</button>
@@ -102,11 +100,11 @@ const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
 					className='flex items-center p-3 bg-blue-600 bg-opacity-75 rounded-lg cursor-pointer'
 					onClick={() => setSendOpen(!sendOpen)}
 				>
-					<FaArrowAltCircleRight className='text-xl mr-2' />
+					<FaArrowAltCircleRight className='text-xl mr-2 text-white' />
 					<h2 className='text-lg font-semibold'>Send</h2>
 				</div>
 				{sendOpen && (
-					<div className='flex flex-col border p-4 rounded-md bg-gray-100'>
+					<div className='flex flex-col border p-4 rounded-md bg-gray-100 absolute left-[8rem]'>
 						<label className='text-gray-600'>Recipient:</label>
 						<input type='text' className='border rounded-md p-2 mb-4' />
 						<label className='text-gray-600'>Amount:</label>
@@ -119,6 +117,7 @@ const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
 	);
 };
 
+//balance chart component
 const BalanceChart: React.FC<{
 	balanchartData: {
 		labels: string[];
@@ -137,9 +136,11 @@ const BalanceChart: React.FC<{
 }> = ({ balanchartData, setterAndGetter }) => {
 	const { handler, state } = setterAndGetter;
 	return (
-		<div className={`flex items-center justify-normal gap-[1rem] w-full`}>
+		<div
+			className={`flex flex-wrap md:flex-nowrap items-center justify-normal gap-[1rem] w-full bg-transparent p-2 `}
+		>
 			{/* Current Balance Chart */}
-			<div className='bg-slate-300 w-[20rem] p-3 rounded-lg shadow-md mb-6'>
+			<div className='bg-slate-300 w-full md:w-[20rem] p-3 rounded-lg shadow-md mb-6'>
 				<h2 className='text-lg font-semibold mb-4'>Balance Overview</h2>
 				<Line data={balanchartData} />
 			</div>

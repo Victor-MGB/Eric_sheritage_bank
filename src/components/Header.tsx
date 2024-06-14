@@ -73,7 +73,7 @@ const Header = () => {
 
 				{/* Navigation Links */}
 				<div
-					className={`lg:flex left-[29rem] overflow-hidden w-0 fixed bg-opacity-950 md:hidden ${
+					className={`lg:flex left-[0rem]  md:left-[20rem] overflow-hidden w-0 fixed bg-opacity-950 md:hidden ${
 						isMobileMenuOpen
 							? "w-[15rem] top-[3.5rem] h-screen opacity-85 transition-all duration-700 bg-black p-2"
 							: "w-0 opacity-60 transition-all duration-1000 ease-in"
@@ -110,6 +110,15 @@ const Header = () => {
 };
 
 export default Header;
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boolean) => void }) => {
 	const [isActive, setIsActive] = useState<boolean[]>([false, false, false, false, false, false]);
@@ -138,7 +147,7 @@ const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boo
 						handleMouseEnter(index);
 						handleClick(index, eachLink);
 					}}
-					className={`text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
+					className={` text-sm md:text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
 						isActive[index]
 							? "border rounded-md transition-all shadow-md shadow-black text-primary"
 							: ""
@@ -151,6 +160,12 @@ const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boo
 		</ul>
 	);
 };
+//
+//
+//
+//
+//
+//
 
 const OverAllDropDown: React.FC = () => {
 	const { isOverAllActive, activeTab, setIsOverAllActive } = useContext(HeaderContext);

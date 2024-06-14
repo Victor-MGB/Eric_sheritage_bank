@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import SideBar from "./SideBar";
@@ -26,18 +26,25 @@ const Dashboard = () => {
 		"/dashboard/support",
 	];
 
+	const [showSideBar, setshowSideBar] = useState<boolean>(false);
+
 	const shouldRenderOutlet = outletRoutes.includes(location.pathname);
 
 	const userDataContext = useContext<userDetailsType | null>(UserDataCOntext);
 
 	const userName = userDataContext?.firstName + " " + userDataContext?.lastName;
 	const Acc = userDataContext?.accounts[0].accountNumber || 0;
+
+	const handleShowSide = () => {
+		setshowSideBar(!showSideBar);
+	};
+
 	return (
 		<div>
 			{/* <Animation /> */}
-			<SideBar UserName={userName} accountNumber={Acc} />
-			<div className={`h-screen bg-gray-800 m-auto mr-[1rem]  w-[100rem] p-3`}>
-				<Header />
+			{showSideBar && <SideBar handleShowSide={handleShowSide} UserName={userName} accountNumber={Acc} />}
+			<div className={` bg-gray-800 h-full m-auto md:mr-[1rem] max-w-[100rem] p-3`}>
+				<Header handleShowSide={handleShowSide} />
 				{/* Conditionally render the Outlet or Main based on the current route */}
 				{shouldRenderOutlet ? <Outlet /> : <Main />}
 				{/* Recent Transactions */}

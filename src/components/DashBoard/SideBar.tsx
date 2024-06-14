@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 type sideBarProp = {
 	UserName: string;
 	accountNumber: number;
+	handleShowSide: () => void;
 };
-const SideBar = ({ UserName, accountNumber }: sideBarProp) => {
+const SideBar = ({ UserName, accountNumber, handleShowSide }: sideBarProp) => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
 	const navi = useNavigate();
 	const links = [
@@ -106,7 +107,10 @@ const SideBar = ({ UserName, accountNumber }: sideBarProp) => {
 	};
 
 	return (
-		<aside className='w-[17rem] h-screen fixed bg-gray-800 flex flex-col items-center p-4 shadow-lg'>
+		<aside
+			onMouseLeave={() => handleShowSide()}
+			className='w-[17rem] h-screen fixed bg-gray-800 md:flex flex-col items-center p-4 shadow-lg z-50  '
+		>
 			{/* Avatar */}
 			<div className='w-full rounded-lg m-3 bg-white flex items-center p-4 gap-4 shadow-md'>
 				<div className='rounded-full w-12 h-12 bg-gray-400'></div>

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserDataCOntext } from "../../App";
-import { FaBell, FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaBell, FaSignOutAlt } from "react-icons/fa";
 import NotificationComponent from "./Notification";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ type Notification = {
 	date: string;
 };
 
-const Header = () => {
+const Header: React.FC<{ handleShowSide: () => void }> = ({handleShowSide}) => {
 	const navigate = useNavigate();
 	const [notifications, setNotifications] = useState<Notification[]>([]);
 	const userDataContextConsumer = useContext(UserDataCOntext);
@@ -46,19 +46,21 @@ const Header = () => {
 	}, []);
 
 	return (
-		<header className='bg-gray-100 rounded-xl w-full max-w-full shadow-md py-4 px-6 flex justify-between items-center mb-4'>
+		<header className='bg-gray-100 rounded-xl md:w-full md:max-w-full shadow-md py-4 px-6 flex justify-between items-center mb-4'>
 			<div
-				className='flex items-center space-x-4 cursor-pointer'
+				className='md:flex items-center space-x-4 cursor-pointer hidden '
 				onClick={() => {
 					navigate("/dashboard");
 				}}
 			>
-				<h1 className='text-xl hover:text-red-300 capitalize text-neutral-600 orbitron font-bold'>
+				<h1 className='text-xl   hover:text-red-300 capitalize text-neutral-600 orbitron font-bold'>
 					DashBoard
 				</h1>
 			</div>
 
-			<div className='flex gap-3 justify-between  items-center relative w-[30rem]'>
+			<FaBars className={"text-gray-800 text-3xl m-3 hover:text-neutral-600 cursor-pointer "} onClick={() => handleShowSide()} />
+
+			<div className='flex gap-3 justify-between bg-gray-800 md:bg-transparent  items-center relative rounded-md p-2 w-[30rem] '>
 				<div className='text-gray-600 relative'>
 					<FaBell
 						className={`text-xl cursor-pointer transition-all ${
@@ -76,14 +78,14 @@ const Header = () => {
 						notifications={notifications}
 					/>
 				)}
-				<div className='flex flex-row-reverse items-center justify-between text-neutral-900 w-[20rem] h-full rounded-md p-2'>
+				<div className='flex flex-row-reverse items-center gap-2 md:gap-0 bg-white justify-between text-neutral-900  md:w-[20rem] h-full rounded-md p-2'>
 					<FaSignOutAlt className='text-2xl cursor-pointer text-gray-500' title={"logout"} />
 					<img
 						src='/path-to-profile-pic.jpg'
 						alt='Profile'
 						className='w-8 h-8 rounded-full object-contain'
 					/>
-					<span className='capitalize text-neutral-600 orbitron'>
+					<span className='capitalize text-neutral-100 orbitron'>
 						{firstName && lastName ? `${firstName} ${lastName}` : "User"}
 					</span>
 				</div>

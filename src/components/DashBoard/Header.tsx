@@ -58,7 +58,7 @@ const Header: React.FC<{ handleShowSide: () => void }> = ({handleShowSide}) => {
 				</h1>
 			</div>
 
-			<FaBars className={"text-gray-800 text-3xl m-3 hover:text-neutral-600 cursor-pointer "} onClick={() => handleShowSide()} />
+			<FaBars className={"text-gray-800 text-3xl m-3 hover:text-neutral-600 cursor-pointer md:hidden "} onClick={() => handleShowSide()} />
 
 			<div className='flex gap-3 justify-between bg-gray-800 md:bg-transparent  items-center relative rounded-md p-2 w-[30rem] '>
 				<div className='text-gray-600 relative'>

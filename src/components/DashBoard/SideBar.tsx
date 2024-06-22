@@ -8,8 +8,9 @@ type sideBarProp = {
 	UserName: string;
 	accountNumber: number;
 	handleShowSide: () => void;
+	showSideBar:boolean
 };
-const SideBar = ({ UserName, accountNumber, handleShowSide }: sideBarProp) => {
+const SideBar = ({ UserName, accountNumber, handleShowSide,showSideBar }: sideBarProp) => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
 	const navi = useNavigate();
 	const links = [
@@ -108,8 +109,8 @@ const SideBar = ({ UserName, accountNumber, handleShowSide }: sideBarProp) => {
 
 	return (
 		<aside
-			onMouseLeave={() => handleShowSide()}
-			className='w-[17rem] h-screen fixed bg-gray-800 md:flex flex-col items-center p-4 shadow-lg z-50  '
+			onMouseLeave={ () => handleShowSide() }
+			className={ `w-[15rem] ${showSideBar?'fixed':'hidden'} h-[100rem]  md:fixed bg-gray-800 md:flex flex-col items-center p-4 shadow-lg z-50 ` }
 		>
 			{/* Avatar */}
 			<div className='w-full rounded-lg m-3 bg-white flex items-center p-4 gap-4 shadow-md'>

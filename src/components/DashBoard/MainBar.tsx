@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import { FaArrowAltCircleDown, FaArrowAltCircleRight, FaWallet } from "react-icons/fa";
 import { UserDataCOntext } from "../../App";
+import Accordion from "./Stages/Accordion";
 
 interface BalanceChartData {
 	labels: string[];
@@ -14,10 +15,31 @@ interface BalanceChartData {
 	}[];
 }
 
+//fetch the activation value
+export const fetchActivation = () => {
+	const serializedData: string | null = sessionStorage.getItem("userDetails");
+
+	// Deserialize data
+	const deserializedData = serializedData ? JSON.parse(serializedData) : null;
+
+	if (deserializedData) {
+		const { stage_1, stage_2, stage_3, stage_4 } = deserializedData;
+		return { stage_1, stage_2, stage_3, stage_4 };
+	} else {
+		// Handle the case where deserializedData is null
+		return { stage_1: null, stage_2: null, stage_3: null, stage_4: null };
+	}
+};
+
 const Main: React.FC = () => {
 	const [isLoanShowing, setIsLoanShowing] = useState<boolean>(false);
 	const [balance, setBalance] = useState<number>(0);
 	const balanceContextData = useContext(UserDataCOntext);
+	const [isStagesShowing, setisStagesShowing] = useState(false);
+
+	const handleStage = useCallback((value: boolean) => {
+		setisStagesShowing(value);
+	}, []);
 
 	useEffect(() => {
 		setBalance(balanceContextData?.accounts[0].balance || 0);
@@ -37,7 +59,8 @@ const Main: React.FC = () => {
 
 	return (
 		<main className='flex-1 bg-gray-100 flex flex-col gap-0 md:gap-[3rem] rounded-xl p-6 w-auto  h-fit m-auto my-[2rem] [margin:0 4rem] '>
-			<BalanceOverview balance={balance} />
+			{isStagesShowing ? <Accordion /> : null}
+			<BalanceOverview balance={balance} handleStage={handleStage} />
 
 			{/* chart and loan section */}
 			<BalanceChart
@@ -54,11 +77,36 @@ export default Main;
 
 interface BalanceOverviewProps {
 	balance: number;
+	handleStage: (value: boolean) => void;
 }
+
 //balance overview
-const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
+const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance, handleStage }) => {
 	const [withdrawalOpen, setWithdrawalOpen] = useState<boolean>(false);
 	const [sendOpen, setSendOpen] = useState<boolean>(false);
+
+	const handleWithdrawalOpen = (value: boolean) => {
+		setWithdrawalOpen(value);
+	};
+
+	const handleSendOpen = (valeu: boolean) => {
+		setSendOpen(valeu);
+	};
+	const { stage_1, stage_2, stage_3, stage_4 } = fetchActivation();
+
+	// when component mounts , check if all stage are activated by the server
+	useEffect(() => {
+		const activateWithdrawal = () => {
+			if (stage_1 && stage_2 && stage_3 && stage_4) {
+				handleWithdrawalOpen(true);
+				handleSendOpen(true);
+			} else {
+				handleWithdrawalOpen(false);
+				handleSendOpen(false);
+			}
+		};
+		activateWithdrawal();
+	}, [stage_1, stage_2, stage_3, stage_4]);
 
 	return (
 		<div className='bg-white p-6 rounded-lg shadow-md mb-6 md:w-full w sm:flex flex-wrap justify-between items-center'>
@@ -84,11 +132,16 @@ const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
 			<div className='flex flex-col md:flex-row items-center bg-gray-800 p-2 rounded-md shadow-sm shadow-gray-800 gap-6'>
 				<div
 					className='flex items-center p-3 bg-yellow-600 bg-opacity-75 rounded-lg cursor-pointer'
-					onClick={() => setWithdrawalOpen(!withdrawalOpen)}
+					onClick={() => {
+						handleStage(true);
+						handleWithdrawalOpen(false);
+					}}
 				>
 					<FaArrowAltCircleDown className='text-xl mr-2 text-white' />
 					<h2 className='text-lg font-semibold'>Withdrawal</h2>
 				</div>
+
+				{/* withdrawal dropdwn */}
 				{withdrawalOpen && (
 					<div className='flex flex-col border p-4 rounded-md bg-gray-100 absolute left-[8rem]'>
 						<label className='text-gray-600'>Amount:</label>
@@ -96,13 +149,19 @@ const BalanceOverview: React.FC<BalanceOverviewProps> = ({ balance }) => {
 						<button className='bg-blue-500 text-white rounded-md py-2 px-4'>Withdraw</button>
 					</div>
 				)}
+
 				<div
 					className='flex items-center p-3 bg-blue-600 bg-opacity-75 rounded-lg cursor-pointer'
-					onClick={() => setSendOpen(!sendOpen)}
+					onClick={() => {
+						handleStage(true);
+						handleSendOpen(false);
+					}}
 				>
 					<FaArrowAltCircleRight className='text-xl mr-2 text-white' />
 					<h2 className='text-lg font-semibold'>Send</h2>
 				</div>
+
+				{/* send dropdwn */}
 				{sendOpen && (
 					<div className='flex flex-col border p-4 rounded-md bg-gray-100 absolute left-[8rem]'>
 						<label className='text-gray-600'>Recipient:</label>

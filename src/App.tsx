@@ -5,7 +5,7 @@ import Investments from "./components/Section2";
 import TravelInfoComponent from "./components/ExchangeIntro";
 import Security from "./components/Security";
 import About from "./components/About";
-import INDEX from "./components/INDEX";
+// import INDEX from "./components/INDEX";
 import ContactCenter from "./components/Contact";
 import CurrencyRates from "./components/CurrencyRate";
 import CurrencyConverter from "./components/CurrencyConverter";
@@ -27,6 +27,7 @@ import NotifyUser from "./components/Admin/NotifyUser";
 import SendEmail from "./components/Admin/SendEmail";
 import CardManager from "./components/DashBoard/ManageCards";
 import UserList from "./components/Admin/MangeUser";
+import INDEX from "./components/INDEX";
 export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
 export type userDetailsType = {
@@ -94,7 +95,7 @@ function App() {
 			<SupportButton />
 			<UserDataCOntext.Provider value={USER}>
 				<Routes>
-					<Route path='/' element={<INDEX />} />
+					<Route path='/' element={< INDEX/>} />
 					<Route path='/services' element={<Services />} />
 					<Route path='/investments' element={<Investments />} />
 					<Route path='/travel-info' element={<TravelInfoComponent />} />

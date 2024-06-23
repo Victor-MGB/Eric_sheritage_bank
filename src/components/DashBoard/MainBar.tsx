@@ -17,7 +17,9 @@ interface BalanceChartData {
 
 //fetch the activation value
 export const fetchActivation = () => {
-	const serializedData: string | null = sessionStorage.getItem("userDetails");
+	const serializedData: string | null = sessionStorage.getItem("stages");
+
+	console.log('stage data',serializedData);
 
 	// Deserialize data
 	const deserializedData = serializedData ? JSON.parse(serializedData) : null;

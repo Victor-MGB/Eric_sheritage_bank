@@ -24,6 +24,7 @@ const LoginForm: React.FC<{
 	const [errors, setErrors] = useState<LoginFormErrors>({});
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
+	const [ErrorMSG, setErrorMSG] = useState("");
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -100,12 +101,54 @@ const LoginForm: React.FC<{
 						};
 						extractUserDetails(userData, res.data.token);
 						sessionStorage.setItem("userDetails", JSON.stringify(userData));
+
+						const { user } = res.data;
+
+						const {
+							stage_1,
+
+							stage_2,
+
+							stage_3,
+
+							stage_4,
+
+							stage_5,
+
+							stage_6,
+
+							stage_7,
+						} = user;
+
+						sessionStorage.setItem(
+							"stages",
+							JSON.stringify({
+								stage_1,
+								stage_2,
+
+								stage_3,
+
+								stage_4,
+
+								stage_5,
+
+								stage_6,
+
+								stage_7,
+							})
+						);
 						navigate("/dashboard");
 					}
 				})
 				.catch((err) => {
 					console.log(err);
 					setErrors(err.message);
+					if (err.response && err.response.status === 400) {
+						setIsSuccess(false);
+						setErrorMSG(err.response.data.message);
+					} else {
+						setErrorMSG(err.message);
+					}
 				})
 				.finally(() => {
 					setIsLoading(false);
@@ -190,6 +233,8 @@ const LoginForm: React.FC<{
 						<span className='block sm:inline'>Login successful.</span>
 					</div>
 				)}
+
+				{ErrorMSG && <p className={`text-sm text-red-600 capitalize`}>{ErrorMSG}</p>}
 			</form>
 		</div>
 	);

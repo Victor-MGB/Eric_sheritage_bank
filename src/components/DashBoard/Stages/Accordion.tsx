@@ -8,7 +8,7 @@ import Stage_4 from "./Stage_4";
 
 const Accordion: React.FC = () => {
 	const { stage_1, stage_2, stage_3, stage_4 } = fetchActivation();
-	const [counter, setcounter] = useState(0);
+	const [counter, setCounter] = useState(0);
 
 	const stages = [
 		{ component: <Stage_1 />, isActive: stage_1 },
@@ -18,16 +18,14 @@ const Accordion: React.FC = () => {
 	];
 
 	const incrementCounter = () => {
-		setcounter((prev) => {
-			return prev + 1;
-		});
+		setCounter((prev) => (prev < stages.length - 1 ? prev + 1 : prev));
 	};
 
 	return (
-		<div className='accordion p-1 bg-transparent w-[100rem] h-[100vh] top-0 flex items-center flex-col absolute left-[19rem] right-0 z-50  '>
-			<>{stages[counter].isActive && <>{stages[counter].component}</>}</>
+		<div className='accordion p-1 bg-transparent w-[100rem] h-[100vh] top-0 flex items-center flex-col absolute left-[19rem] right-0 z-50'>
+			{!stages[counter].isActive && stages[counter].component}
 
-			<button className={`p-3 w-[10rem] bg-gray-900 rounded-lg `} onClick={incrementCounter}>
+			<button className='p-3 w-[10rem] bg-gray-900 rounded-lg mt-4' onClick={incrementCounter}>
 				Next
 			</button>
 		</div>

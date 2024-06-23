@@ -1,38 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../../hooks/UseSpinner";
-
-interface Account {
-	accountId: string;
-	accountNumber: string;
-	type: string;
-	balance: number;
-	currency: string;
-}
-
-interface User {
-	firstName: string;
-	middleName: string;
-	lastName: string;
-	email: string;
-	phoneNumber: string;
-	gender: string;
-	accountType: string;
-	address: string;
-	postalCode: string;
-	state: string;
-	country: string;
-	currency: string;
-	accountPin: string;
-	balance: number;
-	accounts: Account[];
-}
+import type { User } from "./Users.js";
 
 const UserList: React.FC = () => {
 	const [users, setUsers] = useState<User[]>([]);
 	const [editBalance, setEditBalance] = useState<{ [key: string]: number }>({});
 	const [loading, setLoading] = useState<boolean>(false);
 	const [message, setMessage] = useState<string | null>(null);
+	const [stageMessages, setStageMessages] = useState<{ [key: string]: string }>({});
 
 	useEffect(() => {
 		const fetchUsers = async () => {
@@ -40,6 +16,7 @@ const UserList: React.FC = () => {
 				setLoading(true);
 				const response = await axios.get("https://lee-man-online-banking.onrender.com/api/users");
 				setUsers(response.data.users);
+				console.log(response.data);
 				setLoading(false);
 			} catch (error) {
 				console.error("Error fetching users:", error);
@@ -99,8 +76,42 @@ const UserList: React.FC = () => {
 		}
 	};
 
+	const handleStageToggle = async (userId: string, stage: string, value?: boolean) => {
+		try {
+			setLoading(true);
+			const response = await axios.post(`https://lee-man-online-banking.onrender.com/api/update-${stage}`, {
+				userId: userId,
+			});
+
+			if (response.status === 200 && response.data.users) {
+				const updatedUser = response.data.users.find((user: User) => user._id === userId);
+
+				// Ensure the user is found and update the state
+				if (updatedUser) {
+					setUsers((prevUsers) =>
+						prevUsers.map((user) => (user._id === userId ? updatedUser : user))
+					);
+				}
+				setLoading(false);
+				setStageMessages((prev) => ({ ...prev, [`${userId}-${stage}`]: "Updated successfully." }));
+			}
+		} catch (error: any) {
+			if (error.response && error.response.data) {
+				console.error("Error updating stage:", error);
+				setLoading(false);
+				setStageMessages((prev) => ({ ...prev, [`${userId}-${stage}`]: error.response.data.message }));
+			} else {
+				console.log("Error updating stage:", error);
+				setLoading(false);
+				setStageMessages((prev) => ({ ...prev, [`${userId}-${stage}`]: "Error updating stage." }));
+			}
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
-		<div className='container mx-auto p-4'>
+		<div className='container mx-auto p-4 overflow-scroll overflow-x-hidden h-[100%]'>
 			<h2 className='text-2xl font-bold mb-4'>User List</h2>
 			{loading && <Spinner />}
 			{message && (
@@ -112,49 +123,105 @@ const UserList: React.FC = () => {
 					{message}
 				</div>
 			)}
-			<ul className='space-y-4'>
-				{users.map((user, index) => (
-					<li key={index} className='p-4 bg-white shadow rounded-lg'>
-						<div className='mb-2'>
-							<strong>Name:</strong> {user.firstName} {user.lastName}
-						</div>
-						<div className='mb-2'>
-							<strong>Email:</strong> {user.email}
-						</div>
-						<div className='mb-2'>
-							<strong>Account Number:</strong> {user.accounts[0].accountNumber}
-						</div>
-						<div className='mb-2'>
-							<strong>Balance:</strong> ${user.accounts[0].balance}
-						</div>
-						<div className='mb-2'>
-							<strong>Phone Number:</strong> {user.phoneNumber}
-						</div>
-						<div className='mb-2'>
-							<strong>Account Type:</strong> {user.accountType}
-						</div>
-						<div className='flex items-center'>
-							<input
-								type='number'
-								placeholder='Enter new balance'
-								value={editBalance[user.accounts[0].accountNumber] ?? ""}
-								onChange={(e) =>
-									handleEditBalanceChange(
-										user.accounts[0].accountNumber,
-										parseFloat(e.target.value)
-									)
-								}
-								className='mr-2 p-2 border rounded'
-							/>
-							<button
-								onClick={() => handleSubmitBalance(user.accounts[0].accountNumber)}
-								className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700'
-							>
-								Update Balance
-							</button>
-						</div>
-					</li>
-				))}
+			<ul className='space-y-4 flex flex-wrap gap-4 p-2'>
+				{users
+					? users.map((user, index) => (
+							<li key={index} className='p-4 bg-white shadow rounded-lg'>
+								<div className='mb-2'>
+									<strong>Name:</strong> {user.firstName} {user.lastName}
+								</div>
+								<div className='mb-2'>
+									<strong>Email:</strong> {user.email}
+								</div>
+								<ul className='space-y-2'>
+									{user.accounts.map((account, index) => (
+										<li key={index} className='text-sm text-gray-700'>
+											<p>Account Number: {account.accountNumber}</p>
+											<p>Type: {account.type}</p>
+											<p>Balance: {account.balance}</p>
+											<p>Currency: {account.currency}</p>
+										</li>
+									))}
+								</ul>
+
+								<div className='flex items-center mb-2'>
+									<input
+										type='number'
+										placeholder='Enter new balance'
+										value={
+											editBalance[
+												user.accounts
+													.map((account) => account.balance)
+													.toString()
+											]
+										}
+										onChange={(e) =>
+											handleEditBalanceChange(
+												user.accounts[0].accountNumber,
+												parseFloat(e.target.value)
+											)
+										}
+										className='mr-2 p-2 border rounded'
+									/>
+									<button
+										onClick={() =>
+											handleSubmitBalance(user.accounts[0].accountNumber)
+										}
+										className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700'
+									>
+										Update Balance
+									</button>
+								</div>
+
+								<div className='flex flex-col'>
+									{Array.from({ length: 7 }, (_, i) => `stage-${i + 1}`).map(
+										(stage) => (
+											<div className={`flex gap-2`}>
+												<label
+													key={stage}
+													className='flex items-center space-x-2'
+												>
+													<input
+														type='checkbox'
+														checked={(user as any)[stage]}
+														onChange={(e) => {
+															handleStageToggle(
+																user._id,
+																stage,
+																e.target.checked
+															);
+														}}
+													/>
+													<span>
+														{stage
+															.replace("-", " ")
+															.toUpperCase()}
+													</span>
+												</label>
+												{stageMessages[`${user._id}-${stage}`] && (
+													<p
+														className={`text-sm ${
+															stageMessages[
+																`${user._id}-${stage}`
+															].includes("Error")
+																? "text-red-600"
+																: "text-green-500"
+														}`}
+													>
+														{
+															stageMessages[
+																`${user._id}-${stage}`
+															]
+														}
+													</p>
+												)}
+											</div>
+										)
+									)}
+								</div>
+							</li>
+					  ))
+					: "No user at the moment"}
 			</ul>
 		</div>
 	);

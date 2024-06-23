@@ -4,7 +4,7 @@ import Spinner from "../../hooks/UseSpinner";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 import { Carousel } from "react-responsive-carousel";
 
-interface User {
+export interface User {
 	_id: string;
 	firstName: string;
 	middleName: string;
@@ -46,6 +46,14 @@ interface User {
 	}[];
 	dateOfAccountCreation: string;
 	__v: number;
+
+	stage_1: boolean;
+	stage_2: boolean;
+	stage_3: boolean;
+	stage_4: boolean;
+	stage_5: boolean;
+	stage_6: boolean;
+	stage_7: boolean;
 }
 
 const ViewUsers: React.FC = () => {

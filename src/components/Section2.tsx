@@ -115,7 +115,7 @@ export const FinancialGuidance = () => {
 					Financial Guidance for Every Stage of Life.
 				</h2>
 				<p className='mt-4 text-gray-600'>
-					At central city bank, we prioritize the security and privacy of our users' data. Our
+					At central Nation bank, we prioritize the security and privacy of our users' data. Our
 					robust security measures, including advanced encryption and access controls, ensure that
 					your sensitive information remains confidential and protected from unauthorized access or
 					misuse. We continuously monitor and enhance our security protocols to stay ahead of
@@ -552,19 +552,19 @@ const TestimonialCarousel: React.FC = () => {
 			name: "Rolier Demonil",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-3.png",
-			review: "Central City Banking has been a game-changer for me. Their exceptional service and personalized approach have made managing my finances a breeze. I highly recommend their services.",
+			review: "Central Nation Banking has been a game-changer for me. Their exceptional service and personalized approach have made managing my finances a breeze. I highly recommend their services.",
 		},
 		{
 			name: "Sandra Bullock",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-1.png",
-			review: "I've been a customer of Central City Banking for years, and I'm consistently impressed by their professionalism and commitment to customer satisfaction. They truly go above and beyond.",
+			review: "I've been a customer of Central Nation Banking for years, and I'm consistently impressed by their professionalism and commitment to customer satisfaction. They truly go above and beyond.",
 		},
 		{
 			name: "Julien Anthor",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-2.png",
-			review: "Central City Banking has been a trusted partner in my financial journey. Their knowledgeable staff and innovative solutions have helped me achieve my financial goals with ease.",
+			review: "Central Nation Banking has been a trusted partner in my financial journey. Their knowledgeable staff and innovative solutions have helped me achieve my financial goals with ease.",
 		},
 	];
 

@@ -36,15 +36,15 @@ const Header = () => {
 
 				{/* logo space */}
 				<h1
-					className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}
+					className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl font-bold drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}
 				>
-					CC{" "}
+					CN{" "}
 					<span
-						className={`text-white lg:ml-[-0.5rem] mr-[1rem] font-bold text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase`}
+						className={`text-white lg:ml-[-0.5rem] mr-[1rem] text-3xl lg:text-5xl font-bold drop-shadow-lg uppercase`}
 					>
 						B
 					</span>
-					<BsBank />
+					<BsBank className="font-bold" />
 					<div
 						className={`bg-red-600 transform p-5 absolute w-[2%] h-[100%] top-0 left-[6.6rem] lg:left-[11rem]`}
 						style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}

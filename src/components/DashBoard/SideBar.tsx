@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaAngleLeft, FaAngleRight, FaCog, FaHandHoldingUsd, FaLifeRing, FaQuestionCircle } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight, FaCog, FaHandHoldingUsd, FaLifeRing, FaQuestionCircle, FaTimes } from "react-icons/fa";
 import { FaMoneyBillAlt, FaExchangeAlt, FaWallet } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,9 @@ type sideBarProp = {
 	UserName: string;
 	accountNumber: number;
 	handleShowSide: () => void;
-	showSideBar:boolean
+	showSideBar: boolean
 };
-const SideBar = ({ UserName, accountNumber, handleShowSide,showSideBar }: sideBarProp) => {
+const SideBar = ({ UserName, accountNumber, handleShowSide, showSideBar }: sideBarProp) => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
 	const navi = useNavigate();
 	const links = [
@@ -109,20 +109,22 @@ const SideBar = ({ UserName, accountNumber, handleShowSide,showSideBar }: sideBa
 
 	return (
 		<aside
-			onMouseLeave={ () => handleShowSide() }
-			className={ `w-[15rem] ${showSideBar?'fixed':'hidden'} h-[100rem]  md:fixed bg-gray-800 md:flex flex-col items-center p-4 shadow-lg z-50 ` }
+			className={`w-[15rem] ${showSideBar ? 'fixed' : 'hidden'} h-full  bg-gray-800 md:flex flex-col items-center p-4 shadow-lg z-50 `}
 		>
 			{/* Avatar */}
-			<div className='w-full rounded-lg m-3 bg-white flex items-center p-4 gap-4 shadow-md'>
-				<div className='rounded-full w-12 h-12 bg-gray-400'></div>
-				<div className='flex flex-col items-start justify-center w-full text-white'>
-					<p className='font-semibold text-neutral-600'>
-						{UserName !== "" ? UserName : "userName"}
-					</p>
-					<p className='text-sm text-neutral-600'>{accountNumber ? accountNumber : 0}</p>
+			<div className="flex flex-col gap-1  items-center">
+				<FaTimes className={"text-gray-100  relative left-[10px] text-4xl font-bold hover:text-red-600 cursor-pointer md:hidden "} onClick={() => handleShowSide()} />
+				<div className='w-full rounded-lg m-3 bg-white flex items-center p-4 gap-4 shadow-md'>
+					<div className='rounded-full w-12 h-12 bg-gray-400'></div>
+					<div className='flex flex-col items-start justify-center w-full text-white'>
+						<p className='font-semibold text-neutral-600'>
+							{UserName !== "" ? UserName : "userName"}
+						</p>
+						<p className='text-sm text-neutral-600'>{accountNumber ? accountNumber : 0}</p>
+					</div>
 				</div>
-			</div>
 
+			</div>
 			{/* Links */}
 			<ul className='w-full mt-6 flex flex-col gap-[1rem]  p-2 h-auto overflow-scroll overflow-x-hidden overflow-y-scroll justify-between'>
 				{links.map((item, index) => (

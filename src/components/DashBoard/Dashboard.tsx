@@ -40,22 +40,21 @@ const Dashboard = () => {
 	};
 
 	return (
-		<div>
-			{/* <Animation /> */}
+		<div className="w-[100vw] flex h-full" >
 			<SideBar
 				showSideBar={showSideBar}
 				handleShowSide={handleShowSide}
 				UserName={userName}
 				accountNumber={Acc}
 			/>
-			<div className={` bg-gray-800 h-full m-auto md:mr-[1rem] max-w-[100rem] p-3`}>
+			<div className={` bg-gray-800 h-full gap-4  m-auto md:relative left-[0rem] max-w-[100vw] md:max-w-[90vw] md:w-[80vw] p-3`}>
 				<Header handleShowSide={handleShowSide} />
 				{/* Conditionally render the Outlet or Main based on the current route */}
 				{shouldRenderOutlet ? <Outlet /> : <Main />}
 				{/* Recent Transactions */}
 				<RecentTransactions />
+				<Footer />
 			</div>
-			<Footer />
 		</div>
 	);
 };

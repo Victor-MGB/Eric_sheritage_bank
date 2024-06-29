@@ -45,7 +45,7 @@ const Header = () => {
 			}}
 		>
 			<header
-				className={`w-full h-[4rem] fixed z-30 bg-gray-50 flex items-center justify-between md:p-3 max-w-full`}
+				className={`w-[100vw] h-[4rem] fixed z-30 bg-gray-50 flex items-center justify-between md:p-3 max-w-full`}
 			>
 				{/* Mobile Menu Icon */}
 				<div className='lg:hidden flex items-center'>
@@ -58,7 +58,7 @@ const Header = () => {
 				<h1
 					className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}
 				>
-					CC{" "}
+					CN{" "}
 					<span
 						className={`text-white lg:ml-[-0.5rem] mr-[1rem] font-bold text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase`}
 					>
@@ -66,16 +66,16 @@ const Header = () => {
 					</span>
 					<BsBank />
 					<div
-						className={`bg-red-600 transform p-5 absolute w-[2%] h-[100%] top-0 left-[6.6rem] lg:left-[11rem]`}
+						className={`bg-red-600 transform p-5 absolute w-[2%] h-[100%] top-0 left-[6.6rem] lg:left-[10rem]`}
 						style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}
 					></div>
 				</h1>
 
 				{/* Navigation Links */}
 				<div
-					className={`lg:flex left-[0rem]  md:left-[20rem] overflow-hidden w-0 fixed bg-opacity-950 md:hidden ${
+					className={`lg:flex left-[0rem]  overflow-hidden w-0 bg-opacity-950 md:hidden ${
 						isMobileMenuOpen
-							? "w-[15rem] top-[3.5rem] h-screen opacity-85 transition-all duration-700 bg-black p-2"
+							? "w-[15rem] top-[3.5rem] h-screen opacity-85 transition-all duration-700 fixed bg-black p-2"
 							: "w-0 opacity-60 transition-all duration-1000 ease-in"
 					} flex-col lg:flex-row items-center justify-between lg:w-auto`}
 				>
@@ -89,7 +89,7 @@ const Header = () => {
 				</div>
 
 				{/* Auth space */}
-				<div className='flex justify-between bg-transparent gap-3 h-auto items-center p-1 md:p-3 lg:w-[20rem] lg:mr-[4rem]'>
+				<div className='flex justify-between gap-3 h-auto items-center p-1 md:p-3 lg:w-fit '>
 					<button
 						onClick={() => navi("/sign-in")}
 						className={`md:p-2 text-nowrap p-1 text-sm rounded-none w-fit md:w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer`}
@@ -140,14 +140,14 @@ const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boo
 	};
 
 	return (
-		<ul className='flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-[2rem]'>
+		<ul className='flex flex-col lg:flex-row items-center justify-between gap-4'>
 			{["personal", "business", "why central?", "translator"].map((eachLink, index) => (
 				<li
 					onMouseEnter={() => {
 						handleMouseEnter(index);
 						handleClick(index, eachLink);
 					}}
-					className={` text-sm md:text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
+					className={` text-sm orbitron text-red-600 hover:border text-wrap border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
 						isActive[index]
 							? "border rounded-md transition-all shadow-md shadow-black text-primary"
 							: ""

@@ -85,7 +85,7 @@ const Header: React.FC<{ handleShowSide: () => void }> = ({handleShowSide}) => {
 						alt='Profile'
 						className='w-8 h-8 rounded-full object-contain'
 					/>
-					<span className='capitalize text-neutral-100 orbitron'>
+					<span className='capitalize text-neutral-500 orbitron'>
 						{firstName && lastName ? `${firstName} ${lastName}` : "User"}
 					</span>
 				</div>

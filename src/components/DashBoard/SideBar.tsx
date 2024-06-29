@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaCog, FaHandHoldingUsd, FaLifeRing, FaQuestionCircle, FaTimes } from "react-icons/fa";
-import { FaAngleLeft, FaAngleRight, FaCog, FaHandHoldingUsd, FaLifeRing, FaQuestionCircle, FaTimes } from "react-icons/fa";
 import { FaMoneyBillAlt, FaExchangeAlt, FaWallet } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -125,7 +124,6 @@ const SideBar = ({ UserName, accountNumber, handleShowSide, showSideBar }: sideB
 					</div>
 				</div>
 
-			</div>
 			</div>
 			{/* Links */}
 			<ul className='w-full mt-6 flex flex-col gap-[1rem]  p-2 h-auto overflow-scroll overflow-x-hidden overflow-y-scroll justify-between'>

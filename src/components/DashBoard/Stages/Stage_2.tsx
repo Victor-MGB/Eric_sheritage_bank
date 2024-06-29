@@ -4,7 +4,7 @@ import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 const Stage_2 = () => {
 return (
-	<div className='h-full w-full flex items-center justify-center bg-black bg-opacity-40'>
+	<div className='h-full w-full m-3 md:m-0 flex items-center justify-center bg-black bg-opacity-40'>
 		<div className='bg-white p-8 rounded-lg shadow-lg w-full max-w-md'>
 			<h2 className='text-2xl font-bold mb-6 text-center text-red-600'>Card Authorization Required</h2>
 			<p className='text-gray-700 mb-4'>

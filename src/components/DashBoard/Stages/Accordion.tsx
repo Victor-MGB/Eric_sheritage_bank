@@ -22,7 +22,7 @@ const Accordion: React.FC = () => {
 	};
 
 	return (
-		<div className='accordion p-1 bg-transparent w-[100rem] h-[100vh] top-0 flex items-center flex-col absolute left-[19rem] right-0 z-50'>
+		<div className='accordion p-1 bg-transparent h-[100rem] md:h-[100%] top-0 flex items-center flex-col absolute left-[0rem] right-[0rem] z-50'>
 			{!stages[counter].isActive && stages[counter].component}
 
 			<button className='p-3 w-[10rem] bg-gray-900 rounded-lg mt-4' onClick={incrementCounter}>

@@ -456,9 +456,9 @@ const OverAllDropDown: React.FC = () => {
 	return (
 		<div
 			onMouseLeave={() => setIsOverAllActive(false)}
-			className={`w-[64rem] overflow-hidden rounded-md absolute top-[4rem] left-[29rem] ${
+			className={`w-[64rem] overflow-hidden rounded-md   ${
 				isOverAllActive
-					? "h-[20rem]  p-3 transition-all duration-500"
+					? "h-[20rem]  p-3 transition-all duration-500 top-[4rem] absolute left-[12rem]"
 					: "h-0 duration-700 transition-all"
 			} bg-gray-50 text-neutral-600 border-gray-950 shadow-lg shadow-black overflow-hidden`}
 			style={{ zIndex: 20 }}

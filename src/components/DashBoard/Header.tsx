@@ -46,7 +46,7 @@ const Header: React.FC<{ handleShowSide: () => void }> = ({handleShowSide}) => {
 	}, []);
 
 	return (
-		<header className='bg-gray-100 rounded-xl md:w-full md:max-w-full shadow-md py-4 px-6 flex justify-between items-center mb-4'>
+		<header className='bg-gray-500 rounded-xl md:w-full md:max-w-full shadow-md py-4 md:px-6 px-1 flex justify-between items-center mb-4'>
 			<div
 				className='md:flex items-center space-x-4 cursor-pointer hidden '
 				onClick={() => {
@@ -58,7 +58,7 @@ const Header: React.FC<{ handleShowSide: () => void }> = ({handleShowSide}) => {
 				</h1>
 			</div>
 
-			<FaBars className={"text-gray-800 text-3xl m-3 hover:text-neutral-600 cursor-pointer md:hidden "} onClick={() => handleShowSide()} />
+			<FaBars className={"text-gray-800 text-4xl font-bold hover:text-neutral-600 cursor-pointer md:hidden "} onClick={() => handleShowSide()} />
 
 			<div className='flex gap-3 justify-between bg-gray-800 md:bg-transparent  items-center relative rounded-md p-2 w-[30rem] '>
 				<div className='text-gray-600 relative'>

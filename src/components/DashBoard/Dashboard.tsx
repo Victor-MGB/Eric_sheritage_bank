@@ -40,7 +40,7 @@ const Dashboard = () => {
 	};
 
 	return (
-		<div>
+		<div className="" >
 			{/* <Animation /> */}
 			<SideBar
 				showSideBar={showSideBar}
@@ -48,7 +48,7 @@ const Dashboard = () => {
 				UserName={userName}
 				accountNumber={Acc}
 			/>
-			<div className={` bg-gray-800 h-full m-auto md:mr-[1rem] max-w-[100rem] p-3`}>
+			<div className={` bg-gray-800 h-full  m-auto md:relative left-[9rem] max-w-[100vw] md:max-w-[90vw] md:w-[80vw] p-3`}>
 				<Header handleShowSide={handleShowSide} />
 				{/* Conditionally render the Outlet or Main based on the current route */}
 				{shouldRenderOutlet ? <Outlet /> : <Main />}

@@ -60,7 +60,7 @@ const Main: React.FC = () => {
 	};
 
 	return (
-		<main className='flex-1 bg-gray-100 flex flex-col gap-0 md:gap-[3rem] rounded-xl p-6 w-auto  h-fit m-auto my-[2rem] [margin:0 4rem] '>
+		<main className='flex-1 bg-gray-100 flex flex-col gap-0 md:gap-[3rem] rounded-xl md:p-6 max-w-[100vw]  md:w-[75vw]  h-fit m-auto my-[2rem]  '>
 			{isStagesShowing ? <Accordion /> : null}
 			<BalanceOverview balance={balance} handleStage={handleStage} />
 
@@ -207,7 +207,7 @@ const BalanceChart: React.FC<{
 			</div>
 
 			{/* Loan Application Section */}
-			<div className='bg-white p-6 rounded-lg shadow-md mb-6'>
+			<div className='bg-white w-full p-6 rounded-lg shadow-md mb-6'>
 				<h2
 					className='text-sm  text-white border w-[10rem] rounded-lg text-center font-bold h-[3rem] p-3  bg-red-600 hover:bg-opacity-45 cursor-pointer  mb-4'
 					onClick={() => {
@@ -270,7 +270,7 @@ export const RecentTransactions = () => {
 		}, 1000);
 	}, []);
 	return (
-		<div className='bg-white p-6 rounded-lg shadow-md'>
+		<div className='bg-white p-6 rounded-lg max-w-[100vw] m-auto md:w-[75vw] shadow-md'>
 			<h2 className='text-lg font-semibold mb-4'>Recent Transactions</h2>
 			{transactions.length === 0 ? (
 				<p>No transactions yet.</p>

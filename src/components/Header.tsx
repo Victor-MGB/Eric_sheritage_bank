@@ -141,7 +141,7 @@ const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boo
 
 	return (
 		<ul className='flex flex-col lg:flex-row items-center justify-between gap-4'>
-			{["personal", "business", "why central?", "translator"].map((eachLink, index) => (
+			{["personal", "business", "why central?"].map((eachLink, index) => (
 				<li
 					onMouseEnter={() => {
 						handleMouseEnter(index);
@@ -450,7 +450,6 @@ const OverAllDropDown: React.FC = () => {
 				</div>
 			);
 		}
-		return <p>Some debug text to check visibility of the OverAllDropDown component.</p>;
 	};
 
 	return (

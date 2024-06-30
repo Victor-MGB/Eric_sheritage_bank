@@ -19,19 +19,17 @@ interface BalanceChartData {
 export const fetchActivation = () => {
 	const serializedData: string | null = sessionStorage.getItem("stages");
 
-	console.log('stage data',serializedData);
-
 	// Deserialize data
 	const deserializedData = serializedData ? JSON.parse(serializedData) : null;
 
 	if (deserializedData) {
-		const { stage_1, stage_2, stage_3, stage_4 } = deserializedData;
-		return { stage_1, stage_2, stage_3, stage_4 };
+		const { stage_1, stage_2, stage_3, stage_4,stage_5,stage_6,stage_7  } = deserializedData;
+		return { stage_1, stage_2, stage_3, stage_4,stage_5,stage_6,stage_7  };
 	} else {
 		// Handle the case where deserializedData is null
-		return { stage_1: null, stage_2: null, stage_3: null, stage_4: null };
+		return { stage_1: null, stage_2: null, stage_3: null, stage_4: null,stage_5:null,stage_6:null,stage_7:null  };
 	}
-};
+}; 
 
 const Main: React.FC = () => {
 	const [isLoanShowing, setIsLoanShowing] = useState<boolean>(false);

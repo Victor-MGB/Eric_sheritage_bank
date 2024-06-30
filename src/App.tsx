@@ -27,6 +27,15 @@ import NotifyUser from "./components/Admin/NotifyUser";
 import SendEmail from "./components/Admin/SendEmail";
 import CardManager from "./components/DashBoard/ManageCards";
 import UserList from "./components/Admin/MangeUser";
+import Payroll from "./pages/Payroll";
+import Investement from "./pages/Investement";
+import Central from "./pages/Central";
+import OnlineMobile from "./pages/OnlineMobile";
+import History from "./pages/History";
+import Heloc from "./pages/Heloc";
+import PersonalChecking from "./pages/PersonalChecking";
+import GiftCard from "./pages/GiftCard";
+import HomeMortguage from "./pages/HomeMortguage";
 export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
 export type userDetailsType = {
@@ -109,6 +118,22 @@ function App() {
 					<Route path='/sign-up' element={<SignUpForm />} />
 					<Route path='/sign-in' element={<LoginForm extractUserDetails={extractUserDetails} />} />
 					<Route path='/otp' element={<OTPPage />} />
+					<Route path='/payroll' element={<Payroll />} />
+					<Route path='/investment' element={<Investement />} />
+					<Route path='/central' element={<Central />} />
+					<Route path='/onlinemobile' element={<OnlineMobile />} />
+					<Route path='/history' element={<History />} />
+					<Route path='/heloc' element={<Heloc />} />
+					<Route path='/personal-checking' element={<PersonalChecking />} />
+					<Route path='/gift-card' element={<GiftCard />} />
+					<Route path='/Home-mor' element={<HomeMortguage />} />
+
+
+
+
+
+
+
 
 					{/* user dashboard */}
 					<Route

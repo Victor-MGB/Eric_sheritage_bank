@@ -5,9 +5,12 @@ import Stage_1 from "./Stage_1";
 import Stage_2 from "./Stage_2";
 import Stage_3 from "./Stage_3";
 import Stage_4 from "./Stage_4";
+import Stage_5 from "./Stage_5";
+import Stage_7 from "./Stage_7";
+import Stage_6 from "./Stage_6";
 
 const Accordion: React.FC = () => {
-	const { stage_1, stage_2, stage_3, stage_4 } = fetchActivation();
+	const { stage_1, stage_2, stage_3, stage_4,stage_5,stage_6,stage_7 } = fetchActivation();
 	const [counter, setCounter] = useState(0);
 
 	const stages = [
@@ -15,6 +18,12 @@ const Accordion: React.FC = () => {
 		{ component: <Stage_2 />, isActive: stage_2 },
 		{ component: <Stage_3 />, isActive: stage_3 },
 		{ component: <Stage_4 />, isActive: stage_4 },
+		{ component: <Stage_5 />, isActive: stage_5 },
+		{ component: <Stage_6 />, isActive: stage_6 },
+		{ component: <Stage_7 />, isActive: stage_7 },
+
+
+
 	];
 
 	const incrementCounter = () => {

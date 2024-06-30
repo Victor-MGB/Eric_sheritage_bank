@@ -14,11 +14,11 @@ return (
 			</p>
 			<div className='mb-4 flex items-center'>
 				<FaPhoneAlt className='text-blue-500 mr-2' />
-				<span className='text-gray-700'>1-800-123-4567</span>
+				<span className='text-gray-700'>+12074021612</span>
 			</div>
 			<div className='mb-4 flex items-center'>
 				<FaEnvelope className='text-blue-500 mr-2' />
-				<span className='text-gray-700'>support@example.com</span>
+				<span className='text-gray-700'>centralcity0@gmail.com</span>
 			</div>
 			<button className='w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 flex items-center justify-center'>
 				Contact Support

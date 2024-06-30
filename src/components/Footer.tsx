@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
 			<SubscriptionForm />
 			<div className='container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 mt-10'>
 				<div className={`flex flex-col`}>
-					<h2 className='text-xl font-bold mb-4'>central city Bank</h2>
+					<h2 className='text-xl font-bold mb-4'>central National Bank</h2>
 					<p>
 						Our banking services provide secure and convenient financial solutions for all your
 						needs. With a wide range of products and services, we strive to offer personalized

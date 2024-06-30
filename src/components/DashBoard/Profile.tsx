@@ -93,7 +93,7 @@ const Profile = () => {
 				/>
 				<ProfileField icon={<FaVenusMars />} label='Gender' value={user.gender || "N/A"} />
 				<ProfileField icon={<FaGlobeAmericas />} label='Nationality' value='American' />
-				<ProfileField icon={<FaCity />} label='City' value='New York' />
+				<ProfileField icon={<FaCity />} label='National' value='New York' />
 				<ProfileField icon={<FaMapMarkedAlt />} label='State/Province' value={user.state || "N/A"} />
 				<ProfileField icon={<FaMailBulk />} label='Postal Code' value={user.postalCode} />
 				<ProfileField icon={<FaGlobeAmericas />} label='Country' value={user.country || "N/A"} />

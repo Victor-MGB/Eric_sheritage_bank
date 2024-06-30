@@ -71,7 +71,7 @@ const CardsContainer: React.FC = () => {
 			/>
 			<Card
 				icon={<FaUsers />}
-				title='We’re building CCB together'
+				title='We’re building CNB together'
 				description="We're doing things differently. For too long, banking has been obtuse, complex and opaque. We want to change that and build a bank with everyone, for everyone. Our amazing community suggest features, test the app and give us constant feedback so we can build something everyone loves."
 				link='/community-forum'
 				linkText='View our community forum ›'

@@ -314,7 +314,7 @@ const OverAllDropDown: React.FC = () => {
 								</a>
 							</li>
 							<li>
-								<a href='/business/services.asp#payrollcards'>Payroll Cards</a>
+								<a href='/payroll'>Payroll Cards</a>
 							</li>
 
 							<li>
@@ -328,10 +328,10 @@ const OverAllDropDown: React.FC = () => {
 						<h3>Investments</h3>
 						<ul>
 							<li>
-								<a href='/whycentral/meetus.asp#trustofficers'>Our Officers</a>
+								<a href='/central'>Our Officers</a>
 							</li>
 							<li>
-								<a href='/personal/investments.asp#'>Investment Options</a>
+								<a href='/investment'>Investment Options</a>
 							</li>
 							<li>
 								<a href='/personal/raymondjames.asp'>
@@ -368,13 +368,13 @@ const OverAllDropDown: React.FC = () => {
 						<p>Old bank, new tech.</p>
 						<ul>
 							<li>
-								<a href='/whycentral/onlinemobile.asp'>Online and Mobile Technology</a>
+								<a href='/onlinemobile'>Online and Mobile Technology</a>
 							</li>
 							<li>
-								<a href='/whycentral/onlinemobile.asp#smartphone'>Smartphone App</a>
+								<a href='/onlinemobile'>Smartphone App</a>
 							</li>
 							<li>
-								<a href='/whycentral/onlinemobile.asp#ITM'>
+								<a href='/home-mor'>
 									Interactive Teller Machines
 								</a>
 							</li>
@@ -394,7 +394,7 @@ const OverAllDropDown: React.FC = () => {
 					</div>
 					{/* history */}
 					<div className='flex flex-col p-2'>
-						<a href='/whycentral/history.asp'>
+						<a href='/history'>
 							<h3>History</h3>
 							<p>Dedicated to you since 1884.</p>
 							<img
@@ -408,7 +408,7 @@ const OverAllDropDown: React.FC = () => {
 
 					{/* rewards */}
 					<div className='flex flex-col p-2'>
-						<a href='/whycentral/lifenowrewards.asp'>
+						<a href='/heloc'>
 							<h3>Rewards</h3>
 							<p>Benefits you'll use.</p>
 							<img
@@ -426,10 +426,10 @@ const OverAllDropDown: React.FC = () => {
 						<p>What else can we do for you?</p>
 						<ul>
 							<li>
-								<a href='/personal/giftcards.asp'>Gift Cards</a>
+								<a href='/giftcard'>Gift Cards</a>
 							</li>
 							<li>
-								<a href='/help/fraud-protection.asp'>Fraud Protection</a>
+								<a href='/security'>Fraud Protection</a>
 							</li>
 							<li>
 								<a href='http://blog.centralnational.com/'>CNB Connect Blog</a>
@@ -443,7 +443,7 @@ const OverAllDropDown: React.FC = () => {
 								</a>
 							</li>
 							<li>
-								<a href='/careers'>Careers</a>
+								<a href='/personal-checking'>Careers</a>
 							</li>
 						</ul>
 					</div>

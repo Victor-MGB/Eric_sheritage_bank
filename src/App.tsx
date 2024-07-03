@@ -67,8 +67,8 @@ export type userDetailsType = {
 };
 
 function App() {
-	const [USER, setUSER] = useState<userDetailsType | null>(null);
-	const [isAuthenticated, setisAuthenticated] = useState(false);
+      const [USER, setUSER] = useState<userDetailsType | null>(null);
+      const [isAuthenticated, setisAuthenticated] = useState(false);
 
 	useEffect(() => {
 		const storedUserDetails = sessionStorage.getItem("userDetails");
@@ -97,6 +97,18 @@ function App() {
 	// 	sessionStorage.removeItem("userDetails");
 	// 	setisAuthenticated(false);
 	// };
+
+      const AuthenticateAdmin = () => {
+            const AdminToken = sessionStorage.getItem("AdminToken");
+
+            AdminToken ? setisAdmin(true) : setisAdmin(false);
+
+            // alert("you are not an admin, what the fuck you want?? 🤨🤨");
+      };
+
+      useEffect(() => {
+            AuthenticateAdmin();
+      }, [isAdmin]);
 
 	return (
 		<div className='App'>

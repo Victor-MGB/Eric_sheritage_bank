@@ -15,7 +15,7 @@ const Stage_5: React.FC = () => {
                                           />
                                     </svg>
                               </div>
-                              <h2 className='text-2xl font-bold ml-4 text-gray-800'>Stage 5: Account Activation</h2>
+                              <h2 className='text-2xl font-bold ml-4 text-gray-800'> Account Activation</h2>
                         </div>
                         <p className='text-gray-600 mb-4'>
                               To activate your account, please complete the following steps:

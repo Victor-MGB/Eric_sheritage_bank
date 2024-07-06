@@ -109,7 +109,7 @@ function App() {
 
       useEffect(() => {
             AuthenticateAdmin();
-      }, [isAdmin]);
+      }, []);
 
 	return (
 		<div className='App'>

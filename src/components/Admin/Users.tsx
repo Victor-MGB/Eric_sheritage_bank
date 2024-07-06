@@ -108,7 +108,7 @@ const ViewUsers: React.FC = () => {
 			{isLoading && <Spinner />}
 			{error && <p className='text-red-500'>{error}</p>}
 			{users.length > 0 && (
-				<div className='p-4 bg-white w-[40rem] m-auto '>
+				<div className='p-4 bg-white m-auto max-w-[100vw]'>
 					<Carousel
 						showArrows={true}
 						infiniteLoop={true}
@@ -122,9 +122,9 @@ const ViewUsers: React.FC = () => {
 						{users.map((user) => (
 							<div
 								key={user._id}
-								className='p-4 border border-gray-200 rounded-lg  shadow-md bg-white w-[30rem] items-center hover:shadow-lg transition-shadow duration-300 flex justify-between  overflow-auto'
+								className='p-2 border border-gray-200 rounded-lg shadow-md bg-white mx-0 w-full items-center hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row justify-between overflow-auto'
 							>
-								<div className={``}>
+								<div className='mb-4 md:mb-0'>
 									<h3 className='text-lg font-bold mb-2'>
 										{user.firstName} {user.middleName} {user.lastName}
 									</h3>
@@ -156,6 +156,7 @@ const ViewUsers: React.FC = () => {
 										Balance: {user.balance}
 									</p>
 								</div>
+
 								<div className='mt-4 self-start'>
 									<h4 className='text-md font-semibold mb-2'>Accounts</h4>
 									<ul className='space-y-2'>

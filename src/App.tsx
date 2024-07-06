@@ -185,15 +185,20 @@ function App() {
 					</Route>
 
 					{/* admin */}
-					<Route path='/admin' element={<Admin />}>
-						<Route path='/admin/notify-user' element={<NotifyUser />} />
-						<Route path='/admin/users' element={<UserList />} />
-						<Route path='/admin/send-email' element={<SendEmail />} />
-					</Route>
-				</Routes>
-			</UserDataCOntext.Provider>
-		</div>
-	);
+                              <Route
+                                    path='/admin'
+                                    element={
+                                          isAdmin ? <Admin /> : <LoginForm extractUserDetails={extractUserDetails} />
+                                    }
+                              >
+                                    <Route path='/admin/notify-user' element={<NotifyUser />} />
+                                    <Route path='/admin/users' element={<UserList />} />
+                                    <Route path='/admin/send-email' element={<SendEmail />} />
+                              </Route>
+                        </Routes>
+                  </UserDataCOntext.Provider>
+            </div>
+      );
 }
 
 export default App;

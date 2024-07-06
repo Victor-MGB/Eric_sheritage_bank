@@ -69,6 +69,7 @@ export type userDetailsType = {
 function App() {
       const [USER, setUSER] = useState<userDetailsType | null>(null);
       const [isAuthenticated, setisAuthenticated] = useState(false);
+      const [isAdmin, setisAdmin] = useState(false);
 
 	useEffect(() => {
 		const storedUserDetails = sessionStorage.getItem("userDetails");

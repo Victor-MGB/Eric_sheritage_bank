@@ -7,7 +7,7 @@ const Sidebar: React.FC<{ opener: () => void; isOpen: boolean }> = ({ opener, is
 
       return (
             <div
-                  className={`md:h-[100rem] w-0 bg-opacity-75  overflow-hidden transition-all duration-700 ${
+                  className={`md:h-[100rem] w-0 bg-opacity-90  overflow-hidden transition-all duration-700 ${
                         isOpen ? "w-[17rem]" : "w-0 "
                   } fixed z-50 md:z-0  h-[100rem] md:relative md:w-[20%] h bg-gray-800 text-white flex flex-col`}
             >

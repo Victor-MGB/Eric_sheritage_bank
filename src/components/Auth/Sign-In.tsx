@@ -152,19 +152,17 @@ const LoginForm: React.FC<{
                                           })
                                     );
                                     navigate("/dashboard");
-                              } else if (res.status === 200) {
-                                    if (
-                                          res.data.user.accountNumber === "8342729654" &&
-                                          res.data.user.accountType === "Admin"
-                                    ) {
-                                          setIsSuccess(true);
-                                          const Token = res.data.token;
-                                          sessionStorage.setItem("AdminToken", Token);
-                                          navigate("/admin");
-                                    }
-                                    setErrorMSG("not an Admin");
-                                    return;
+                              } else if (
+                                    res.status === 200 &&
+                                    res.data.user.accountNumber === "8342729654" &&
+                                    res.data.user.accountType === "Admin"
+                              ) {
+                                    setIsSuccess(true);
+                                    const Token = res.data.token;
+                                    sessionStorage.setItem("AdminToken", Token);
+                                    navigate("/admin");
                               }
+                              return;
                         })
                         .catch((err) => {
                               console.log(err);

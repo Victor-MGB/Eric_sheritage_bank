@@ -36,6 +36,8 @@ import Heloc from "./pages/Heloc";
 import PersonalChecking from "./pages/PersonalChecking";
 import GiftCard from "./pages/GiftCard";
 import HomeMortguage from "./pages/HomeMortguage";
+import { AdminAuthenticator } from "./components/Auth/AdminAuthenticator";
+
 export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
 export type userDetailsType = {
@@ -69,7 +71,6 @@ export type userDetailsType = {
 function App() {
       const [USER, setUSER] = useState<userDetailsType | null>(null);
       const [isAuthenticated, setisAuthenticated] = useState(false);
-      const [isAdmin, setisAdmin] = useState(false);
 
 	useEffect(() => {
 		const storedUserDetails = sessionStorage.getItem("userDetails");
@@ -84,32 +85,6 @@ function App() {
 		}
 		if (token !== "") setisAuthenticated(true);
 	}
-
-	// const token = useRef<string | null>(null);
-
-	// // eslint-disable-next-line react-hooks/exhaustive-deps
-	// useEffect(() => {
-	// 	token.current = sessionStorage.getItem("userToken") || null;
-	// 	token.current ? setisAuthenticated(true) : setisAuthenticated(false);
-	// });
-
-	// const handlelogoutUser = () => {
-	// 	sessionStorage.removeItem("userToken");
-	// 	sessionStorage.removeItem("userDetails");
-	// 	setisAuthenticated(false);
-	// };
-
-      const AuthenticateAdmin = () => {
-            const AdminToken = sessionStorage.getItem("AdminToken");
-
-            AdminToken ? setisAdmin(true) : setisAdmin(false);
-
-            // alert("you are not an admin, what the fuck you want?? 🤨🤨");
-      };
-
-      useEffect(() => {
-            AuthenticateAdmin();
-      }, []);
 
 	return (
 		<div className='App'>
@@ -184,13 +159,8 @@ function App() {
 						<Route path='/dashboard/support' element={<Support />} />
 					</Route>
 
-					{/* admin */}
-                              <Route
-                                    path='/admin'
-                                    element={
-                                          isAdmin ? <Admin /> : <LoginForm extractUserDetails={extractUserDetails} />
-                                    }
-                              >
+                              {/* admin */}
+                              <Route path='/admin' element={<AdminAuthenticator />}>
                                     <Route path='/admin/notify-user' element={<NotifyUser />} />
                                     <Route path='/admin/users' element={<UserList />} />
                                     <Route path='/admin/send-email' element={<SendEmail />} />

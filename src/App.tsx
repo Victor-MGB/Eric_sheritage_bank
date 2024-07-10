@@ -22,7 +22,6 @@ import Profile from "./components/DashBoard/Profile";
 import UserSecurity from "./components/DashBoard/Security";
 import ResetPasswordForm from "./components/DashBoard/Reset";
 import Support from "./components/DashBoard/Support";
-import Admin from "./components/Admin/Admin";
 import NotifyUser from "./components/Admin/NotifyUser";
 import SendEmail from "./components/Admin/SendEmail";
 import CardManager from "./components/DashBoard/ManageCards";

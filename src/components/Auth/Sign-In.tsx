@@ -60,7 +60,7 @@ const LoginForm: React.FC<{
       //Admin or user login manager
 
       const URLmanager = () => {
-            if (formData && formData.accountNumber === "8342729654" && formData.password === " Admin!Secure2024") {
+            if (formData && formData.accountNumber === "9018875523" && formData.password === "Admin!Secure2024") {
                   return "https://lee-man-online-banking.onrender.com/api/admin/login";
             } else {
                   return "https://lee-man-online-banking.onrender.com/api/login";
@@ -83,7 +83,7 @@ const LoginForm: React.FC<{
                               if (
                                     res.status === 200 &&
                                     res.data.user.accountType !== "Admin" &&
-                                    res.data.user.accountNumber !== "8342729654"
+                                    res.data.user.accountNumber !== "9018875523"
                               ) {
                                     setIsSuccess(true);
                                     const userData = {
@@ -154,7 +154,7 @@ const LoginForm: React.FC<{
                                     navigate("/dashboard");
                               } else if (
                                     res.status === 200 &&
-                                    res.data.user.accountNumber === "8342729654" &&
+                                    res.data.user.accountNumber === "9018875523" &&
                                     res.data.user.accountType === "Admin"
                               ) {
                                     setIsSuccess(true);

@@ -11,7 +11,7 @@ const Admin = () => {
       return (
             <div className='flex h-screen '>
                   <Sidebar isOpen={isOpen} opener={opener} />
-                  <div className='flex-1 p-6 bg-gray-100'>
+                  <div className='p-6 bg-gray-100'>
                         <MainContent opener={opener} />
                   </div>
             </div>

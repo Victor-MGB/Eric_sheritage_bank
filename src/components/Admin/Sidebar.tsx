@@ -7,9 +7,9 @@ const Sidebar: React.FC<{ opener: () => void; isOpen: boolean }> = ({ opener, is
 
       return (
             <div
-                  className={`md:h-[100rem] w-0 bg-opacity-90  overflow-hidden transition-all duration-700 ${
-                        isOpen ? "w-[17rem]" : "w-0 "
-                  } fixed z-50 md:z-0  h-[100rem] md:relative md:w-[20%] h bg-gray-800 text-white flex flex-col`}
+                  className={`md:h-[100rem] w-0 md:w-[25%] md:max-w-[25%] bg-opacity-90  overflow-hidden transition-all duration-700 ${
+                        isOpen ? "w-[17rem] fixed z-50" : "w-0 "
+                  }  h-[100vw]  h bg-gray-800 text-white flex flex-col`}
             >
                   <FaTimes
                         onClick={() => opener()}
@@ -18,7 +18,7 @@ const Sidebar: React.FC<{ opener: () => void; isOpen: boolean }> = ({ opener, is
 
                   <div className='p-4 font-bold text-xl'>Admin Dashboard</div>
                   <div className='flex-grow capitalize'>
-                        <ul className={`flex flex-col h-full items-center`} >
+                        <ul className={`flex flex-col h-full items-center`}>
                               <li
                                     className='p-4 flex items-center hover:bg-gray-700 cursor-pointer'
                                     onClick={() => navigate("/admin")}

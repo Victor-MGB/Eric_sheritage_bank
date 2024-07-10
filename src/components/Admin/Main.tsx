@@ -96,7 +96,7 @@ const MainContent: React.FC<{ opener: () => void }> = ({ opener }) => {
                                     </div>
                               </div>
 
-                              <div className='bg-white shadow-md rounded w-full md:p-6 mt-6 overflow-scroll overflo-x-hidden'>
+                              <div className=' shadow-md rounded w-[100vw] md:max-w-[70vw] md:p-6 mt-6 overflow-scroll overflo-x-hidden'>
                                     <h2 className='text-xl text-center md:text-left font-semibold mb-4 text-red-600'>
                                           All Users
                                     </h2>

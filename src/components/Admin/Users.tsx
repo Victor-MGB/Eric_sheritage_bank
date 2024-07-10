@@ -122,9 +122,9 @@ const ViewUsers: React.FC = () => {
 						{users.map((user) => (
 							<div
 								key={user._id}
-								className='p-2 border border-gray-200 rounded-lg shadow-md bg-white mx-0 w-full items-center hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row justify-between overflow-auto'
+								className='p-2 border border-gray-200 rounded-lg shadow-md  mx-0 md:items-center hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row gap-[1rem] justify-center items-center overflow-auto'
 							>
-								<div className='mb-4 md:mb-0'>
+								<div className='md:mb-0'>
 									<h3 className='text-lg font-bold mb-2'>
 										{user.firstName} {user.middleName} {user.lastName}
 									</h3>
@@ -157,7 +157,7 @@ const ViewUsers: React.FC = () => {
 									</p>
 								</div>
 
-								<div className='mt-4 self-start'>
+								<div className='md:mt-3'>
 									<h4 className='text-md font-semibold mb-2'>Accounts</h4>
 									<ul className='space-y-2'>
 										{user.accounts.map((account) => (

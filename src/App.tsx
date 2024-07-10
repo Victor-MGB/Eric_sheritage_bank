@@ -36,7 +36,6 @@ import PersonalChecking from "./pages/PersonalChecking";
 import GiftCard from "./pages/GiftCard";
 import HomeMortguage from "./pages/HomeMortguage";
 import { AdminAuthenticator } from "./components/Auth/AdminAuthenticator";
-
 export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
 export type userDetailsType = {
@@ -90,7 +89,7 @@ function App() {
 			<SupportButton />
 			<UserDataCOntext.Provider value={USER}>
 				<Routes>
-					<Route path='/' element={<INDEX />} />
+					<Route path='/' element={< INDEX/>} />
 					<Route path='/services' element={<Services />} />
 					<Route path='/investments' element={<Investments />} />
 					<Route path='/travel-info' element={<TravelInfoComponent />} />

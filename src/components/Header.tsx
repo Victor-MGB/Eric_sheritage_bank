@@ -54,7 +54,6 @@ const Header = () => {
                                     {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
                               </button>
                         </div>
-
                         {/* Logo space */}
                         <h1
                               className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}
@@ -71,6 +70,7 @@ const Header = () => {
                                     style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}
                               ></div>
                         </h1>
+
 
                         {/* Navigation Links */}
                         <div

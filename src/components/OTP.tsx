@@ -50,7 +50,7 @@ const OTPPage: React.FC = () => {
 				},
 			})
 				.then((response) => {
-					console.log(response);
+					// console.log(response);
 					setLoading(false);
 					if (response.status === 201) {
 						setShowNotification(true);

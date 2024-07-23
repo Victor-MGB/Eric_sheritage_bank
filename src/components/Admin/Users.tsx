@@ -70,7 +70,7 @@ const ViewUsers: React.FC = () => {
                         setError(null);
                         const response = await axios.get("https://lee-man-online-banking.onrender.com/api/users");
                         setUsers(response.data.users);
-                        console.log(response.data.users);
+                        // console.log(response.data.users);
                   } catch (error) {
                         setError("An error occurred while fetching users. Please try again later.");
                   } finally {

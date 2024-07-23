@@ -14,24 +14,24 @@ interface LoginFormErrors {
 }
 
 const LoginForm: React.FC<{
-      extractUserDetails: (userDetails: userDetailsType, token: string) => void;
-}> = ({ extractUserDetails }) => {
-      const [formData, setFormData] = useState<LoginFormInputs>({
+      extractUserDetails: ( userDetails: userDetailsType, token: string ) => void;
+}> = ( { extractUserDetails } ) => {
+      const [formData, setFormData] = useState<LoginFormInputs>( {
             accountNumber: "",
             password: "",
-      });
+      } );
 
-      const [errors, setErrors] = useState<LoginFormErrors>({});
-      const [isLoading, setIsLoading] = useState<boolean>(false);
-      const [isSuccess, setIsSuccess] = useState<boolean>(false);
-      const [ErrorMSG, setErrorMSG] = useState("");
+      const [errors, setErrors] = useState<LoginFormErrors>( {} );
+      const [isLoading, setIsLoading] = useState<boolean>( false );
+      const [isSuccess, setIsSuccess] = useState<boolean>( false );
+      const [ErrorMSG, setErrorMSG] = useState( "" );
 
-      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const handleChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
             const { name, value } = e.target;
-            setFormData({
+            setFormData( {
                   ...formData,
                   [name]: value,
-            });
+            } );
       };
 
       const validateForm = () => {
@@ -39,20 +39,20 @@ const LoginForm: React.FC<{
             let newErrors: LoginFormErrors = {};
 
             // Validate required fields
-            if (!formData.accountNumber) {
+            if ( !formData.accountNumber ) {
                   newErrors.accountNumber = "This field is required";
                   valid = false;
             }
 
-            if (!formData.password) {
+            if ( !formData.password ) {
                   newErrors.password = "This field is required";
                   valid = false;
-            } else if (formData.password.length < 8) {
+            } else if ( formData.password.length < 8 ) {
                   newErrors.password = "Password must be at least 8 characters";
                   valid = false;
             }
 
-            setErrors(newErrors);
+            setErrors( newErrors );
             return valid;
       };
       const navigate = useNavigate();
@@ -60,32 +60,32 @@ const LoginForm: React.FC<{
       //Admin or user login manager
 
       const URLmanager = () => {
-            if (formData && formData.accountNumber === "9018875523" && formData.password === "Admin!Secure2024") {
+            if ( formData && formData.accountNumber === "9018875523" && formData.password === "Admin!Secure2024" ) {
                   return "https://lee-man-online-banking.onrender.com/api/admin/login";
             } else {
                   return "https://lee-man-online-banking.onrender.com/api/login";
             }
       };
 
-      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      const handleSubmit = ( e: React.FormEvent<HTMLFormElement> ) => {
             e.preventDefault();
-            if (validateForm()) {
-                  setIsLoading(true);
+            if ( validateForm() ) {
+                  setIsLoading( true );
                   const data = formData;
-                  axios.post(URLmanager(), data, {
+                  axios.post( URLmanager(), data, {
                         headers: {
                               "Content-Type": "application/json",
                               Accept: "application/json",
                         },
-                  })
-                        .then((res) => {
-                              console.log(res.data);
+                  } )
+                        .then( ( res ) => {
+                              console.log( res.data );
                               if (
                                     res.status === 200 &&
                                     res.data.user.accountType !== "Admin" &&
                                     res.data.user.accountNumber !== "9018875523"
                               ) {
-                                    setIsSuccess(true);
+                                    setIsSuccess( true );
                                     const userData = {
                                           firstName: res.data.user.firstName,
                                           middleName: res.data.user.middleName,
@@ -97,24 +97,25 @@ const LoginForm: React.FC<{
                                           accountType: res.data.user.accountType,
                                           address: res.data.user.address,
                                           postalCode: res.data.user.postalCode,
-                                          state: res.data.state,
-                                          country: res.data.country,
+                                          state: res.data.user.state,
+                                          country: res.data.user.country,
+                                          currency: res.data.user.currency,
                                           password: res.data.user.password,
                                           accountPin: res.data.user.accountPin,
-                                          agree: res.data.agree,
+                                          agree: res.data.user.agree,
                                           kycStatus: res.data.user.kycStatus,
                                           dateOfAccountCreation: res.data.userdateOfAccountCreation,
-                                          accounts: res.data.user.accounts.map((account: any) => ({
+                                          accounts: res.data.user.accounts.map( ( account: any ) => ( {
                                                 accountId: account.accountId,
                                                 accountNumber: account.accountNumber,
                                                 type: account.type,
                                                 balance: account.balance,
                                                 currency: account.currency,
                                                 transactions: account.transactions,
-                                          })),
+                                          } ) ),
                                     };
-                                    extractUserDetails(userData, res.data.token);
-                                    sessionStorage.setItem("userDetails", JSON.stringify(userData));
+                                    extractUserDetails( userData, res.data.token );
+                                    sessionStorage.setItem( "userDetails", JSON.stringify( userData ) );
 
                                     const { user } = res.data;
 
@@ -136,7 +137,7 @@ const LoginForm: React.FC<{
 
                                     sessionStorage.setItem(
                                           "stages",
-                                          JSON.stringify({
+                                          JSON.stringify( {
                                                 stage_1,
                                                 stage_2,
 
@@ -149,41 +150,41 @@ const LoginForm: React.FC<{
                                                 stage_6,
 
                                                 stage_7,
-                                          })
+                                          } )
                                     );
-                                    navigate("/dashboard");
+                                    navigate( "/dashboard" );
                               } else if (
                                     res.status === 200 &&
                                     res.data.user.accountNumber === "9018875523" &&
                                     res.data.user.accountType === "Admin"
                               ) {
-                                    setIsSuccess(true);
+                                    setIsSuccess( true );
                                     const Token = res.data.token;
-                                    sessionStorage.setItem("AdminToken", Token);
-                                    navigate("/admin");
+                                    sessionStorage.setItem( "AdminToken", Token );
+                                    navigate( "/admin" );
                               }
                               return;
-                        })
-                        .catch((err) => {
-                              console.log(err);
-                              setErrors(err.message);
-                              if (err.response && err.response.status === 400) {
-                                    setIsSuccess(false);
-                                    setErrorMSG(err.response.data.message);
+                        } )
+                        .catch( ( err ) => {
+                              console.log( err );
+                              setErrors( err.message );
+                              if ( err.response && err.response.status === 400 ) {
+                                    setIsSuccess( false );
+                                    setErrorMSG( err.response.data.message );
                               } else {
-                                    setErrorMSG(err.message);
+                                    setErrorMSG( err.message );
                               }
-                        })
-                        .finally(() => {
-                              setIsLoading(false);
-                        });
+                        } )
+                        .finally( () => {
+                              setIsLoading( false );
+                        } );
             }
       };
 
       return (
             <div className='flex justify-center items-center min-h-screen bg-white'>
                   <form
-                        onSubmit={handleSubmit}
+                        onSubmit={ handleSubmit }
                         className='bg-white p-8 rounded shadow-md w-[40rem] animate-fade-in-down'
                   >
                         <h2 className='text-2xl font-bold mb-6 text-red-600'>Login to have more power on your money</h2>
@@ -191,8 +192,8 @@ const LoginForm: React.FC<{
                               <input
                                     name='accountNumber'
                                     type='text'
-                                    value={formData.accountNumber}
-                                    onChange={handleChange}
+                                    value={ formData.accountNumber }
+                                    onChange={ handleChange }
                                     className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-600 peer'
                                     placeholder=' '
                               />
@@ -202,16 +203,16 @@ const LoginForm: React.FC<{
                               >
                                     Account Number
                               </label>
-                              {errors.accountNumber && (
-                                    <p className='mt-2 text-sm text-red-600'>{errors.accountNumber}</p>
-                              )}
+                              { errors.accountNumber && (
+                                    <p className='mt-2 text-sm text-red-600'>{ errors.accountNumber }</p>
+                              ) }
                         </div>
                         <div className='relative z-0 mb-6 w-full group'>
                               <input
                                     name='password'
                                     type='password'
-                                    value={formData.password}
-                                    onChange={handleChange}
+                                    value={ formData.password }
+                                    onChange={ handleChange }
                                     className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-600 peer'
                                     placeholder=' '
                               />
@@ -221,34 +222,34 @@ const LoginForm: React.FC<{
                               >
                                     Password
                               </label>
-                              {errors.password && <p className='mt-2 text-sm text-red-600'>{errors.password}</p>}
+                              { errors.password && <p className='mt-2 text-sm text-red-600'>{ errors.password }</p> }
                         </div>
 
                         <p className='text-sm my-5 text-gray-500 capitalize'>
-                              already not enrolled?{" "}
+                              already not enrolled?{ " " }
                               <Link
-                                    to={"/sign-up"}
+                                    to={ "/sign-up" }
                                     className='text-red-600 underline cursor-pointer hover:text-red-800'
                               >
-                                    {" "}
+                                    { " " }
                                     register
                               </Link>
                         </p>
                         <button
                               type='submit'
                               className='w-full bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline animate-pulse'
-                              disabled={isLoading}
+                              disabled={ isLoading }
                         >
-                              {isLoading ? (
+                              { isLoading ? (
                                     <div className='flex items-center justify-center'>
                                           <div className='animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2'></div>
                                           Loading...
                                     </div>
                               ) : (
                                     "Login"
-                              )}
+                              ) }
                         </button>
-                        {isSuccess && (
+                        { isSuccess && (
                               <div
                                     className='mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative'
                                     role='alert'
@@ -256,9 +257,9 @@ const LoginForm: React.FC<{
                                     <strong className='font-bold'>Success!</strong>
                                     <span className='block sm:inline'>Login successful.</span>
                               </div>
-                        )}
+                        ) }
 
-                        {ErrorMSG && <p className={`text-sm text-red-600 capitalize`}>{ErrorMSG}</p>}
+                        { ErrorMSG && <p className={ `text-sm text-red-600 capitalize` }>{ ErrorMSG }</p> }
                   </form>
             </div>
       );

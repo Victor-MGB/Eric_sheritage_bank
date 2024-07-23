@@ -97,10 +97,7 @@ const SignUpForm: React.FC = () => {
     }
 
     // Additional validation rules
-    if (
-      formData.email &&
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
-    ) {
+    if (formData.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
       newErrors.email = "Invalid email address";
       valid = false;
     }
@@ -125,7 +122,7 @@ const SignUpForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       setLoading(true);
-      console.log(JSON.stringify(formData));
+      // console.log(JSON.stringify(formData));
       axios
         .post(
           "https://lee-man-online-banking.onrender.com/api/register",
@@ -151,9 +148,7 @@ const SignUpForm: React.FC = () => {
     }
   };
 
-  const isFormEmpty = Object.values(formData).every(
-    (value) => value === "" || value === false
-  );
+  const isFormEmpty = Object.values(formData).every((value) => value === "" || value === false);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white p-7">
@@ -161,9 +156,7 @@ const SignUpForm: React.FC = () => {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded shadow-md w-full max-w-4xl"
       >
-        <h2 className="text-2xl font-bold mb-6 text-red-600">
-          Enroll for a new account now
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-red-600">Enroll for a new account now</h2>
         <div className="grid grid-cols-2 gap-6">
           {[
             { label: "First Name", name: "firstName", type: "text" },
@@ -226,12 +219,19 @@ const SignUpForm: React.FC = () => {
                     onChange={handleCurrencySelect}
                     className="block py-2.5 px-0 w-[10rem] h-[3rem] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-600 peer"
                   >
-                    <option value="" disabled>
+                    <option
+                      value=""
+                      disabled
+                    >
                       Select Currency
                     </option>
                     {input.value &&
                       input.value.map((currency) => (
-                        <option className="text-red-600 h-[3rem] p-2 uppercase font-bold mx-3" key={currency} value={currency}>
+                        <option
+                          className="text-red-600 h-[3rem] p-2 uppercase font-bold mx-3"
+                          key={currency}
+                          value={currency}
+                        >
                           {currency}
                         </option>
                       ))}
@@ -251,7 +251,10 @@ const SignUpForm: React.FC = () => {
               );
             }
             return (
-              <div key={input.name} className="relative z-0 mb-6 w-full group">
+              <div
+                key={input.name}
+                className="relative z-0 mb-6 w-full group"
+              >
                 <input
                   name={input.name}
                   type={input.type}
@@ -310,10 +313,7 @@ const SignUpForm: React.FC = () => {
         >
           Sign Up
         </button>
-        {loading &&
-          !errors.email &&
-          !errors.password &&
-          !errors.confirmPassword && <Spinner />}
+        {loading && !errors.email && !errors.password && !errors.confirmPassword && <Spinner />}
       </form>
     </div>
   );

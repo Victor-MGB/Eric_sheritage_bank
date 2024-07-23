@@ -35,6 +35,7 @@ const Dashboard = () => {
 	const userName = userDataContext?.firstName + " " + userDataContext?.lastName;
 	const Acc = userDataContext?.accounts[0].accountNumber || 0;
 
+	//mobilesidebar activator
 	const handleShowSide = () => {
 		setshowSideBar(!showSideBar);
 	};

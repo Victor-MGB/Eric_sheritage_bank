@@ -1,0 +1,44 @@
+/* Hide the Google Translate widget's default banner */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+/* Customize the appearance of the widget container */
+#google_translate_element .goog-te-gadget-simple {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Customize the font color and size of the widget text */
+#google_translate_element .goog-te-gadget-simple .goog-te-menu-value span {
+  color: #333;
+  font-size: 14px;
+}
+
+/* Customize the appearance of the drop-down icon */
+#google_translate_element .goog-te-gadget-simple .goog-te-menu-value span:after {
+  content: " ▼";
+  font-size: 12px;
+  color: red;
+}
+
+/* Hide the Google Translate logo */
+.goog-logo-link {
+  display: none !important;
+}
+
+/* Customize the appearance of the translate drop-down menu */
+.goog-te-menu-frame.skiptranslate {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure the dropdown menu is in the proper position */
+body {
+  top: 0 !important;
+}

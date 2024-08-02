@@ -3,6 +3,7 @@ import { FaTimes, FaBars } from "react-icons/fa";
 import { BsBank } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import MobileSidebar from "./MobileSideBar";
+import GoogleTranslate from "./GoogleTranslate";
 
 type HeaderContextType = {
       handleOverAll: () => void;
@@ -12,97 +13,98 @@ type HeaderContextType = {
       setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const HeaderContext = createContext<HeaderContextType>({
-      handleOverAll: () => {},
+export const HeaderContext = createContext<HeaderContextType>( {
+      handleOverAll: () => { },
       isOverAllActive: false,
-      setIsOverAllActive: () => {},
+      setIsOverAllActive: () => { },
       activeTab: "",
-      setActiveTab: () => {},
-});
+      setActiveTab: () => { },
+} );
 
 const Header = () => {
-      const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-      const [isOverAllActive, setIsOverAllActive] = useState(false);
-      const [activeTab, setActiveTab] = useState("");
+      const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState( false );
+      const [ isOverAllActive, setIsOverAllActive ] = useState( false );
+      const [ activeTab, setActiveTab ] = useState( "" );
       const navi = useNavigate();
 
       const toggleMobileMenu = () => {
-            setIsMobileMenuOpen(!isMobileMenuOpen);
+            setIsMobileMenuOpen( !isMobileMenuOpen );
       };
 
       //handler for overAll dropdown
       const handleOverAll = () => {
-            setIsOverAllActive(true);
+            setIsOverAllActive( true );
       };
 
       return (
             <HeaderContext.Provider
-                  value={{
+                  value={ {
                         handleOverAll,
                         isOverAllActive,
                         setIsOverAllActive,
                         activeTab,
                         setActiveTab,
-                  }}
+                  } }
             >
                   <header
-                        className={`w-[100vw] h-[4rem] fixed z-30 bg-gray-50 flex items-center justify-between md:p-3 max-w-full`}
+                        className={ `w-[100vw] h-[4rem] fixed z-30 bg-gray-50 flex items-center justify-between md:p-3 max-w-full` }
                   >
-                        {/* Mobile Menu Icon */}
+                        {/* Mobile Menu Icon */ }
                         <div className='lg:hidden flex items-center'>
-                              <button onClick={toggleMobileMenu} className='text-3xl text-red-600'>
-                                    {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+                              <button onClick={ toggleMobileMenu } className='text-3xl text-red-600'>
+                                    { isMobileMenuOpen ? <FaTimes /> : <FaBars /> }
                               </button>
                         </div>
-                        {/* Logo space */}
+                        {/* Logo space */ }
                         <h1
-                              className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}
+                              className={ `lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]` }
                         >
-                              CN{" "}
+                              CN{ " " }
                               <span
-                                    className={`text-white lg:ml-[-0.5rem] mr-[1rem] font-bold text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase`}
+                                    className={ `text-white lg:ml-[-0.5rem] mr-[1rem] font-bold text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase` }
                               >
                                     B
                               </span>
                               <BsBank />
                               <div
-                                    className={`bg-red-600 transform p-5 absolute w-[2%] h-[100%] top-0 left-[6.6rem] lg:left-[10rem]`}
-                                    style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}
+                                    className={ `bg-red-600 transform p-5 absolute w-[2%] h-[100%] top-0 left-[6.6rem] lg:left-[10rem]` }
+                                    style={ { clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" } }
                               ></div>
                         </h1>
 
 
-                        {/* Navigation Links */}
+                        {/* Navigation Links */ }
                         <div
-                              className={`lg:flex left-[0rem]  overflow-hidden w-0 bg-opacity-950 md:hidden flex-col lg:flex-row items-center justify-between lg:w-auto`}
+                              className={ `lg:flex left-[0rem] md:gap-[1rem]  overflow-hidden w-0 bg-opacity-950 md:hidden flex-col lg:flex-row items-center justify-between lg:w-auto` }
                         >
                               <Link
-                                    to={"/"}
-                                    className={`text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1`}
+                                    to={ "/" }
+                                    className={ `text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1` }
                               >
                                     Home
                               </Link>
                               <Navlinks />
+                              <GoogleTranslate />
                         </div>
 
-                        {/* Auth space */}
+                        {/* Auth space */ }
                         <div className='flex justify-between gap-3 h-auto items-center p-1 md:p-3 lg:w-fit '>
                               <button
-                                    onClick={() => navi("/sign-in")}
-                                    className={`md:p-2 text-nowrap p-1 text-sm rounded-none w-fit md:w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer`}
+                                    onClick={ () => navi( "/sign-in" ) }
+                                    className={ `md:p-2 text-nowrap p-1 text-sm rounded-none w-fit md:w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer` }
                               >
                                     log-in
                               </button>
                               <button
-                                    onClick={() => navi("/sign-up")}
-                                    className={`md:p-2 p-1 text-nowrap rounded-none w-fit text-sm hover:bg-black text-white hover:text-white bg-red-600 uppercase cursor-pointer`}
+                                    onClick={ () => navi( "/sign-up" ) }
+                                    className={ `md:p-2 p-1 text-nowrap rounded-none w-fit text-sm hover:bg-black text-white hover:text-white bg-red-600 uppercase cursor-pointer` }
                               >
                                     open account
                               </button>
                         </div>
                   </header>
                   <OverAllDropDown />
-                  {isMobileMenuOpen && <MobileSidebar toggleMobile={toggleMobileMenu} />}
+                  { isMobileMenuOpen && <MobileSidebar toggleMobile={ toggleMobileMenu } /> }
             </HeaderContext.Provider>
       );
 };
@@ -118,43 +120,42 @@ export default Header;
 //
 //
 
-const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boolean) => void }) => {
-      const [isActive, setIsActive] = useState<boolean[]>([false, false, false, false, false, false]);
+const Navlinks = ( prop: { handler?: ( arg: boolean ) => void; handler2?: ( arg: boolean ) => void; } ) => {
+      const [ isActive, setIsActive ] = useState<boolean[]>( [ false, false, false, false, false, false ] );
 
-      const { handleOverAll, setActiveTab } = useContext(HeaderContext);
+      const { handleOverAll, setActiveTab } = useContext( HeaderContext );
 
-      const handleMouseEnter = (index: number) => {
+      const handleMouseEnter = ( index: number ) => {
             // Update isActive state based on index
-            const newIsActive = isActive.map((item, i) => i === index);
-            setIsActive(newIsActive);
+            const newIsActive = isActive.map( ( item, i ) => i === index );
+            setIsActive( newIsActive );
 
             // Call handleOverAll from context
             handleOverAll();
       };
 
-      const handleClick = (index: number, tab: string) => {
-            setActiveTab(tab);
+      const handleClick = ( index: number, tab: string ) => {
+            setActiveTab( tab );
             handleOverAll();
       };
 
       return (
             <ul className='flex flex-col lg:flex-row items-center justify-between gap-4'>
-                  {["personal", "business", "why central?"].map((eachLink, index) => (
+                  { [ "personal", "business", "why central?" ].map( ( eachLink, index ) => (
                         <li
-                              onMouseEnter={() => {
-                                    handleMouseEnter(index);
-                                    handleClick(index, eachLink);
-                              }}
-                              className={` text-sm orbitron text-red-600 hover:border text-wrap border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
-                                    isActive[index]
-                                          ? "border rounded-md transition-all shadow-md shadow-black text-primary"
-                                          : ""
-                              }`}
-                              key={index}
+                              onMouseEnter={ () => {
+                                    handleMouseEnter( index );
+                                    handleClick( index, eachLink );
+                              } }
+                              className={ ` text-sm orbitron text-red-600 hover:border text-wrap border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${ isActive[ index ]
+                                    ? "border rounded-md transition-all shadow-md shadow-black text-primary"
+                                    : ""
+                                    }` }
+                              key={ index }
                         >
-                              {eachLink}
+                              { eachLink }
                         </li>
-                  ))}
+                  ) ) }
             </ul>
       );
 };
@@ -166,15 +167,15 @@ const Navlinks = (prop: { handler?: (arg: boolean) => void; handler2?: (arg: boo
 //
 
 const OverAllDropDown: React.FC = () => {
-      const { isOverAllActive, activeTab, setIsOverAllActive } = useContext(HeaderContext);
+      const { isOverAllActive, activeTab, setIsOverAllActive } = useContext( HeaderContext );
 
       const renderContent = () => {
-            if (activeTab === "personal") {
+            if ( activeTab === "personal" ) {
                   return (
-                        <div className={`flex gap-4 p-2`}>
-                              {/* banking */}
+                        <div className={ `flex gap-4 p-2` }>
+                              {/* banking */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`font-bold`}>Banking</h3>
+                                    <h3 className={ `font-bold` }>Banking</h3>
                                     <ul>
                                           <li>
                                                 <a href='/personal/checking.asp'>Personal Checking</a>
@@ -196,9 +197,9 @@ const OverAllDropDown: React.FC = () => {
                                     </ul>
                               </div>
 
-                              {/* lending */}
+                              {/* lending */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`font-bold`}>Lending</h3>
+                                    <h3 className={ `font-bold` }>Lending</h3>
                                     <ul>
                                           <li>
                                                 <a href='/mortgages/'>Home Mortgages</a>
@@ -221,9 +222,9 @@ const OverAllDropDown: React.FC = () => {
                                     </ul>
                               </div>
 
-                              {/* investment */}
+                              {/* investment */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`font-bold`}>Investments</h3>
+                                    <h3 className={ `font-bold` }>Investments</h3>
                                     <ul>
                                           <li>
                                                 <a href='/whycentral/meetus.asp#trustofficers'>Our Officers</a>
@@ -239,9 +240,9 @@ const OverAllDropDown: React.FC = () => {
                                     </ul>
                               </div>
 
-                              {/* services */}
+                              {/* services */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`font-bold`}>Services</h3>
+                                    <h3 className={ `font-bold` }>Services</h3>
                                     <ul>
                                           <li>
                                                 <a href='/whycentral/onlinemobile.asp'>Online and Mobile Technology</a>
@@ -268,12 +269,12 @@ const OverAllDropDown: React.FC = () => {
                               </div>
                         </div>
                   );
-            } else if (activeTab === "business") {
+            } else if ( activeTab === "business" ) {
                   return (
                         <div className='flex justify-between'>
-                              {/* banking */}
+                              {/* banking */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`font-bold`}>Banking</h3>
+                                    <h3 className={ `font-bold` }>Banking</h3>
                                     <ul>
                                           <li>
                                                 <a href='/business/checking.asp'>Business Checking</a>
@@ -287,7 +288,7 @@ const OverAllDropDown: React.FC = () => {
                                     </ul>
                               </div>
 
-                              {/* service solution */}
+                              {/* service solution */ }
                               <div className='flex flex-col p-2'>
                                     <h3>
                                           <a href='/business/services.asp'>Service Solutions</a>
@@ -321,7 +322,7 @@ const OverAllDropDown: React.FC = () => {
                                     </ul>
                               </div>
 
-                              {/* investment */}
+                              {/* investment */ }
                               <div className='flex flex-col p-2'>
                                     <h3>Investments</h3>
                                     <ul>
@@ -340,12 +341,12 @@ const OverAllDropDown: React.FC = () => {
                               </div>
                         </div>
                   );
-            } else if (activeTab === "why central?") {
+            } else if ( activeTab === "why central?" ) {
                   return (
                         <div className='flex gap-5 p-2 justify-between'>
-                              {/* location */}
+                              {/* location */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`fontbold`}>Locations</h3>
+                                    <h3 className={ `fontbold` }>Locations</h3>
                                     <p>Where can we help you?</p>
                                     <ul>
                                           <li>
@@ -360,9 +361,9 @@ const OverAllDropDown: React.FC = () => {
                                     </ul>
                               </div>
 
-                              {/* technology */}
+                              {/* technology */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`fontbold`}>Technology</h3>
+                                    <h3 className={ `fontbold` }>Technology</h3>
                                     <p>Old bank, new tech.</p>
                                     <ul>
                                           <li>
@@ -388,7 +389,7 @@ const OverAllDropDown: React.FC = () => {
                                           </li>
                                     </ul>
                               </div>
-                              {/* history */}
+                              {/* history */ }
                               <div className='flex flex-col p-2'>
                                     <a href='/history'>
                                           <h3>History</h3>
@@ -402,7 +403,7 @@ const OverAllDropDown: React.FC = () => {
                                     </a>
                               </div>
 
-                              {/* rewards */}
+                              {/* rewards */ }
                               <div className='flex flex-col p-2'>
                                     <a href='/heloc'>
                                           <h3>Rewards</h3>
@@ -416,9 +417,9 @@ const OverAllDropDown: React.FC = () => {
                                     </a>
                               </div>
 
-                              {/* service */}
+                              {/* service */ }
                               <div className='flex flex-col p-2'>
-                                    <h3 className={`fontbold`}>Services</h3>
+                                    <h3 className={ `fontbold` }>Services</h3>
                                     <p>What else can we do for you?</p>
                                     <ul>
                                           <li>
@@ -450,15 +451,14 @@ const OverAllDropDown: React.FC = () => {
 
       return (
             <div
-                  onMouseLeave={() => setIsOverAllActive(false)}
-                  className={`w-[64rem] absolute m-auto left-[12rem] overflow-hidden rounded-md   ${
-                        isOverAllActive
-                              ? "h-[20rem]  p-3 transition-all duration-500 top-[4rem] "
-                              : "h-0 duration-700 transition-all"
-                  } bg-gray-50 text-neutral-600 border-gray-950 shadow-lg shadow-black overflow-hidden`}
-                  style={{ zIndex: 20 }}
+                  onMouseLeave={ () => setIsOverAllActive( false ) }
+                  className={ `w-[64rem] absolute m-auto left-[12rem] overflow-hidden rounded-md   ${ isOverAllActive
+                        ? "h-[20rem]  p-3 transition-all duration-500 top-[4rem] "
+                        : "h-0 duration-700 transition-all"
+                        } bg-gray-50 text-neutral-600 border-gray-950 shadow-lg shadow-black overflow-hidden` }
+                  style={ { zIndex: 20 } }
             >
-                  {renderContent()}
+                  { renderContent() }
             </div>
       );
 };

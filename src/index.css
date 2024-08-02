@@ -168,7 +168,9 @@ a {
   color: #3498db;
 }
 
-img[alt="Google Google Übersetzer"] {
+img[alt="Google Google Übersetzer"],
+img[alt="Google Translate"],
+a[href="https://translate.google.com"] {
   display: none;
 }
 .goog-te-combo {

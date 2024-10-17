@@ -1,3 +1,5 @@
+import type { px } from "framer-motion";
+import { relative } from "path";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 
@@ -57,34 +59,37 @@ const MobileSidebar: React.FC<{toggleMobile:()=>void}> = ({toggleMobile}) => {
       };
 
       return (
-            <div className='w-[15rem] h-screen fixed z-50 bottom-[-5rem] md:hidden block bg-black bg-opacity-90 text-slate-100 p-4'>
-                  {menuItems.map((menu, index) => (
-                        <div key={index} className='mb-6'>
-                              <h3
-                                    className='font-bold bg-red-300 justify-between rounded-md p-3 my-6 w-full mb-2 cursor-pointer flex items-center'
-                                    onClick={() => toggleMenu(index)}
-                              >
-                                    {menu.title}
-                                    {openIndices.includes(index) ? (
-                                          <FaChevronDown className='ml-2' />
-                                    ) : (
-                                          <FaChevronRight className='ml-2' />
-                                    )}
-                              </h3>
-                              {openIndices.includes(index) && (
-                                    <ul>
-                                          {menu.children.map((item, idx) => (
-                                                <li key={idx} className='mb-1 bg-slate-50 flex items-center'>
-                                                      <FaChevronRight className='mr-2' />
-                                                      <a href={item.link}>{item.name}</a>
-                                                </li>
-                                          ))}
-                                    </ul>
-                              )}
-                        </div>
+        <div className="w-[15rem]  top-[63px] fixed z-50 bottom-[-5rem] md:hidden block bg-black bg-opacity-90 text-slate-100 p-4">
+          {menuItems.map((menu, index) => (
+            <div
+              key={index}
+              className="mb-6">
+              <h3
+                className="font-bold bg-red-300 justify-between rounded-md p-3 my-6 w-full mb-2 cursor-pointer flex items-center"
+                onClick={() => toggleMenu(index)}>
+                {menu.title}
+                {openIndices.includes(index) ? (
+                  <FaChevronDown className="ml-2" />
+                ) : (
+                  <FaChevronRight className="ml-2" />
+                )}
+              </h3>
+              {openIndices.includes(index) && (
+                <ul>
+                  {menu.children.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="mb-1 bg-slate-50 flex items-center">
+                      <FaChevronRight className="mr-2" />
+                      <a href={item.link}>{item.name}</a>
+                    </li>
                   ))}
+                </ul>
+              )}
             </div>
+          ))}
+        </div>
       );
 };
 
-export default MobileSidebar;
+export default MobileSidebar;    

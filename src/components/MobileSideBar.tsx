@@ -1,5 +1,3 @@
-import type { px } from "framer-motion";
-import { relative } from "path";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 

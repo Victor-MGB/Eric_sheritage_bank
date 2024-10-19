@@ -47,7 +47,6 @@ const Header = () => {
       }}>
       <header
         className={`w-[100vw] md:h-[4rem] h-auto  fixed z-30 bg-gray-50 flex flex-col md:flex-row items-center justify-between md:p-3 max-w-full`}>
-
         {/* secondHeader */}
         <div className="flex w-full h-[4rem] justify-between items-center">
           {/* Mobile Menu Icon */}
@@ -81,7 +80,10 @@ const Header = () => {
               Home
             </Link>
             <Navlinks />
-            <GoogleTranslate />
+            {/* hide the translator in small screen */}
+            <div className={`hidden md:block`}>
+              <GoogleTranslate />
+            </div>
           </div>
 
           {/* Auth space */}
@@ -100,10 +102,11 @@ const Header = () => {
         </div>
 
         {/* innerHeader */}
-        <div className={`md:hidden innerHeader w-full h-[3rem] bg-black flex items gap-2`}>
+        <div
+          className={`md:hidden innerHeader w-full h-[3rem] bg-neutral-800 flex items-center justify-between gap-2`}>
           {" "}
           <p className={"text-red-400 text-sm text-wrap w-[50%] font-mono text-center capitalize "}>
-            find your perfect language :
+            select-language:
           </p>{" "}
           <GoogleTranslate />
         </div>

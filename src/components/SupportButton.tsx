@@ -7,7 +7,7 @@ const SupportButton = () => {
   };
 
   return (
-    <div className="fixed top-[80%] left-[80%] md:top-[53rem] rounded-full  md:left-[93rem] animate-bounce shadow-lg shadow-primary  z-50  flex flex-col space-y-2">
+    <div className="fixed top-[65%] left-[60%] md:top-[53rem] rounded-full  md:left-[93rem] animate-bounce shadow-lg shadow-primary  z-50  flex flex-col space-y-2">
       <button
         onClick={openWhatsApp}
         className="p-4 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition duration-300 peer">

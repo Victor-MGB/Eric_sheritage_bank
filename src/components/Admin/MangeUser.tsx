@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../../hooks/UseSpinner";
 import type { User } from "./Users.js";
-import type { map } from "leaflet";
 
 const UserList: React.FC = () => {
       const [users, setUsers] = useState<User[]>([]);
@@ -77,55 +76,39 @@ const UserList: React.FC = () => {
             }
       };
 
-      const handleStageToggle = async (userId: string, stage: string, value: boolean) => {
-      try {
-            setLoading(true);
+      const handleStageToggle = async (userId: string, stage: string, value?: boolean) => {
+            try {
+                  setLoading(true);
+                  const response = await axios.post(`https://lee-man-online-banking.onrender.com/api/update-${stage}`, {
+                        userId: userId,
+                  });
 
-            // Optimistically update the user state
-            setUsers((prevUsers) =>
-                  prevUsers.map((user) => {
-                        if (user._id === userId) {
-                              return {
-                                    ...user,
-                                    [stage]: value,
-                              };
+                  if (response.status === 200 && response.data.user) {
+                        const updatedUser = users.find((User: User) => User._id === userId);
+                        console.log("update response", response);
+                        // Ensure the user is found and update the state
+                        if (updatedUser) {
+                              setUsers((prevUsers) =>
+                                    prevUsers.map((user) => (user._id === userId ? updatedUser : user))
+                              );
                         }
-                        return user;
-                  })
-            );
-
-            const response = await axios.post(
-                  `https://lee-man-online-banking.onrender.com/api/update-${stage}`,
-                  {
-                        userId,
+                        setLoading(false);
+                        setStageMessages((prev) => ({ ...prev, [`${userId}-${stage}`]: "Updated successfully." }));
                   }
-            );
-
-            if (response.status === 200 && response.data.user) {
-                  const updatedUser = response.data.user;
-
-                  // Update the state again with the server's response (if needed)
-                  setUsers((prevUsers) =>
-                        prevUsers.map((user) => (user._id === userId ? updatedUser : user))
-                  );
-
-                  setStageMessages((prev) => ({
-                        ...prev,
-                        [`${userId}-${stage}`]: "Updated successfully.",
-                  }));
+            } catch (error: any) {
+                  if (error.response && error.response.data) {
+                        console.error("Error updating stage:", error);
+                        setLoading(false);
+                        setStageMessages((prev) => ({ ...prev, [`${userId}-${stage}`]: error.response.data.message }));
+                  } else {
+                        console.log("Error updating stage:", error);
+                        setLoading(false);
+                        setStageMessages((prev) => ({ ...prev, [`${userId}-${stage}`]: "Error updating stage." }));
+                  }
+            } finally {
+                  setLoading(false);
             }
-      } catch (error: any) {
-            console.error("Error updating stage:", error);
-
-            setStageMessages((prev) => ({
-                  ...prev,
-                  [`${userId}-${stage}`]: "Error updating stage.",
-            }));
-      } finally {
-            setLoading(false);
-      }
-};
-
+      };
 
       return (
             <div className='container mx-auto p-4 overflow-scroll overflow-x-hidden h-[100%]'>

@@ -31,7 +31,7 @@ const Stage_7: React.FC = () => {
         </ul>
         <div className="mb-4 flex items-center">
           <FaPhoneAlt className="text-blue-500 mr-2" />
-          <span className="text-gray-700"> +15056075322</span>
+          <span className="text-gray-700"> +16162506969</span>
         </div>
         <div className="mb-4 flex items-center">
           <FaEnvelope className="text-blue-500 mr-2" />

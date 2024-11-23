@@ -15,12 +15,11 @@ const Stage_2 = () => {
         </p>
         <div className="mb-4 flex items-center">
           <FaPhoneAlt className="text-blue-500 mr-2" />
-          <span className="text-gray-700"> +15056075322</span>
+          <span className="text-gray-700"> +16162506969</span>
         </div>
         <div className="mb-4 flex items-center">
           <FaEnvelope className="text-blue-500 mr-2" />
-          <span className="text-gray-700">						
-centrallNationalbank@gmail.com</span>
+          <span className="text-gray-700">centrallNationalbank@gmail.com</span>
         </div>
         <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
           Contact Support

@@ -190,7 +190,7 @@ const UserList: React.FC = () => {
                                             </div>
 
                                             <div className='flex flex-col'>
-                                                  {Array.from({ length: 7 }, (_, i) => `stage_${i + 1}`).map(
+                                                  {Array.from({ length: 11 }, (_, i) => `stage_${i + 1}`).map(
                                                         (stage) => (
                                                               <div className={`flex gap-2`}>
                                                                     <label

@@ -14,7 +14,8 @@ const Stage_10: React.FC = () => {
           <h2 className="text-2xl font-bold ml-4 text-gray-800">Complete Your KYC</h2>
         </div>
         <p className="text-gray-600 mb-4">
-          To ensure compliance with regulations and keep your account secure, please complete your KYC process.
+          To ensure compliance with regulations and keep your account secure, please complete your
+          KYC process.
         </p>
         <div className="flex flex-col gap-4 mb-6">
           <input
@@ -31,17 +32,14 @@ const Stage_10: React.FC = () => {
             type="file"
             className="w-full p-2 text-gray-500 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
-          <button
-            className="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">
+          <button className="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">
             Submit KYC
           </button>
         </div>
-        <p className="text-gray-600 mb-4">
-          Need assistance? Contact us:
-        </p>
+        <p className="text-gray-600 mb-4">Need assistance? Contact us:</p>
         <div className="mb-4 flex items-center">
           <FaPhoneAlt className="text-blue-500 mr-2" />
-          <span className="text-gray-700">+16162506969</span>
+          <span className="text-gray-700">+16623605122</span>
         </div>
         <div className="mb-4 flex items-center">
           <FaEnvelope className="text-blue-500 mr-2" />

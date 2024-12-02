@@ -104,7 +104,7 @@ const ContactCenter: React.FC = () => {
         <div className="bg-black p-6 rounded-lg shadow-md bg-opacity-35 w-[40rem]">
           <h3 className="text-xl font-bold mb-4 flex flex-col">Get in Touch</h3>
           <p className="flex items-center text-gray-700 mb-2">
-            <FaPhone className="mr-2 text-blue-500" /> +16162506969
+            <FaPhone className="mr-2 text-blue-500" /> +16623605122
           </p>
           <p className="flex items-center text-gray-700 mb-2">
             <FaEnvelope className="mr-2 text-blue-500" />

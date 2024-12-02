@@ -206,7 +206,7 @@ const UserList: React.FC = () => {
                                                                                             stage,
                                                                                             e.target.checked
                                                                                       );
-                                                                                      console.log("user stage", stage);
+                                                                                      console.log("user stage", stage,);
                                                                                 }}
                                                                           />
                                                                           <span>

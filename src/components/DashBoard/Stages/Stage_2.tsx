@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 
 const Stage_2 = () => {
   return (
@@ -14,12 +14,12 @@ const Stage_2 = () => {
           For assistance, reach out to our support team at:
         </p>
         <div className="mb-4 flex items-center">
-          <FaPhoneAlt className="text-blue-500 mr-2" />
-          <span className="text-gray-700"> +16623605122</span>
+          {/* <FaPhoneAlt className="text-blue-500 mr-2" /> */}
+          {/* <span className="text-gray-700"> +16623605122</span> */}
         </div>
         <div className="mb-4 flex items-center">
           <FaEnvelope className="text-blue-500 mr-2" />
-          <span className="text-gray-700">centrallNationalbank@gmail.com</span>
+          <span className="text-gray-700">Sheritage144@gmail.com</span>
         </div>
         <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
           Contact Support

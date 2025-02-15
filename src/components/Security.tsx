@@ -14,7 +14,7 @@ export default Security;
 
 const SecurityInfoCard: React.FC = () => (
 	<div className='bg-white p-6 rounded-lg shadow-lg max-w-xl'>
-		<h2 className='text-2xl font-bold mb-4 orbitron text-red-600'>We’re serious about your security</h2>
+		<h2 className='text-2xl font-bold mb-4 orbitron text-yellow-600'>We’re serious about your security</h2>
 		<p className='mb-4 jost'>
 			We use industry-first technology, like a tool that tells you whether or not you're speaking to a
 			scammer in real time, to keep you safe.

@@ -62,10 +62,10 @@ const Section2 = () => {
 				{features.map((feature, index) => (
 					<div
 						key={index}
-						className=' w-full md:w-[15rem] relative flex flex-col items-center md:p-6 bg-red-200 rounded-lg overflow-hidden group hover:shadow-md shadow-red-500 '
+						className=' w-full md:w-[15rem] relative flex flex-col items-center md:p-6 bg-yellow-200 rounded-lg overflow-hidden group hover:shadow-md shadow-yellow-500 '
 					>
-						<div className='absolute inset-0 bg-red-600 h-0 group-hover:h-full transition-all duration-500 ease-in-out'></div>
-						<div className='relative z-10 mb-4 text-red-500 group-hover:text-white transition-colors duration-300 ease-in-out'>
+						<div className='absolute inset-0 bg-yellow-600 h-0 group-hover:h-full transition-all duration-500 ease-in-out'></div>
+						<div className='relative z-10 mb-4 text-yellow-500 group-hover:text-white transition-colors duration-300 ease-in-out'>
 							{feature.icon}
 						</div>
 						<h3 className='relative z-10 mb-2 text-lg font-semibold text-center group-hover:text-white transition-colors duration-300 ease-in-out'>
@@ -125,8 +125,8 @@ export const FinancialGuidance = () => {
 
 				<div className='mt-8 flex flex-col space-y-8'>
 					<div className='flex items-start'>
-						<div className='p-4 bg-red-100 rounded-full'>
-							<FaDollarSign className='text-red-500 text-2xl' />
+						<div className='p-4 bg-yellow-100 rounded-full'>
+							<FaDollarSign className='text-yellow-500 text-2xl' />
 						</div>
 						<div className='ml-4'>
 							<h3 className='text-lg font-semibold'>Solution Focused</h3>
@@ -231,7 +231,7 @@ const Services: React.FC = () => {
 	});
 
 	return (
-		<section className='flex flex-col items-center justify-center w-full p-4 py-10 bg-red-600 bg-opacity-10 rounded-3xl'>
+		<section className='flex flex-col items-center justify-center w-full p-4 py-10 bg-yellow-600 bg-opacity-10 rounded-3xl'>
 			<h2 className='text-3xl font-bold mb-6'>Online Banking at Your Fingertips</h2>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl'>
 				{services.map((service, index) => (
@@ -242,7 +242,7 @@ const Services: React.FC = () => {
               ${inView ? " translate-y-0 transition-all duration-700" : " translate-y-10 duration-700 transition-all"}`}
 						style={{ transitionDelay: `${index * 20}ms` }}
 					>
-						<div className='text-red-500 mb-4  group-hover:relative group-hover:text-white z-20 group-hover:animate-pulse animate-none'>
+						<div className='text-yellow-500 mb-4  group-hover:relative group-hover:text-white z-20 group-hover:animate-pulse animate-none'>
 							{service.icon}
 						</div>
 						<h3 className='text-xl font-semibold mb-2 group-hover:relative group-hover:text-white z-20 orbitron'>
@@ -255,7 +255,7 @@ const Services: React.FC = () => {
 								</li>
 							))}
 						</ul>
-						<div className='absolute border h-0 inset-0 bg-red-600 bg-opacity-50 group-hover:opacity-20 group-hover:duration-700 group-hover:transition-all group-hover:h-full  duration-700 transition-all z-0'></div>
+						<div className='absolute border h-0 inset-0 bg-yellow-600 bg-opacity-50 group-hover:opacity-20 group-hover:duration-700 group-hover:transition-all group-hover:h-full  duration-700 transition-all z-0'></div>
 					</div>
 				))}
 			</div>
@@ -313,7 +313,7 @@ const EMICalculator = () => {
 						: "-translate-x-10  transform transition-all duration-700"
 				}`}
 			>
-				<h2 className='text-red-500 text-sm font-semibold mb-2'>CALCULATE LOAN</h2>
+				<h2 className='text-yellow-500 text-sm font-semibold mb-2'>CALCULATE LOAN</h2>
 				<h1 className='text-3xl font-bold mb-6'>Online EMI Calculator</h1>
 				<form className='space-y-4' onSubmit={calculateEMI}>
 					<input
@@ -340,14 +340,14 @@ const EMICalculator = () => {
 					<div className='flex space-x-4'>
 						<button
 							type='submit'
-							className='w-full p-3 bg-red-500 text-white rounded hover:bg-red-600'
+							className='w-full p-3 bg-red-500 text-white rounded hover:bg-yellow-600'
 						>
 							Calculate
 						</button>
 						<button
 							type='button'
 							onClick={resetForm}
-							className='w-full p-3 border border-red-500 text-red-500 rounded hover:bg-red-50'
+							className='w-full p-3 border border-yellow-500 text-yellow-500 rounded hover:bg-yellow-50'
 						>
 							Reset Data
 						</button>
@@ -449,7 +449,7 @@ const StatisticsSection: React.FC = () => {
 			className='flex relative p-2 w-full md:w-[80rem] md:h-[9rem] top-[1rem] md:top-[-5rem] flex-col md:flex-row justify-center items-center '
 		>
 			<div className='flex items-center  justify-between w-full text-center p-4 bg-gray-50'>
-				<div className={`w-[4rem] h-[4rem] rounded-full bg-red-200 flex items-center  justify-center`}>
+				<div className={`w-[4rem] h-[4rem] rounded-full bg-yellow-200 flex items-center  justify-center`}>
 					<FaUserAlt size={40} className='mx-auto mb-2 text-red-500' />
 				</div>
 				<h3 className='text-xl font-bold' ref={clientsRef}>
@@ -459,17 +459,17 @@ const StatisticsSection: React.FC = () => {
 			</div>
 
 			<div className='flex items-center  justify-between w-full text-center p-4 bg-gray-950 text-white'>
-				<div className={`w-[4rem] h-[4rem] rounded-full bg-red-200 flex items-center  justify-center`}>
+				<div className={`w-[4rem] h-[4rem] rounded-full bg-yellow-200 flex items-center  justify-center`}>
 					<FaUniversity size={40} className='mx-auto mb-2 text-gray-900' />
 				</div>
 				<h3 className='text-xl font-bold text-white' ref={transactionsRef}>
 					0 Bn
-				</h3>
+				</h3>items
 				<p>Total Transactions</p>
 			</div>
 
-			<div className='flex items-center  justify-between w-full text-center p-4 text-white bg-red-600'>
-				<div className={`w-[4rem] h-[4rem] rounded-full bg-red-200 flex items-center  justify-center`}>
+			<div className='flex items-center  justify-between w-full text-center p-4 text-white bg-yellow-600'>
+				<div className={`w-[4rem] h-[4rem] rounded-full bg-yellow-200 flex items-center  justify-center`}>
 					{" "}
 					<FaBuilding size={40} className='mx-auto mb-2 text-black' />
 				</div>
@@ -510,7 +510,7 @@ const MobileAppSection: React.FC = () => {
 
 			{/* Right Section with Text and Buttons */}
 			<div className='flex-1 text-center lg:text-left p-4 lg:p-8 w-full lg:w-1/2'>
-				<h2 className='text-red-600 font-semibold mb-2'>MOBILE APP</h2>
+				<h2 className='text-yellow-600 font-semibold mb-2'>MOBILE APP</h2>
 				<h1 className='text-3xl md:text-4xl font-bold mb-4'>Get the Fastest and Most Secure Banking</h1>
 				<p className='text-gray-600 mb-4'>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis, suscipit you take
@@ -553,21 +553,21 @@ const TestimonialCarousel: React.FC = () => {
 			name: "Rolier Demonil",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-3.png",
-			review: "Central National Banking has been a game-changer for me. Their exceptional service and personalized approach have made managing my finances a breeze. I highly recommend their services.",
+			review: "Sheritage Banking has been a game-changer for me. Their exceptional service and personalized approach have made managing my finances a breeze. I highly recommend their services.",
 
 		},
 		{
 			name: "Sandra Bullock",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-1.png",
-			review: "I've been a customer of Central National Banking for years, and I'm consistently impressed by their professionalism and commitment to customer satisfaction. They truly go above and beyond.",
+			review: "I've been a customer of Sheritage Banking for years, and I'm consistently impressed by their professionalism and commitment to customer satisfaction. They truly go above and beyond.",
 
 		},
 		{
 			name: "Julien Anthor",
 			position: "Manager",
 			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/testimonial-2.png",
-			review: "Central National Banking has been a trusted partner in my financial journey. Their knowledgeable staff and innovative solutions have helped me achieve my financial goals with ease.",
+			review: "Sheritage Banking has been a trusted partner in my financial journey. Their knowledgeable staff and innovative solutions have helped me achieve my financial goals with ease.",
 
 		},
 	];
@@ -704,7 +704,7 @@ const Card: React.FC<CardProps> = ({ date, title, imgSrc }) => {
 				</div>
 
 				{/* read more */}
-				<button className='mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition'>
+				<button className='mt-4 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition'>
 					Read More
 				</button>
 			</div>

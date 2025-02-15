@@ -38,11 +38,11 @@ const Stage_8: React.FC = () => {
         </p>
         <div className="mb-4 flex items-center">
           <FaPhoneAlt className="text-blue-500 mr-2" />
-          <span className="text-gray-700">+16623605122</span>
+          {/* <span className="text-gray-700">+16623605122</span> */}
         </div>
         <div className="mb-4 flex items-center">
           <FaEnvelope className="text-blue-500 mr-2" />
-          <span className="text-gray-700">centrallNationalbank@gmail.com</span>
+          <span className="text-gray-700">Sheritage144@gmail.com</span>
         </div>
         <div className="mb-4 flex items-center">
           <FaShieldAlt className="text-green-500 mr-2" />

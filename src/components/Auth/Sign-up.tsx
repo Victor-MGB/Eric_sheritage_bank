@@ -156,7 +156,7 @@ const SignUpForm: React.FC = () => {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded shadow-md w-full max-w-4xl"
       >
-        <h2 className="text-2xl font-bold mb-6 text-red-600">Enroll for a new account now</h2>
+        <h2 className="text-2xl font-bold mb-6 text-yellow-600">Enroll for a new account now</h2>
         <div className="grid grid-cols-2 gap-6">
           {[
             { label: "First Name", name: "firstName", type: "text" },
@@ -285,7 +285,7 @@ const SignUpForm: React.FC = () => {
             type="checkbox"
             checked={formData.termsAgreement}
             onChange={handleChange}
-            className="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500"
+            className="w-4 h-4 text-yellow-600 bg-gray-100 border-gray-300 rounded focus:ring-yellow-500"
           />
           <label
             htmlFor="termsAgreement"
@@ -294,21 +294,31 @@ const SignUpForm: React.FC = () => {
             I termsAgreement to the terms and conditions
           </label>
           {errors.termsAgreement && (
-            <p className="mt-2 text-sm text-red-600">{errors.termsAgreement}</p>
+            <p className="mt-2 text-sm text-yellow-600">{errors.termsAgreement}</p>
           )}
         </div>
         <p className="text-sm my-5 text-gray-600">
           Already enrolled?{" "}
           <Link
             to={"/sign-in"}
-            className="text-red-500 underline cursor-pointer"
+            className="text-yellow-500 underline cursor-pointer"
           >
             Sign in
           </Link>
         </p>
+
+        <p className="text-sm my-5 text-gray-600">
+          Go back home?{" "}
+          <Link
+            to={"/"}
+            className="text-yellow-500 underline cursor-pointer"
+          >
+            Home
+          </Link>
+        </p>
         <button
           type="submit"
-          className="w-full bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="w-full bg-yellow-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           disabled={isFormEmpty || loading}
         >
           Sign Up

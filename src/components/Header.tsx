@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from "react";
 import { FaTimes, FaBars } from "react-icons/fa";
-import { BsBank } from "react-icons/bs";
+import { PiBankFill } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
 import MobileSidebar from "./MobileSideBar";
 import GoogleTranslate from "./GoogleTranslate";
@@ -59,16 +59,16 @@ const Header = () => {
           </div>
           {/* Logo space */}
           <h1
-            className={`lg:font-bold flex items-center justify-start text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase bg-red-600 p-1 w-[8rem] lg:w-[11rem]`}>
-            CN{" "}
+            className={`lg:font-bold flex items-center justify-start font-bold lg:text-5xl uppercase bg-yellow-600 p-1 w-[8rem] lg:w-[11rem]`}>
+            SH{" "}
             <span
-              className={`text-white lg:ml-[-0.5rem] mr-[1rem] font-bold text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase`}>
+              className={`text-white mr-[1rem] font-bold text-3xl lg:text-5xl dancing-script drop-shadow-lg uppercase`}>
               B
             </span>
-            <BsBank />
-            <div
+            <PiBankFill />
+            {/* <div
               className={`bg-red-600 transform p-5 absolute w-[2%] h-[100%] top-0 left-[6.6rem] lg:left-[10rem]`}
-              style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}></div>
+              style={{ clipPath: "polygon(100% 0%, 0% 50%, 100% 100%, 0 100%, 0 50%, 0 0)" }}></div> */}
           </h1>
 
           {/* Navigation Links */}
@@ -76,7 +76,7 @@ const Header = () => {
             className={`lg:flex left-[0rem] md:gap-[1rem]  overflow-hidden w-0 bg-opacity-950 md:hidden flex-col lg:flex-row items-center justify-between lg:w-auto`}>
             <Link
               to={"/"}
-              className={`text-lg orbitron text-red-600 hover:border border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1`}>
+              className={`font-bold text-yellow-600 hover:text-gray-300 border-black hover:p-2 uppercase bold p-2 m-1`}>
               Home
             </Link>
             <Navlinks />
@@ -90,12 +90,12 @@ const Header = () => {
           <div className="flex justify-between gap-3 h-auto items-center p-1 md:p-3 lg:w-fit ">
             <button
               onClick={() => navi("/sign-in")}
-              className={`md:p-2 text-nowrap p-1 text-sm rounded-none w-fit md:w-[7rem] bg-transparent border border-black text-red-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer`}>
+              className={`md:p-2 text-nowrap p-1 text-sm rounded-none w-fit md:w-[7rem] bg-transparent border border-black text-yellow-600 hover:text-white hover:bg-red-600 uppercase cursor-pointer`}>
               log-in
             </button>
             <button
               onClick={() => navi("/sign-up")}
-              className={`md:p-2 p-1 text-nowrap rounded-none w-fit text-sm hover:bg-black text-white hover:text-white bg-red-600 uppercase cursor-pointer`}>
+              className={`md:p-2 p-1 text-nowrap rounded-none w-fit text-sm hover:bg-black text-white hover:text-white bg-yellow-600 uppercase cursor-pointer`}>
               open account
             </button>
           </div>
@@ -158,7 +158,7 @@ const Navlinks = (prop: {
             handleMouseEnter(index);
             handleClick(index, eachLink);
           }}
-          className={` text-sm orbitron text-red-600 hover:border text-wrap border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
+          className={` text-sm orbitron text-yellow-600 hover:border text-wrap border-black hover:p-2 transition-all duration-300 uppercase bold p-2 cursor-pointer m-1 ${
             isActive[index]
               ? "border rounded-md transition-all shadow-md shadow-black text-primary"
               : ""

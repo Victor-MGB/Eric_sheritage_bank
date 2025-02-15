@@ -5,35 +5,35 @@ const Banner: React.FC = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const slides = [
 		{
-			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/banner-1.jpg",
+			image: "https://saref.netlify.app/img/bg-img/bg1.jpg",
 			patterns: [
 				"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-1.png",
 				"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-2.png",
 			],
-			heading: "Open our <span>Current</span> <br> Account Online",
+			heading: "Open Your <span>Active</span> <br> Account Online",
 			text: "This statistic is based on our average personal current account online <br> opening time from the last 12 months.",
 			link: "https://23july.hostlin.com/metrobank/contact/",
 		},
 		{
-			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/banner-2.jpg",
+			image: "https://i.pinimg.com/236x/26/d3/63/26d36319beffe7ebfe1e0c6fa0fc2c40.jpg",
 			patterns: [
 				"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-1.png",
 				"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-2.png",
 			],
-			heading: "Open our <span>Current</span> <br> Account Online",
+			heading: "Open Your <span>Active</span> <br> Account Online",
 			text: "This statistic is based on our average personal current account online <br> opening time from the last 12 months.",
 			link: "https://23july.hostlin.com/metrobank/contact/",
 		},
-		{
-			image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/banner-3.jpg",
-			patterns: [
-				"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-1.png",
-				"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-2.png",
-			],
-			heading: "Open our <span>Current</span> <br> Account Online",
-			text: "This statistic is based on our average personal current account online <br> opening time from the last 12 months.",
-			link: "https://23july.hostlin.com/metrobank/contact/",
-		},
+		// {
+		// 	image: "https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/banner-3.jpg",
+		// 	patterns: [
+		// 		"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-1.png",
+		// 		"https://23july.hostlin.com/metrobank/wp-content/uploads/2023/10/shape-2.png",
+		// 	],
+		// 	heading: "Open Your <span>Active</span> <br> Account Online",
+		// 	text: "This statistic is based on our average personal current account online <br> opening time from the last 12 months.",
+		// 	link: "https://23july.hostlin.com/metrobank/contact/",
+		// },
 	];
 
 	const handlePrev = () => {

@@ -6,13 +6,10 @@ const Stage_1 = () => {
  return (
 		<div className='h-full w-full m-3 md:m-0 flex items-center justify-center bg-black bg-opacity-40'>
 			<div className='bg-white p-8 rounded-lg shadow-lg w-full max-w-md'>
-				<h2 className='text-2xl font-bold mb-6 text-center'>Upload Your Identification</h2>
+				<h2 className='text-2xl font-bold mb-6 text-center'>Let the admin check your ID</h2>
 				<p className='text-gray-700 mb-4'>
-					To proceed, please upload a valid form of identification such as an international passport
-					or driver's license. This step is necessary to verify your identity and activate your
-					account. Kindly note that account activation requires both document submission and a
-					payment as per our terms and conditions. Additional steps may be required to complete the
-					activation process.
+				To continue, please upload a valid form of identification, such as an international passport or driver's license. This is required to verify your identity and activate your account.
+Account activation involves both document submission and payment, as outlined in our terms and conditions. Additional steps may be necessary to complete the process.
 				</p>
 				<div className='mb-4'>
 					<label className='block text-gray-700 mb-2' htmlFor='fileUpload'>

@@ -30,7 +30,7 @@ const TravelInfoComponent: React.FC = () => {
 				isVisible ? "opacity-100 z-10 translate-x-0" : "opacity-0 -translate-x-[10rem]"
 			}min-h-screen bg-gray-100 p-6 flex flex-col items-center`}
 		>
-			<h1 className='text-4xl w-fit text-nowrap font-bold mb-8'>Travel with Ease when Banking with CNB</h1>
+			<h1 className='text-4xl w-fit text-nowrap font-bold mb-8'>Travel with Ease when Banking with SHB</h1>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-screen-lg'>
 				<TravelFeesCard />
 				<ExchangeRateCard />
@@ -48,7 +48,7 @@ const CashWithdrawalsCard: React.FC<{ classStyle?: string }> = ({ classStyle }) 
 	>
 		<h2 className='text-2xl font-bold mb-4'>Make free cash withdrawals</h2>
 		<p className='mb-4'>
-			If CNB is your main bank account, make unlimited fee-free cash withdrawals abroad in the European
+			If SHB is your main bank account, make unlimited fee-free cash withdrawals abroad in the European
 			Economic Area (EEA), and up to £200 every 30 days for free outside the EEA. After that, we’ll charge
 			3%.
 		</p>

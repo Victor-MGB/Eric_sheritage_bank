@@ -74,7 +74,7 @@ const OTPPage: React.FC = () => {
 	return (
 		<div className='flex justify-center items-center min-h-screen bg-white p-7'>
 			<div className='bg-white p-8 rounded shadow-md w-full max-w-md text-center'>
-				<h2 className='text-3xl font-bold mb-4 text-red-600'>Verify OTP</h2>
+				<h2 className='text-3xl font-bold mb-4 text-yellow-600'>Verify OTP</h2>
 				<p className='mb-6 text-gray-600'>
 					Please enter the OTP sent to your registered email to complete your registration.
 				</p>
@@ -102,7 +102,7 @@ const OTPPage: React.FC = () => {
 					{error && <p className='mb-4 text-sm text-red-600'>{error}</p>}
 					<button
 						type='submit'
-						className='w-full bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+						className='w-full bg-yellow-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline'
 					>
 						Verify OTP
 					</button>

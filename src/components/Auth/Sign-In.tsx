@@ -48,7 +48,7 @@ const LoginForm: React.FC<{
       newErrors.password = "This field is required";
       valid = false;
     } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
+      newErrors.password = "Password must be at least 8 charact9018875523ers";
       valid = false;
     }
 
@@ -62,8 +62,8 @@ const LoginForm: React.FC<{
   const URLmanager = () => {
     if (
       formData &&
-      formData.accountNumber === "9018875523" &&
-      formData.password === "Admin!Secure2024"
+      formData.accountNumber === "2683002668" &&
+      formData.password === "12345678"
     ) {
       return "https://lee-man-online-banking.onrender.com/api/admin/login";
     } else {
@@ -88,7 +88,7 @@ const LoginForm: React.FC<{
           if (
             res.status === 200 &&
             res.data.user.accountType !== "Admin" &&
-            res.data.user.accountNumber !== "9018875523"
+            res.data.user.accountNumber !== "2683002668"
           ) {
             setIsSuccess(true);
             const userData = {
@@ -168,12 +168,13 @@ const LoginForm: React.FC<{
             navigate("/dashboard");
           } else if (
             res.status === 200 &&
-            res.data.user.accountNumber === "9018875523" &&
+            res.data.user.accountNumber === "2683002668" &&
             res.data.user.accountType === "Admin"
           ) {
             setIsSuccess(true);
             const Token = res.data.token;
             sessionStorage.setItem("AdminToken", Token);
+            console.log("Navigating to admin...");
             navigate("/admin");
           }
           return;
@@ -199,7 +200,7 @@ const LoginForm: React.FC<{
       <form
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded shadow-md w-[40rem] animate-fade-in-down">
-        <h2 className="text-2xl font-bold mb-6 text-red-600">
+        <h2 className="text-2xl font-bold mb-6 text-yellow-600">
           Login to have more power on your money
         </h2>
         <div className="relative z-0 mb-6 w-full group">
@@ -241,14 +242,25 @@ const LoginForm: React.FC<{
           already not enrolled?{" "}
           <Link
             to={"/sign-up"}
-            className="text-red-600 underline cursor-pointer hover:text-red-800">
+            className="text-yellow-600 underline cursor-pointer hover:text-yellow-800">
             {" "}
             register
           </Link>
         </p>
+
+        <p className="text-sm my-5 text-gray-500 capitalize">
+          Go back home{" "}
+          <Link
+            to={"/"}
+            className="text-yellow-600 underline cursor-pointer hover:text-yellow-800">
+            {" "}
+            Home
+          </Link>
+        </p>
+        
         <button
           type="submit"
-          className="w-full bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline animate-pulse"
+          className="w-full bg-yellow-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline animate-pulse"
           disabled={isLoading}>
           {isLoading ? (
             <div className="flex items-center justify-center">

@@ -57,7 +57,7 @@ const Header: React.FC<{ handleShowSide: () => void }> = ({ handleShowSide }) =>
   const getter: (value: string) => void = useCallback((value: string) => {
     localStorage.setItem("selectedCurrency", value);
   }, []);
-
+  
   return (
     <header className="bg-gray-50 rounded-xl md:w-full md:max-w-full shadow-md py-4 md:px-6 px-1 flex justify-between items-center mb-4">
       <div

@@ -27,7 +27,7 @@ const CardContainer: React.FC = () => {
 	];
 
 	return (
-		<div className='flex w-[63rem] p-2 mr-[7rem] bg-red-300 m-auto max-w-full   flex-wrap justify-center space-x-4'>
+		<div className='flex w-[63rem] p-2 mr-[7rem] bg-yellow-300 m-auto max-w-full   flex-wrap justify-center space-x-4'>
 			{cards.map((card, index) => (
 				<Card
 					key={index}
@@ -55,7 +55,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ type, balance, cardNumber, expireDate, cvc, status }) => {
-	const statusClasses = status === "Active" ? "bg-green-500" : "bg-red-500";
+	const statusClasses = status === "Active" ? "bg-green-500" : "bg-yellow-500";
 
 	return (
 		<div className='border rounded-lg p-4 shadow-md bg-white w-80'>

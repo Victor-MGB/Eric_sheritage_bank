@@ -48,9 +48,9 @@ const Support: React.FC = () => {
 				<div className='bg-gray-100 p-6 rounded-lg shadow-inner'>
 					<FaEnvelope className='text-red-600 text-3xl mb-4 mx-auto' />
 					<h3 className='text-xl font-semibold mb-2'>Email Address</h3>
-					<p>centralcitybank0@gmail.com</p>
+					<p>Sheritage144@gmail.com</p>
 				</div>
-				<div className='bg-gray-100 p-6 rounded-lg shadow-inner'>
+				{/* <div className='bg-gray-100 p-6 rounded-lg shadow-inner'>
 					<FaPhoneAlt className='text-red-600 text-3xl mb-4 mx-auto' />
 					<h3 className='text-xl font-semibold mb-2'>Phone Number</h3>
 					<p>
@@ -58,7 +58,7 @@ const Support: React.FC = () => {
 						<br />
 						+1 (207) 402-1612 (24/7)
 					</p>
-				</div>
+				</div> */}
 			</div>
 
 			<div className='h-96 rounded-lg overflow-hidden shadow-lg'>

@@ -39,7 +39,7 @@ const menuItems = [
                   { name: "Gift Cards", link: "/personal/giftcards.asp" },
                   { name: "Safe Deposit Box", link: "/personal/safedepositboxes.asp" },
                   { name: "Fraud Protection", link: "/help/fraud-protection.asp" },
-                  { name: "CNB Connect Blog", link: "http://blog.centralnational.com/" },
+                  { name: "SHB Connect Blog", link: "http://blog.centralnational.com/" },
                   { name: "Rewards", link: "/whycentral/lifenowrewards.asp" },
             ],
       },

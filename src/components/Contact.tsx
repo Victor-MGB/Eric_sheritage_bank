@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
-  FaPhone,
+  // FaPhone,
   FaEnvelope,
   FaClock,
   FaFacebook,
@@ -104,11 +104,11 @@ const ContactCenter: React.FC = () => {
         <div className="bg-black p-6 rounded-lg shadow-md bg-opacity-35 w-[40rem]">
           <h3 className="text-xl font-bold mb-4 flex flex-col">Get in Touch</h3>
           <p className="flex items-center text-gray-700 mb-2">
-            <FaPhone className="mr-2 text-blue-500" /> +16623605122
+            {/* <FaPhone className="mr-2 text-blue-500" /> +16623605122 */}
           </p>
           <p className="flex items-center text-gray-700 mb-2">
             <FaEnvelope className="mr-2 text-blue-500" />
-            centrallNationalbank@gmail.com
+            Sheritage144@gmail.com
           </p>
           <p className="flex items-center text-gray-700 mb-2">
             <FaClock className="mr-2 text-blue-500" /> Mon - Fri: 9:00 AM - 6:00 PM
@@ -212,9 +212,8 @@ const Notification = () => {
 
   return (
     <div
-      className={`fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 transition-transform duration-500 ease-in-out ${
-        show ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 transition-transform duration-500 ease-in-out ${show ? "translate-y-0" : "-translate-y-full"
+        }`}
       role="alert">
       <div className="flex items-center bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
         <FaCheckCircle className="text-green-500 text-xl mr-2" />

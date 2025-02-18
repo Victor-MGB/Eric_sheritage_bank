@@ -267,7 +267,7 @@ const OverAllDropDown: React.FC = () => {
                 <a href="/help/fraud-protection.asp">Fraud Protection</a>
               </li>
               <li>
-                <a href="http://blog.centralnational.com/">CNB Connect Blog</a>
+                {/* <a href="http://blog.centralnational.com/">CNB Connect Blog</a> */}
               </li>
               <li>
                 <a href="/whycentral/lifenowrewards.asp">Rewards</a>
@@ -433,7 +433,7 @@ const OverAllDropDown: React.FC = () => {
                 <a href="/security">Fraud Protection</a>
               </li>
               <li>
-                <a href="http://blog.centralnational.com/">CNB Connect Blog</a>
+                <a href="http://blog.centralnational.com/">SHB Connect Blog</a>
               </li>
               <li>
                 <a href="http://myfinancialwingman.com">My Financial Wingman Blog</a>

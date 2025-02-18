@@ -6,7 +6,7 @@ const SavingComponent = () => {
 	return (
 		<div className='flex relative top-[5rem] flex-col md:flex-row justify-between items-center bg-gray-100 p-6 rounded-lg shadow-lg'>
 			<div className='md:w-1/2 p-4'>
-				<h2 className='text-3xl font-bold mb-4'>Saving with CNB</h2>
+				<h2 className='text-3xl font-bold mb-4'>Saving with SHB</h2>
 				<p className='text-lg mb-4'>
 					Saving is hard, so we made it simpler. Create a Savings Pot in minutes to earn up to 4.90%
 					(AER/Gross fixed) interest on your money, fixed for 6 months with a £500 minimum deposit
@@ -21,10 +21,10 @@ const SavingComponent = () => {
 					Create a Savings Pot
 				</button>
 				<button className='bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 transition duration-300'>
-					Open a CNB account
+					Open a SHB account
 				</button>
 				<p className='text-sm text-gray-600 mt-4'>
-					You need a CNB Current Account. Ts&Cs apply. UK residents only.
+					You need a SHB Current Account. Ts&Cs apply. UK residents only.
 				</p>
 			</div>
 			<div className='md:w-1/2 p-4'>
@@ -43,7 +43,7 @@ export const QRComponent = () => {
 				<div className='md:w-2/3'>
 					<h2 className='text-2xl font-bold mb-4'>You’ll need your phone for that</h2>
 					<p className='text-lg mb-6'>
-						Open the camera on your phone and scan the QR code to go to the CNB app.
+						Open the camera on your phone and scan the QR code to go to the SHB app.
 					</p>
 					<div className='flex space-x-4'>
 						<a href='https://apps.apple.com' target='_blank' rel='noopener noreferrer'>

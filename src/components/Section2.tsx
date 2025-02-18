@@ -115,7 +115,7 @@ export const FinancialGuidance = () => {
 					Financial Guidance for Every Stage of Life.
 				</h2>
 				<p className='mt-4 text-gray-600'>
-					At central National bank, we prioritize the security and privacy of our users' data. Our
+					At Sheritage bank, we prioritize the security and privacy of our users' data. Our
 
 					robust security measures, including advanced encryption and access controls, ensure that
 					your sensitive information remains confidential and protected from unauthorized access or

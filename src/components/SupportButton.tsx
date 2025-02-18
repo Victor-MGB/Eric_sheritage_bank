@@ -27,7 +27,7 @@ const Title = () => {
   return (
     <div
       className={`w-[16rem] peer-hover:flex rounded-xl items-center justify-center gap-2 text-nowrap right-[2rem] absolute bg-black border-[2px] border-green-600 shadow-sm shadow-white h-fit text-[10px] text-Alltext  p-2 hidden`}>
-      chat with Sheritage Bank assistant via whatsApp{" "}
+      {/* chat with Sheritage Bank assistant via whatsApp{" "} */}
       {/* <FaWhatsapp className={`text-green-600 animate-pulse`} /> */}
     </div>
   );
